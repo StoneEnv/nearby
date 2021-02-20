@@ -96,11 +96,11 @@ define(["require", "exports", "esri/core/accessorSupport/decorators", "esri/widg
             alertClose: 'alert-close',
             topNav: 'top-nav',
             topNavTitle: 'top-nav-title',
-            column14: 'column-14',
-            leader: 'leader-0',
-            trailer: 'trailer-0',
-            paddingLeft: 'padding-left-0',
-            paddingRight: 'padding-right-0',
+            //column14: 'column-14',
+            //leader: 'leader-0',
+            //trailer: 'trailer-0',
+            //paddingLeft: 'padding-left-0',
+            //paddingRight: 'padding-right-0',
             button: 'btn',
             buttonFill: 'btn-fill',
             right: 'right',
@@ -126,13 +126,15 @@ define(["require", "exports", "esri/core/accessorSupport/decorators", "esri/widg
         }
         MapPanel.prototype.render = function () {
             var allClasses = [
-                CSS.calciteStyles.paddingRight,
-                CSS.calciteStyles.paddingLeft,
-                CSS.calciteStyles.trailer,
-                CSS.calciteStyles.leader,
-                CSS.calciteStyles.trailer
+            //CSS.calciteStyles.paddingRight,
+            //CSS.calciteStyles.paddingLeft,
+            //CSS.calciteStyles.trailer,
+            //CSS.calciteStyles.leader,
+            //CSS.calciteStyles.trailer
             ];
-            var mainMapClasses = [CSS.calciteStyles.column14];
+            var mainMapClasses = [
+            //CSS.calciteStyles.column14
+            ];
             var miniMapClasses = [CSS.miniMap.panel, CSS.calciteStyles.panel];
             var mapPositionClasses = this.isMobileView
                 ? this.classes.apply(this, __spreadArrays(allClasses, miniMapClasses)) : this.classes.apply(this, __spreadArrays(mainMapClasses, allClasses));

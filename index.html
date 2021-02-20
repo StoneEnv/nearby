@@ -34,6 +34,7 @@
   <link id="esri-stylesheet" rel="stylesheet" href="https://js.arcgis.com/4.16/esri/themes/light/main.css" />
 
   <link rel="stylesheet" href="styles/main.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="styles/local.css" media="print" onload="this.media='all'">
   <script src="./app/es6-promise.auto.min.js"></script>
 
   <script src="./app/dojo.js"></script>
@@ -68,7 +69,7 @@
           <div id="distanceOptions"></div>
           <div class="hide" id="filterOptions"></div>
         </div>
-        <div role="main">
+        <div id="resultsPanelWrapper" role="main">
           <div id="resultsPanel" class="main-map-content"></div>
         </div>
       </div> <!-- end of wrapper -->

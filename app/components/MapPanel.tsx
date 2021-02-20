@@ -30,11 +30,11 @@ const CSS = {
 		alertClose: 'alert-close',
 		topNav: 'top-nav',
 		topNavTitle: 'top-nav-title',
-		column14: 'column-14',
-		leader: 'leader-0',
-		trailer: 'trailer-0',
-		paddingLeft: 'padding-left-0',
-		paddingRight: 'padding-right-0',
+		//column14: 'column-14',
+		//leader: 'leader-0',
+		//trailer: 'trailer-0',
+		//paddingLeft: 'padding-left-0',
+		//paddingRight: 'padding-right-0',
 		button: 'btn',
 		buttonFill: 'btn-fill',
 		right: 'right',
@@ -93,13 +93,15 @@ class MapPanel extends (Widget) {
 	}
 	render() {
 		const allClasses = [
-			CSS.calciteStyles.paddingRight,
-			CSS.calciteStyles.paddingLeft,
-			CSS.calciteStyles.trailer,
-			CSS.calciteStyles.leader,
-			CSS.calciteStyles.trailer
+			//CSS.calciteStyles.paddingRight,
+			//CSS.calciteStyles.paddingLeft,
+			//CSS.calciteStyles.trailer,
+			//CSS.calciteStyles.leader,
+			//CSS.calciteStyles.trailer
 		];
-		const mainMapClasses = [CSS.calciteStyles.column14];
+		const mainMapClasses = [
+			//CSS.calciteStyles.column14
+		];
 		const miniMapClasses = [CSS.miniMap.panel, CSS.calciteStyles.panel];
 		const mapPositionClasses = this.isMobileView
 			? this.classes(...allClasses, ...miniMapClasses)

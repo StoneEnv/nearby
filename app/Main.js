@@ -463,6 +463,8 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 // Remove find url param
                 _this._updateUrlParam();
                 _this._searchFeature = null;
+                var panelId = "mapPanel";
+                document.getElementById(panelId).style.opacity = "100%";
             });
             this.searchWidget.on('search-complete', function (results) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
@@ -506,7 +508,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                     }
                 });
             }); });
-            // add clear search button to map view 
+            // add clear  button to map view 
             this._clearButton = document.createElement("button");
             this._clearButton.innerHTML = i18n.tools.clearLocation;
             this._clearButton.classList.add("btn");
@@ -516,6 +518,8 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._clearButton.addEventListener("click", function () {
                 _this._clearButton.classList.add("hide");
                 _this.searchWidget && _this.searchWidget.clear();
+                var panelId = "mapPanel";
+                document.getElementById(panelId).style.opacity = "100%";
             });
             this.view.ui.add(this._clearButton, 'manual');
         };

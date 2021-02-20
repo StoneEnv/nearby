@@ -396,6 +396,8 @@ class LocationApp {
 			// Remove find url param
 			this._updateUrlParam();
 			this._searchFeature = null;
+			let panelId = "mapPanel"
+			document.getElementById(panelId).style.opacity = "100%";
 		});
 
 		this.searchWidget.on('search-complete', async (results) => {
@@ -429,7 +431,7 @@ class LocationApp {
 			}
 			this._clearButton?.classList.remove("hide");
 		});
-		// add clear search button to map view 
+		// add clear  button to map view 
 		this._clearButton = document.createElement("button");
 		this._clearButton.innerHTML = i18n.tools.clearLocation;
 		this._clearButton.classList.add("btn");
@@ -439,6 +441,8 @@ class LocationApp {
 		this._clearButton.addEventListener("click", () => {
 			this._clearButton.classList.add("hide");
 			this.searchWidget && this.searchWidget.clear();
+			let panelId = "mapPanel"
+			document.getElementById(panelId).style.opacity = "100%";
 		});
 		this.view.ui.add(this._clearButton, 'manual');
 

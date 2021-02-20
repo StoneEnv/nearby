@@ -137,7 +137,7 @@ class DisplayLookupResults extends (Widget) {
 
 		// feature or group there
 		const accordion = ready ? (
-			<div key="accordion">
+			<div id="resultsList" key="accordion">
 				<p key="errorText" class={CSS.messageText} innerHTML={errorText} />
 				<div key="detailAccordion" bind={this} afterCreate={!this.empty ? this._addDetailAccordion : null} />
 			</div>
@@ -484,6 +484,9 @@ class DisplayLookupResults extends (Widget) {
 		this._clearDirections();
 		this.clearHighlights();
 		this.state = 'init';
+
+		
+
 	}
 	clearHighlights() {
 		this._handles.removeAll();

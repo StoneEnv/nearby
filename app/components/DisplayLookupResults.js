@@ -141,7 +141,7 @@ define(["require", "exports", "esri/core/accessorSupport/decorators", "esri/widg
                 }
             }
             // feature or group there
-            var accordion = ready ? (widget_1.tsx("div", { key: "accordion" },
+            var accordion = ready ? (widget_1.tsx("div", { id: "resultsList", key: "accordion" },
                 widget_1.tsx("p", { key: "errorText", class: CSS.messageText, innerHTML: errorText }),
                 widget_1.tsx("div", { key: "detailAccordion", bind: this, afterCreate: !this.empty ? this._addDetailAccordion : null }))) : null;
             var togglePanel = this._featureResults ? this.createTogglePanel() : null;

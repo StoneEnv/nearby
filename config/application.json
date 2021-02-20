@@ -1,44 +1,52 @@
 {
   "appid": "",
-  "webmap": "default",
+  "webmap": "ac9ed27db3d24f0c880078ba8d962191",
   "portalUrl": "https://www.arcgis.com",
   "oauthappid": "arcgisWebApps",
   "proxyUrl": "",
   "title": null,
   "titleLink": null,
-  "introductionTitle": null,
-  "introductionContent": null,
+  "introductionTitle": "Welcome!",
+  "introductionContent": "Search for an address to learn more about the location and its surrounding area.</br>If you don't know the address, use one of these search methods: <ul><li>Click the search box and type in an address or choose <b>Use current location </b><img alt src /></li><li>Click within the map <div><img alt src /></div></li></ul></br> Results will include information about features of interest.",
   "legend": false,
   "legendPosition": "top-right",
   "legendOpenAtStart": false,
   "theme": "light",
-  "applySharedTheme": true,
+  "applySharedTheme": false,
   "hideMap": false,
-  "shareIncludeSocial": false,
+  "shareIncludeSocial": true,
   "scalebar": false,
-  "scalebarPosition": "bottom-left",
+  "scalebarPosition": "bottom-right",
   "home": true,
   "mapZoom": true,
-  "mapZoomPosition": "top-right",
+  "mapZoomPosition": "top-left",
   "mapPin": true,
   "mapPinLabel": false,
 
-  "basemapToggle": false,
+  "basemapToggle": true,
   "basemapTogglePosition": "bottom-left",
-  "nextBasemap": null,
+  "basemapSelector": "2ea9c9cf54cb494187b03a5057d1a830",
+  "nextBasemap": "fae788aa91e54244b161b59725dcbb2a",
   "homePosition": "top-right",
   "filters": false,
-  "lookupLayers": null,
+  "lookupLayers": {
+    "layers": [
+        {
+            "id": "Westchester_Export_Points_20201127",
+            "fields": []
+        }
+    ]
+},
   "interactiveResults": true,
   "hideLayers": false,
   "zoomScale": null,
 
-  "searchUnits": "kilometers",
+  "searchUnits": "feet",
 
   "sliderRange": {
-    "default": 1.2,
-    "minimum": 0,
-    "maximum": 2
+    "minimum": 10,
+    "default": 10,
+    "maximum": 10
   },
   "precision": 2,
   "inputsEnabled": false,

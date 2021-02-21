@@ -43,6 +43,7 @@ class LocationApp {
 	_appConfig: ConfigurationSettings = null;
 	telemetry: Telemetry = null;
 	searchWidget: Search = null;
+	initialSearchWidget: Search = null;
 	view: esri.MapView;
 	mapPanel: MapPanel = null;
 	_detailPanel: DetailPanel = null;
@@ -294,6 +295,7 @@ class LocationApp {
 				this._displayResults(this._results);
 			}
 		}), "configuration")
+		this._addInitialSearchWidget();
 		this._addSearchWidget();
 
 		// Wait for view model 
@@ -334,7 +336,6 @@ class LocationApp {
 		this.lookupResults.directions = directions;
 	}
 	private _addSearchWidget(): void {
-
 		const container = document.getElementById("search") as HTMLElement;
 		const { searchConfiguration, find, findSource } = this._appConfig;
 		let sources = searchConfiguration?.sources;
@@ -396,7 +397,8 @@ class LocationApp {
 			// Remove find url param
 			this._updateUrlParam();
 			this._searchFeature = null;
-			let panelId = "mapPanel"
+			let panelId = "mapPanel";
+			this.view.zoom = this.view.zoom - 3;
 			document.getElementById(panelId).style.opacity = "100%";
 		});
 
@@ -445,8 +447,91 @@ class LocationApp {
 			document.getElementById(panelId).style.opacity = "100%";
 		});
 		this.view.ui.add(this._clearButton, 'manual');
-
 	}
+
+	private _addInitialSearchWidget(): void {
+		const initSearchContainer = document.getElementById("initialSearch") as HTMLElement;
+		const { searchConfiguration, find, findSource } = this._appConfig;
+		let sources = searchConfiguration?.sources;
+		if (sources) {
+			sources.forEach((source) => {
+				if (source?.layer?.url) {
+					source.layer = new FeatureLayer(source?.layer?.url);
+				}
+			});
+		}
+		const searchProperties: esri.widgetsSearchProperties = {
+			...{
+				view: this.view,
+				resultGraphicEnabled: false,
+				autoSelect: false,
+				popupEnabled: false,
+				container: "initialSearch"
+			}, ...searchConfiguration
+		};
+		if (searchProperties?.sources?.length > 0) {
+			searchProperties.includeDefaultSources = false;
+		}
+
+		this.initialSearchWidget = new Search(searchProperties);
+		// If there's a find url param search for it when view is done updating once
+		if (find) {
+			whenFalseOnce(this.view, "updating", () => {
+
+				this.initialSearchWidget.viewModel.searchTerm = decodeURIComponent(find);
+				if (findSource) {
+					this.initialSearchWidget.activeSourceIndex = findSource;
+				}
+				this.initialSearchWidget.viewModel.search();
+			});
+		}
+
+		const handle = this.initialSearchWidget.viewModel.watch('state', (state) => {
+			if (state === 'ready') {
+				handle.remove();
+				// conditionally hide on tablet
+				if (!this.view.container.classList.contains('tablet-show')) {
+					this.view.container.classList.add('tablet-hide');
+				}
+				// force search within map if nothing is configured
+				if (!searchConfiguration) {
+					this.initialSearchWidget.viewModel.allSources.forEach((source) => {
+						source.withinViewEnabled = true;
+					});
+				}
+			}
+		});
+
+		this.initialSearchWidget.on(
+			"search-complete", 
+			() => {
+				console.log("Search Completed " + this.initialSearchWidget.searchTerm);
+				this.searchWidget.searchTerm = this.initialSearchWidget.searchTerm;
+				document.getElementById("initialSearchPanel").classList.add("hidden");
+				document.getElementById("sidePanel").classList.remove("hidden");
+			}
+		);
+
+		this.initialSearchWidget.on('search-clear', () => {
+			this._cleanUpResults();
+			initSearchContainer.classList.remove("hide-search-btn");
+			this._updateUrlParam();
+			this._searchFeature = null;
+			let panelId = "mapPanel"
+			document.getElementById(panelId).style.opacity = "100%";
+		});
+
+		this.initialSearchWidget.on('search-complete', async (results) => {
+			this._cleanUpResults();
+
+			if (results.numResults > 0) {
+				// Add find url param
+				initSearchContainer.classList.add("hide-search-btn");
+				this._displayResults(results);
+			}
+		});
+	}
+
 	async _displayResults(results) {
 		this._clearButton?.classList.remove("hide");
 		const index = results && results.activeSourceIndex ? results.activeSourceIndex : null;

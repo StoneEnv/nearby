@@ -76,3 +76,33 @@
 #distanceOptions {
     display: none;
 }
+
+.initialSearchPanel {
+    height: auto;
+    display: block;
+    position: relative;
+    padding-left: 100px;
+    padding-right: 100px;
+    background: silver;
+    text-align: center;
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+
+#initialSearch {
+    width: 50% !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#searchIntro {
+
+}
+
+.invisible {
+    opacity: 0%;
+}
+
+.hidden {
+    display: none;
+}

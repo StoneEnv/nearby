@@ -31,12 +31,12 @@
   "filters": false,
   "lookupLayers": {
     "layers": [
-        {
-            "id": "Westchester_Export_Points_20201127",
-            "fields": []
-        }
+      {
+        "id": "WestchesterBuilding_ExistingProperties_view_3661",
+        "fields": []
+      }
     ]
-},
+  },
   "interactiveResults": true,
   "hideLayers": false,
   "zoomScale": null,
@@ -60,6 +60,34 @@
   "resultsPanelPostText": null,
   "noResultsMessage": null,
   "groupResultsByLayer": true,
+
+  "searchConfiguration": {
+    "sources": [
+      {
+        "displayField": "build_addr",
+        "exactMatch": false,
+        "layer": {
+          "url": "https://services.arcgis.com/pwNwIGBE7M7VOXjQ/arcgis/rest/services/WestchesterBuilding_ExistingProperties_view/FeatureServer",
+          "id": "WestchesterBuilding_ExistingProperties_view_3661"
+        },
+        "maxResults": 6,
+        "maxSuggestions": 6,
+        "name": "WestchesterBuilding_ExistingProperties_view",
+        "outFields": [
+          "build_addr"
+        ],
+        "searchFields": [
+          "build_addr"
+        ],
+        "placeholder": "WestchesterBuilding_ExistingProperties_view",
+        "suggestionsEnabled": true,
+        "withinViewEnabled": false,
+        "zoomScale": null
+      }
+    ],
+    "activeSourceIndex": -1,
+    "includeDefaultSources": false
+  },
 
 
   "telemetry": {

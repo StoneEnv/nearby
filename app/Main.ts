@@ -52,6 +52,7 @@ class LocationApp {
 	_handles: Handles = new Handles();
 	_searchFeature: Graphic;
 	_results: Graphic[] = null;
+	_homeButton: HTMLButtonElement = null;
 	// DisplayLookupResults is the component that handles displaying the popup content
 	// using the Feature widget for the features that match the lookup search requirements
 	lookupResults: DisplayLookupResults;
@@ -141,6 +142,19 @@ class LocationApp {
 			return;
 		}
 		this._createMap(item);
+
+
+		this._homeButton = document.getElementById("homeButton") as HTMLButtonElement;
+		this._homeButton.addEventListener("click", () => {
+			this._cleanUpResults();
+			document.getElementById("initialSearchPanel").classList.remove("hidden");
+			document.getElementById("sidePanel").classList.add("hidden");
+			this._searchFeature = null;
+			this.initialSearchWidget.searchTerm = null;
+			let panelId = "mapPanel"
+			document.getElementById(panelId).style.opacity = "0%";
+			this._updateUrlParam();
+		});
 	}
 	async _createMap(item) {
 		this.mapPanel = await new MapPanel({
@@ -404,7 +418,7 @@ class LocationApp {
 
 		this.searchWidget.on('search-complete', async (results) => {
 			this._cleanUpResults();
-
+			let clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
 			if (results.numResults > 0) {
 				// Add find url param
 				container.classList.add("hide-search-btn");
@@ -507,8 +521,9 @@ class LocationApp {
 			() => {
 				console.log("Search Completed " + this.initialSearchWidget.searchTerm);
 				this.searchWidget.searchTerm = this.initialSearchWidget.searchTerm;
-				document.getElementById("initialSearchPanel").classList.add("hidden");
+				//document.getElementById("initialSearchPanel").classList.add("hidden");
 				document.getElementById("sidePanel").classList.remove("hidden");
+				this.initialSearchWidget.destroy();
 			}
 		);
 

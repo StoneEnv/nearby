@@ -107,6 +107,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this.footer = null;
             this._handles = new Handles_1.default();
             this._results = null;
+            this._homeButton = null;
             //----------------------------------
             //  ApplicationBase
             //----------------------------------
@@ -181,6 +182,17 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 return;
             }
             this._createMap(item);
+            this._homeButton = document.getElementById("homeButton");
+            this._homeButton.addEventListener("click", function () {
+                _this._cleanUpResults();
+                document.getElementById("initialSearchPanel").classList.remove("hidden");
+                document.getElementById("sidePanel").classList.add("hidden");
+                _this._searchFeature = null;
+                _this.initialSearchWidget.searchTerm = null;
+                var panelId = "mapPanel";
+                document.getElementById(panelId).style.opacity = "0%";
+                _this._updateUrlParam();
+            });
         };
         LocationApp.prototype._createMap = function (item) {
             return __awaiter(this, void 0, void 0, function () {
@@ -470,8 +482,10 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 document.getElementById(panelId).style.opacity = "100%";
             });
             this.searchWidget.on('search-complete', function (results) { return __awaiter(_this, void 0, void 0, function () {
+                var clearSearchBtns;
                 return __generator(this, function (_a) {
                     this._cleanUpResults();
+                    clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
                     if (results.numResults > 0) {
                         // Add find url param
                         container.classList.add("hide-search-btn");
@@ -579,8 +593,9 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this.initialSearchWidget.on("search-complete", function () {
                 console.log("Search Completed " + _this.initialSearchWidget.searchTerm);
                 _this.searchWidget.searchTerm = _this.initialSearchWidget.searchTerm;
-                document.getElementById("initialSearchPanel").classList.add("hidden");
+                //document.getElementById("initialSearchPanel").classList.add("hidden");
                 document.getElementById("sidePanel").classList.remove("hidden");
+                _this.initialSearchWidget.destroy();
             });
             this.initialSearchWidget.on('search-clear', function () {
                 _this._cleanUpResults();

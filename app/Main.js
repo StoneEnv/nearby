@@ -593,7 +593,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this.initialSearchWidget.on("search-complete", function () {
                 console.log("Search Completed " + _this.initialSearchWidget.searchTerm);
                 _this.searchWidget.searchTerm = _this.initialSearchWidget.searchTerm;
-                //document.getElementById("initialSearchPanel").classList.add("hidden");
+                document.getElementById("initialSearchPanel").classList.add("hidden");
                 document.getElementById("sidePanel").classList.remove("hidden");
                 _this.initialSearchWidget.destroy();
             });

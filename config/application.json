@@ -64,8 +64,8 @@
   "searchConfiguration": {
     "sources": [
       {
-        "displayField": "build_addr",
-        "exactMatch": false,
+        "displayField": "REV_LongLabel",
+        "exactMatch": true,
         "layer": {
           "url": "https://services.arcgis.com/pwNwIGBE7M7VOXjQ/arcgis/rest/services/WestchesterBuilding_ExistingProperties_view/FeatureServer",
           "id": "WestchesterBuilding_ExistingProperties_view_3661"
@@ -77,7 +77,7 @@
           "build_addr"
         ],
         "searchFields": [
-          "build_addr"
+          "REV_LongLabel"
         ],
         "placeholder": "WestchesterBuilding_ExistingProperties_view",
         "suggestionsEnabled": true,

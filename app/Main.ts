@@ -521,7 +521,7 @@ class LocationApp {
 			() => {
 				console.log("Search Completed " + this.initialSearchWidget.searchTerm);
 				this.searchWidget.searchTerm = this.initialSearchWidget.searchTerm;
-				//document.getElementById("initialSearchPanel").classList.add("hidden");
+				document.getElementById("initialSearchPanel").classList.add("hidden");
 				document.getElementById("sidePanel").classList.remove("hidden");
 				this.initialSearchWidget.destroy();
 			}

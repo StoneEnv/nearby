@@ -136,9 +136,14 @@
     cursor: pointer;
 }
 
-#searchIntro {
+#searchIntro  > h1{
     font-weight: 900;
-    color: white;
+    color: black;
+}
+
+#searchIntro > h2{
+    font-size: 25px;
+    color: black
 }
 
 .invisible {
@@ -150,8 +155,8 @@
 }
 
 body{
-    background-image: url(../images/nearby-background.jpg);
+    background-image: url('../images/nearby-background.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center;
+    background-position: center; 
 }

@@ -83,7 +83,7 @@
     position: relative;
     padding-left: 100px;
     padding-right: 100px;
-    background: orange;
+    background: rgb(255, 165, 0, .8);
     text-align: center;
     padding-bottom: 50px;
     padding-top: 50px;
@@ -137,7 +137,8 @@
 }
 
 #searchIntro {
-    
+    font-weight: 900;
+    color: white;
 }
 
 .invisible {

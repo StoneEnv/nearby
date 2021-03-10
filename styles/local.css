@@ -83,10 +83,14 @@
     position: relative;
     padding-left: 100px;
     padding-right: 100px;
-    background: silver;
+    background: orange;
+    opacity: .4;
     text-align: center;
     padding-bottom: 50px;
     padding-top: 50px;
+    margin-top: 200px;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
 #initialSearch {
@@ -134,7 +138,7 @@
 }
 
 #searchIntro {
-
+    
 }
 
 .invisible {
@@ -143,4 +147,11 @@
 
 .hidden {
     display: none;
+}
+
+body{
+    background-image: url(../images/nearby-background.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }

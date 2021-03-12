@@ -7624,7 +7624,8 @@ html[dir="rtl"] .top-nav-title {
   text-align: center;
   font-size: 1.2rem;
   padding-left: 0;
-  padding-right: 0; }
+  padding-right: 0;
+  display: none }
 
 .app-header.btn-link.icon-ui-description:before {
   padding-right: 0; }

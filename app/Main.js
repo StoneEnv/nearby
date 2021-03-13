@@ -362,7 +362,6 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                                     }
                                 });
                             }); }), "configuration");
-                            this._addInitialSearchWidget();
                             this._addSearchWidget();
                             // Wait for view model 
                             this._handles.add(watchUtils_1.init(this._appConfig, ["showDirections"], function () {
@@ -443,15 +442,15 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             }
             this.searchWidget = new Search_1.default(searchProperties);
             // If there's a find url param search for it when view is done updating once
-            if (find) {
-                watchUtils_1.whenFalseOnce(this.view, "updating", function () {
-                    _this.searchWidget.viewModel.searchTerm = decodeURIComponent(find);
-                    if (findSource) {
-                        _this.searchWidget.activeSourceIndex = findSource;
-                    }
-                    _this.searchWidget.viewModel.search();
-                });
-            }
+            // if (find) {
+            // 	whenFalseOnce(this.view, "updating", () => {
+            // 		this.searchWidget.viewModel.searchTerm = decodeURIComponent(find);
+            // 		if (findSource) {
+            // 			this.searchWidget.activeSourceIndex = findSource;
+            // 		}
+            // 		this.searchWidget.viewModel.search();
+            // 	});
+            // }
             var handle = this.searchWidget.viewModel.watch('state', function (state) {
                 if (state === 'ready') {
                     handle.remove();
@@ -486,6 +485,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 return __generator(this, function (_a) {
                     this._cleanUpResults();
                     clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
+                    document.getElementById("modelResults").src = "";
                     if (results.numResults > 0) {
                         // Add find url param
                         container.classList.add("hide-search-btn");
@@ -539,83 +539,6 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 document.getElementById(panelId).style.opacity = "100%";
             });
             this.view.ui.add(this._clearButton, 'manual');
-        };
-        LocationApp.prototype._addInitialSearchWidget = function () {
-            var _this = this;
-            var _a;
-            var initSearchContainer = document.getElementById("initialSearch");
-            var _b = this._appConfig, searchConfiguration = _b.searchConfiguration, find = _b.find, findSource = _b.findSource;
-            var sources = searchConfiguration === null || searchConfiguration === void 0 ? void 0 : searchConfiguration.sources;
-            if (sources) {
-                sources.forEach(function (source) {
-                    var _a, _b;
-                    if ((_a = source === null || source === void 0 ? void 0 : source.layer) === null || _a === void 0 ? void 0 : _a.url) {
-                        source.layer = new FeatureLayer_1.default((_b = source === null || source === void 0 ? void 0 : source.layer) === null || _b === void 0 ? void 0 : _b.url);
-                    }
-                });
-            }
-            var searchProperties = __assign({
-                view: this.view,
-                resultGraphicEnabled: false,
-                autoSelect: false,
-                popupEnabled: false,
-                container: "initialSearch"
-            }, searchConfiguration);
-            if (((_a = searchProperties === null || searchProperties === void 0 ? void 0 : searchProperties.sources) === null || _a === void 0 ? void 0 : _a.length) > 0) {
-                searchProperties.includeDefaultSources = false;
-            }
-            this.initialSearchWidget = new Search_1.default(searchProperties);
-            // If there's a find url param search for it when view is done updating once
-            if (find) {
-                watchUtils_1.whenFalseOnce(this.view, "updating", function () {
-                    _this.initialSearchWidget.viewModel.searchTerm = decodeURIComponent(find);
-                    if (findSource) {
-                        _this.initialSearchWidget.activeSourceIndex = findSource;
-                    }
-                    _this.initialSearchWidget.viewModel.search();
-                });
-            }
-            var handle = this.initialSearchWidget.viewModel.watch('state', function (state) {
-                if (state === 'ready') {
-                    handle.remove();
-                    // conditionally hide on tablet
-                    if (!_this.view.container.classList.contains('tablet-show')) {
-                        _this.view.container.classList.add('tablet-hide');
-                    }
-                    // force search within map if nothing is configured
-                    if (!searchConfiguration) {
-                        _this.initialSearchWidget.viewModel.allSources.forEach(function (source) {
-                            source.withinViewEnabled = true;
-                        });
-                    }
-                }
-            });
-            this.initialSearchWidget.on("search-complete", function () {
-                console.log("Search Completed " + _this.initialSearchWidget.searchTerm);
-                _this.searchWidget.searchTerm = _this.initialSearchWidget.searchTerm;
-                document.getElementById("initialSearchPanel").classList.add("hidden");
-                document.getElementById("sidePanel").classList.remove("hidden");
-                _this.initialSearchWidget.destroy();
-            });
-            this.initialSearchWidget.on('search-clear', function () {
-                _this._cleanUpResults();
-                initSearchContainer.classList.remove("hide-search-btn");
-                _this._updateUrlParam();
-                _this._searchFeature = null;
-                var panelId = "mapPanel";
-                document.getElementById(panelId).style.opacity = "100%";
-            });
-            this.initialSearchWidget.on('search-complete', function (results) { return __awaiter(_this, void 0, void 0, function () {
-                return __generator(this, function (_a) {
-                    this._cleanUpResults();
-                    if (results.numResults > 0) {
-                        // Add find url param
-                        initSearchContainer.classList.add("hide-search-btn");
-                        this._displayResults(results);
-                    }
-                    return [2 /*return*/];
-                });
-            }); });
         };
         LocationApp.prototype._displayResults = function (results) {
             var _a;

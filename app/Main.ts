@@ -57,6 +57,7 @@ class LocationApp {
 	// using the Feature widget for the features that match the lookup search requirements
 	lookupResults: DisplayLookupResults;
 	//----------------------------------
+	_theTest: HTMLElement = null;
 	//  ApplicationBase
 	//----------------------------------
 	base: ApplicationBase = null;
@@ -143,17 +144,21 @@ class LocationApp {
 		}
 		this._createMap(item);
 
-
 		this._homeButton = document.getElementById("homeButton") as HTMLButtonElement;
 		this._homeButton.addEventListener("click", () => {
+			//home button is for clearing the search menu
 			this._cleanUpResults();
+			this._theTest = document.getElementById("initialSearchPanel");
 			document.getElementById("initialSearchPanel").classList.remove("hidden");
 			document.getElementById("sidePanel").classList.add("hidden");
 			this._searchFeature = null;
 			this.initialSearchWidget.searchTerm = null;
-			let panelId = "mapPanel"
-			document.getElementById(panelId).style.opacity = "0%";
+			let panelId = "mapPanel";
+			//document.getElementById(panelId).style.opacity = "0%";
+			
+			this._theTest.style.display = "none";
 			this._updateUrlParam();
+			console.log('the home button fired');
 		});
 	}
 	async _createMap(item) {
@@ -418,6 +423,7 @@ class LocationApp {
 
 		this.searchWidget.on('search-complete', async (results) => {
 			this._cleanUpResults();
+			document.getElementById("initialSearchPanel").style.marginTop = "20px";
 			let clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
 			if (results.numResults > 0) {
 				// Add find url param
@@ -427,7 +433,7 @@ class LocationApp {
 		});
 		// Search for location where user clicked on the map 
 		this.view.on('click', async (e: esri.MapViewClickEvent) => {
-
+			// document.getElementById("body").style.display = "none"
 			const point = e.mapPoint;
 			if (this.lookupResults.empty) {
 				this._performSearch(point);
@@ -459,6 +465,7 @@ class LocationApp {
 			this.searchWidget && this.searchWidget.clear();
 			let panelId = "mapPanel"
 			document.getElementById(panelId).style.opacity = "100%";
+			document.getElementById("initialSearchPanel").style.display = "none";
 		});
 		this.view.ui.add(this._clearButton, 'manual');
 	}
@@ -523,6 +530,7 @@ class LocationApp {
 				this.searchWidget.searchTerm = this.initialSearchWidget.searchTerm;
 				document.getElementById("initialSearchPanel").classList.add("hidden");
 				document.getElementById("sidePanel").classList.remove("hidden");
+				document.getElementById("initialSearchPanel").style.display = "none";
 				this.initialSearchWidget.destroy();
 			}
 		);

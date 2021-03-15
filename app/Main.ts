@@ -148,15 +148,16 @@ class LocationApp {
 		this._homeButton.addEventListener("click", () => {
 			//home button is for clearing the search menu
 			this._cleanUpResults();
-			this._theTest = document.getElementById("initialSearchPanel");
-			document.getElementById("initialSearchPanel").classList.remove("hidden");
-			document.getElementById("sidePanel").classList.add("hidden");
+			let initialSearchPanel = <HTMLElement> document.getElementById("initialSearchPanel");
+			let sidePanel = <HTMLElement> document.getElementById("sidePanel");
+			let mapPanel = <HTMLElement> document.getElementById("mapPanel");
+			initialSearchPanel.classList.remove("hidden");
+			sidePanel.classList.add("hidden");
 			this._searchFeature = null;
 			this.initialSearchWidget.searchTerm = null;
 			let panelId = "mapPanel";
-			//document.getElementById(panelId).style.opacity = "0%";
-			
-			this._theTest.style.display = "none";
+			mapPanel.style.opacity = "0%"
+			initialSearchPanel.style.display = "none";
 			this._updateUrlParam();
 			console.log('the home button fired');
 		});

@@ -109,6 +109,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._results = null;
             this._homeButton = null;
             //----------------------------------
+            this._theTest = null;
             //  ApplicationBase
             //----------------------------------
             this.base = null;
@@ -184,14 +185,20 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._createMap(item);
             this._homeButton = document.getElementById("homeButton");
             this._homeButton.addEventListener("click", function () {
+                //home button is for clearing the search menu
                 _this._cleanUpResults();
-                document.getElementById("initialSearchPanel").classList.remove("hidden");
-                document.getElementById("sidePanel").classList.add("hidden");
+                var initialSearchPanel = document.getElementById("initialSearchPanel");
+                var sidePanel = document.getElementById("sidePanel");
+                var mapPanel = document.getElementById("mapPanel");
+                initialSearchPanel.classList.remove("hidden");
+                sidePanel.classList.add("hidden");
                 _this._searchFeature = null;
                 _this.initialSearchWidget.searchTerm = null;
                 var panelId = "mapPanel";
-                document.getElementById(panelId).style.opacity = "0%";
+                mapPanel.style.opacity = "0%";
+                initialSearchPanel.style.display = "none";
                 _this._updateUrlParam();
+                console.log('the home button fired');
             });
         };
         LocationApp.prototype._createMap = function (item) {
@@ -485,6 +492,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 var clearSearchBtns;
                 return __generator(this, function (_a) {
                     this._cleanUpResults();
+                    document.getElementById("initialSearchPanel").style.marginTop = "20px";
                     clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
                     if (results.numResults > 0) {
                         // Add find url param
@@ -537,6 +545,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 _this.searchWidget && _this.searchWidget.clear();
                 var panelId = "mapPanel";
                 document.getElementById(panelId).style.opacity = "100%";
+                document.getElementById("initialSearchPanel").style.display = "none";
             });
             this.view.ui.add(this._clearButton, 'manual');
         };
@@ -595,6 +604,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 _this.searchWidget.searchTerm = _this.initialSearchWidget.searchTerm;
                 document.getElementById("initialSearchPanel").classList.add("hidden");
                 document.getElementById("sidePanel").classList.remove("hidden");
+                document.getElementById("initialSearchPanel").style.display = "none";
                 _this.initialSearchWidget.destroy();
             });
             this.initialSearchWidget.on('search-clear', function () {

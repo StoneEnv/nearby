@@ -196,9 +196,8 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 _this.initialSearchWidget.searchTerm = null;
                 var panelId = "mapPanel";
                 mapPanel.style.opacity = "0%";
-                initialSearchPanel.style.display = "none";
+                // initialSearchPanel.style.display = "none";
                 _this._updateUrlParam();
-                console.log('the home button fired');
             });
         };
         LocationApp.prototype._createMap = function (item) {
@@ -492,7 +491,12 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 var clearSearchBtns;
                 return __generator(this, function (_a) {
                     this._cleanUpResults();
-                    document.getElementById("initialSearchPanel").style.marginTop = "20px";
+                    document.getElementById("initialSearchPanel").style.marginTop = "0px";
+                    document.getElementById("initialSearchPanel").style.marginLeft = "0x";
+                    document.getElementById("initialSearchPanel").style.marginRight = "0px";
+                    document.getElementById("initialSearchPanel").style.paddingTop = "5px";
+                    document.getElementById("searchIntro_welcome").style.fontSize = '20px';
+                    document.getElementById("searchIntro_groundwater").style.fontSize = '15px';
                     clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
                     if (results.numResults > 0) {
                         // Add find url param
@@ -541,11 +545,12 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._clearButton.classList.add('hide');
             this._clearButton.classList.add("app-button");
             this._clearButton.addEventListener("click", function () {
+                var menuShift = document.getElementById('initialSearchPanel');
                 _this._clearButton.classList.add("hide");
                 _this.searchWidget && _this.searchWidget.clear();
                 var panelId = "mapPanel";
                 document.getElementById(panelId).style.opacity = "100%";
-                document.getElementById("initialSearchPanel").style.display = "none";
+                menuShift.style.display = "none";
             });
             this.view.ui.add(this._clearButton, 'manual');
         };

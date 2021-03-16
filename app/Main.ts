@@ -157,9 +157,8 @@ class LocationApp {
 			this.initialSearchWidget.searchTerm = null;
 			let panelId = "mapPanel";
 			mapPanel.style.opacity = "0%"
-			initialSearchPanel.style.display = "none";
+			// initialSearchPanel.style.display = "none";
 			this._updateUrlParam();
-			console.log('the home button fired');
 		});
 	}
 	async _createMap(item) {
@@ -424,7 +423,12 @@ class LocationApp {
 
 		this.searchWidget.on('search-complete', async (results) => {
 			this._cleanUpResults();
-			document.getElementById("initialSearchPanel").style.marginTop = "20px";
+			document.getElementById("initialSearchPanel").style.marginTop = "0px";
+			document.getElementById("initialSearchPanel").style.marginLeft = "0x";
+			document.getElementById("initialSearchPanel").style.marginRight = "0px";
+			document.getElementById("initialSearchPanel").style.paddingTop = "5px";
+			document.getElementById("searchIntro_welcome").style.fontSize= '20px';
+			document.getElementById("searchIntro_groundwater").style.fontSize= '15px';
 			let clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
 			if (results.numResults > 0) {
 				// Add find url param
@@ -462,11 +466,12 @@ class LocationApp {
 		this._clearButton.classList.add('hide');
 		this._clearButton.classList.add("app-button");
 		this._clearButton.addEventListener("click", () => {
+			let menuShift = document.getElementById('initialSearchPanel')
 			this._clearButton.classList.add("hide");
 			this.searchWidget && this.searchWidget.clear();
 			let panelId = "mapPanel"
 			document.getElementById(panelId).style.opacity = "100%";
-			document.getElementById("initialSearchPanel").style.display = "none";
+			menuShift.style.display = "none";
 		});
 		this.view.ui.add(this._clearButton, 'manual');
 	}

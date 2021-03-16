@@ -423,12 +423,12 @@ class LocationApp {
 
 		this.searchWidget.on('search-complete', async (results) => {
 			this._cleanUpResults();
-			document.getElementById("initialSearchPanel").style.marginTop = "0px";
+			document.getElementById("labels-container").style.marginTop = "10px";
 			document.getElementById("initialSearchPanel").style.marginLeft = "0px";
 			document.getElementById("initialSearchPanel").style.marginRight = "0px";
-			document.getElementById("initialSearchPanel").style.paddingTop = "5px";
-			document.getElementById("searchIntro_welcome").style.fontSize= '20px';
-			document.getElementById("searchIntro_groundwater").style.fontSize= '15px';
+			document.getElementById("initialSearchPanel").style.padding = "5px";
+			document.getElementById("searchIntro_welcome").style.display= 'none';
+			document.getElementById("searchIntro_groundwater").style.display= 'none';
 			let clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
 			if (results.numResults > 0) {
 				// Add find url param

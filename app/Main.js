@@ -475,12 +475,12 @@ var LocationApp = /** @class */ (function () {
             var clearSearchBtns;
             return __generator(this, function (_a) {
                 this._cleanUpResults();
-                document.getElementById("initialSearchPanel").style.marginTop = "0px";
+                document.getElementById("labels-container").style.marginTop = "10px";
                 document.getElementById("initialSearchPanel").style.marginLeft = "0px";
                 document.getElementById("initialSearchPanel").style.marginRight = "0px";
-                document.getElementById("initialSearchPanel").style.paddingTop = "5px";
-                document.getElementById("searchIntro_welcome").style.fontSize = '20px';
-                document.getElementById("searchIntro_groundwater").style.fontSize = '15px';
+                document.getElementById("initialSearchPanel").style.padding = "5px";
+                document.getElementById("searchIntro_welcome").style.display = 'none';
+                document.getElementById("searchIntro_groundwater").style.display = 'none';
                 clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
                 if (results.numResults > 0) {
                     // Add find url param

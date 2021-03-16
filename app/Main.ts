@@ -424,7 +424,7 @@ class LocationApp {
 		this.searchWidget.on('search-complete', async (results) => {
 			this._cleanUpResults();
 			document.getElementById("initialSearchPanel").style.marginTop = "0px";
-			document.getElementById("initialSearchPanel").style.marginLeft = "0x";
+			document.getElementById("initialSearchPanel").style.marginLeft = "0px";
 			document.getElementById("initialSearchPanel").style.marginRight = "0px";
 			document.getElementById("initialSearchPanel").style.paddingTop = "5px";
 			document.getElementById("searchIntro_welcome").style.fontSize= '20px';

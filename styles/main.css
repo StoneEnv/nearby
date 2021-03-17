@@ -3080,7 +3080,7 @@ html[lang="vi"] body, html.vi body {
   text-transform: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  display: inline-block;
+  display: none;
   text-decoration: none; }
   html[dir="rtl"] [class^="icon-ui-"]:before, html[dir="rtl"]
   [class*=" icon-ui-"]:before {
@@ -7624,10 +7624,12 @@ html[dir="rtl"] .top-nav-title {
   text-align: center;
   font-size: 1.2rem;
   padding-left: 0;
-  padding-right: 0; }
+  padding-right: 0;
+  display: none }
 
 .app-header.btn-link.icon-ui-description:before {
-  padding-right: 0; }
+  padding-right: 0; 
+  display: none}
 
 .search-panel {
   display: flex;

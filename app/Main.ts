@@ -57,6 +57,7 @@ class LocationApp {
 	// using the Feature widget for the features that match the lookup search requirements
 	lookupResults: DisplayLookupResults;
 	//----------------------------------
+	_theTest: HTMLElement = null;
 	//  ApplicationBase
 	//----------------------------------
 	base: ApplicationBase = null;
@@ -143,16 +144,20 @@ class LocationApp {
 		}
 		this._createMap(item);
 
-
 		this._homeButton = document.getElementById("homeButton") as HTMLButtonElement;
 		this._homeButton.addEventListener("click", () => {
+			//home button is for clearing the search menu
 			this._cleanUpResults();
-			document.getElementById("initialSearchPanel").classList.remove("hidden");
-			document.getElementById("sidePanel").classList.add("hidden");
+			let initialSearchPanel = <HTMLElement> document.getElementById("initialSearchPanel");
+			let sidePanel = <HTMLElement> document.getElementById("sidePanel");
+			let mapPanel = <HTMLElement> document.getElementById("mapPanel");
+			initialSearchPanel.classList.remove("hidden");
+			sidePanel.classList.add("hidden");
 			this._searchFeature = null;
 			this.initialSearchWidget.searchTerm = null;
-			let panelId = "mapPanel"
-			document.getElementById(panelId).style.opacity = "0%";
+			let panelId = "mapPanel";
+			mapPanel.style.opacity = "0%"
+			// initialSearchPanel.style.display = "none";
 			this._updateUrlParam();
 		});
 	}
@@ -424,6 +429,12 @@ class LocationApp {
 
 		this.searchWidget.on('search-complete', async (results) => {
 			this._cleanUpResults();
+			document.getElementById("labels-container").style.marginTop = "10px";
+			document.getElementById("initialSearchPanel").style.marginLeft = "0px";
+			document.getElementById("initialSearchPanel").style.marginRight = "0px";
+			document.getElementById("initialSearchPanel").style.padding = "5px";
+			document.getElementById("searchIntro_welcome").style.display= 'none';
+			document.getElementById("searchIntro_groundwater").style.display= 'none';
 			let clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
 			(<HTMLIFrameElement>document.getElementById("modelResults")).src = "";
 			if (results.numResults > 0) {
@@ -435,7 +446,7 @@ class LocationApp {
 
 		// Search for location where user clicked on the map 
 		this.view.on('click', async (e: esri.MapViewClickEvent) => {
-
+			// document.getElementById("body").style.display = "none"
 			const point = e.mapPoint;
 			if (this.lookupResults.empty) {
 				this._performSearch(point);
@@ -463,12 +474,99 @@ class LocationApp {
 		this._clearButton.classList.add('hide');
 		this._clearButton.classList.add("app-button");
 		this._clearButton.addEventListener("click", () => {
+			let menuShift = document.getElementById('initialSearchPanel')
 			this._clearButton.classList.add("hide");
 			this.searchWidget && this.searchWidget.clear();
 			let panelId = "mapPanel"
 			document.getElementById(panelId).style.opacity = "100%";
+			menuShift.style.display = "none";
 		});
 		this.view.ui.add(this._clearButton, 'manual');
+	}
+
+	private _addInitialSearchWidget(): void {
+		const initSearchContainer = document.getElementById("initialSearch") as HTMLElement;
+		const { searchConfiguration, find, findSource } = this._appConfig;
+		let sources = searchConfiguration?.sources;
+		if (sources) {
+			sources.forEach((source) => {
+				if (source?.layer?.url) {
+					source.layer = new FeatureLayer(source?.layer?.url);
+				}
+			});
+		}
+		const searchProperties: esri.widgetsSearchProperties = {
+			...{
+				view: this.view,
+				resultGraphicEnabled: false,
+				autoSelect: false,
+				popupEnabled: false,
+				container: "initialSearch"
+			}, ...searchConfiguration
+		};
+		if (searchProperties?.sources?.length > 0) {
+			searchProperties.includeDefaultSources = false;
+		}
+
+		this.initialSearchWidget = new Search(searchProperties);
+		// If there's a find url param search for it when view is done updating once
+		if (find) {
+			whenFalseOnce(this.view, "updating", () => {
+
+				this.initialSearchWidget.viewModel.searchTerm = decodeURIComponent(find);
+				if (findSource) {
+					this.initialSearchWidget.activeSourceIndex = findSource;
+				}
+				this.initialSearchWidget.viewModel.search();
+			});
+		}
+
+		const handle = this.initialSearchWidget.viewModel.watch('state', (state) => {
+			if (state === 'ready') {
+				handle.remove();
+				// conditionally hide on tablet
+				if (!this.view.container.classList.contains('tablet-show')) {
+					this.view.container.classList.add('tablet-hide');
+				}
+				// force search within map if nothing is configured
+				if (!searchConfiguration) {
+					this.initialSearchWidget.viewModel.allSources.forEach((source) => {
+						source.withinViewEnabled = true;
+					});
+				}
+			}
+		});
+
+		this.initialSearchWidget.on(
+			"search-complete", 
+			() => {
+				console.log("Search Completed " + this.initialSearchWidget.searchTerm);
+				this.searchWidget.searchTerm = this.initialSearchWidget.searchTerm;
+				document.getElementById("initialSearchPanel").classList.add("hidden");
+				document.getElementById("sidePanel").classList.remove("hidden");
+				document.getElementById("initialSearchPanel").style.display = "none";
+				this.initialSearchWidget.destroy();
+			}
+		);
+
+		this.initialSearchWidget.on('search-clear', () => {
+			this._cleanUpResults();
+			initSearchContainer.classList.remove("hide-search-btn");
+			this._updateUrlParam();
+			this._searchFeature = null;
+			let panelId = "mapPanel"
+			document.getElementById(panelId).style.opacity = "100%";
+		});
+
+		this.initialSearchWidget.on('search-complete', async (results) => {
+			this._cleanUpResults();
+
+			if (results.numResults > 0) {
+				// Add find url param
+				initSearchContainer.classList.add("hide-search-btn");
+				this._displayResults(results);
+			}
+		});
 	}
 
 	async _displayResults(results) {

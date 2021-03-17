@@ -11,6 +11,8 @@
     border-bottom-right-radius: 10px;
     /* border: 1px solid red; */
     height: auto;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .side-panel {

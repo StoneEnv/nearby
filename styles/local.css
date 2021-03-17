@@ -139,12 +139,12 @@
     cursor: pointer;
 }
 
-#searchIntro  > h1{
+#searchIntro_welcome{
     font-weight: 900;
     color: black;
 }
 
-#searchIntro > h2{
+#searchIntro_groundwater{
     font-size: 25px;
     color: black
 }

@@ -62,7 +62,7 @@ class LocationApp {
 	//----------------------------------
 	base: ApplicationBase = null;
 	_propertyButtonOne: HTMLButtonElement = null;
-
+	_propertyButtonTwo: HTMLButtonElement = null;
 	//--------------------------------------------------------------------------
 	//
 	//  Public Methods
@@ -160,6 +160,20 @@ class LocationApp {
 			mapPanel.style.opacity = "0%"
 			// initialSearchPanel.style.display = "none";
 			this._updateUrlParam();
+		});
+		
+		this._propertyButtonOne = document.getElementById("label_1") as HTMLButtonElement;
+		this._propertyButtonOne.addEventListener("click", () => {
+			this._propertyButtonTwo = document.getElementById("label_2") as HTMLButtonElement;
+			this._propertyButtonTwo.style.backgroundColor = 'rgba(221, 200, 200, 0.8)';
+			this._propertyButtonOne.style.backgroundColor = 'rgba(255, 165, 0, .8)';
+
+		});
+		this._propertyButtonTwo = document.getElementById("label_2") as HTMLButtonElement;
+		this._propertyButtonTwo.addEventListener("click", () => {
+			this._propertyButtonOne = document.getElementById("label_1") as HTMLButtonElement;
+			this._propertyButtonOne.style.backgroundColor = 'rgba(221, 200, 200, 0.8)';
+			this._propertyButtonTwo.style.backgroundColor = 'rgba(255, 165, 0, .8)';
 		});
 	}
 	async _createMap(item) {
@@ -750,7 +764,7 @@ class LocationApp {
 	// 	otherButton.style.color = 'rgba(221, 200, 200, 0.8)';
 	// 	propertyButtonTwo.style.backgroundColor = 'rgba(255, 165, 0, .8)';
 	// });
-
+	
 
 }
 export = LocationApp;

@@ -157,7 +157,7 @@
     display: none;
 }
 
-body{
+#background_image{
     background-image: url('../images/nearby-background.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;

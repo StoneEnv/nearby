@@ -430,6 +430,7 @@ class LocationApp {
 			document.getElementById("initialSearchPanel").style.padding = "5px";
 			document.getElementById("searchIntro_welcome").style.display= 'none';
 			document.getElementById("searchIntro_groundwater").style.display= 'none';
+			document.getElementById("background_image").style.backgroundImage="none";
 			let clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
 			if (results.numResults > 0) {
 				// Add find url param

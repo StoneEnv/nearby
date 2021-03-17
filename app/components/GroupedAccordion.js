@@ -80,12 +80,24 @@ define(["require", "exports", "esri/core/promiseUtils", "./Accordion", "esri/cor
             }
             return _this;
         }
+        GroupedAccordion.prototype._postRender = function () {
+            console.log("beep");
+            var linksToModel = document.querySelectorAll("a[href^='https://geothermaltool.axillis.nl']");
+            if (linksToModel.length > 0) {
+                var linkToModel = linksToModel[0];
+                linkToModel.addEventListener("click", function () {
+                    var modelPanel = document.getElementById("modelPanel");
+                    modelPanel.classList.remove("hidden");
+                });
+            }
+            console.log("boop");
+        };
         GroupedAccordion.prototype.render = function () {
             var _this = this;
             var _a = this.config, resultsPanelPreText = _a.resultsPanelPreText, resultsPanelPostText = _a.resultsPanelPostText;
             var preText = resultsPanelPreText && this._featureCount > 0 ? this.createPreText() : null;
             var postText = resultsPanelPostText && this._featureCount > 0 ? this.createPostText() : null;
-            return (widget_1.tsx("div", { key: "feature-container", class: this.classes(CSS.scrollable), afterCreate: this.updateCalcite },
+            return (widget_1.tsx("div", { key: "feature-container", class: this.classes(CSS.scrollable), afterCreate: this._postRender, afterUpdate: this._postRender },
                 preText,
                 widget_1.tsx("div", { class: this.classes(CSS.base, CSS.basejs) }, this.featureResults &&
                     this.featureResults.map(function (result, i) { return _this._createSections(result, i); })),
@@ -126,7 +138,7 @@ define(["require", "exports", "esri/core/promiseUtils", "./Accordion", "esri/cor
                 widget_1.tsx("ul", { role: 'group', class: this.classes(CSS.templateContent, CSS.content, CSS.groupContent) }, result.features &&
                     result.features.map(function (feature, i) {
                         return (widget_1.tsx("li", { role: 'menuitem', tabindex: "0" },
-                            widget_1.tsx("div", { "data-feature": feature, afterCreate: _this._createFeature, class: _this.classes(CSS.featureGroup), bind: _this, key: "feature" + i }),
+                            widget_1.tsx("div", { "data-feature": feature, afterCreate: _this._createFeature, afterUpdate: _this._postRender, class: _this.classes(CSS.featureGroup), bind: _this, key: "feature" + i }),
                             _this.config.showDirections && _this.actionBarItems && _this.actionBarItems.length > 0 ? (widget_1.tsx("nav", { class: _this.classes(CSS.actionBar) }, _this.actionBarItems &&
                                 _this.actionBarItems.length > 0 &&
                                 _this.actionBarItems.map(function (item) { return _this.createActionItem(item, feature); }))) : null));

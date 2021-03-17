@@ -173,7 +173,8 @@ define(["require", "exports", "esri/core/accessorSupport/decorators", "esri/widg
                 view: view,
                 container: container
             });
-            this.accordion.watch("hoveredItem", function () {
+            this.accordion.watch('hoveredItem', function () {
+                console.log("hoveredItem");
                 if (_this.accordion.hoveredItem && _this.accordion.hoveredItem.graphic) {
                     var location_1 = _this.accordion.hoveredItem.graphic.geometry;
                     if (location_1 && location_1.type !== "point") {
@@ -199,6 +200,7 @@ define(["require", "exports", "esri/core/accessorSupport/decorators", "esri/widg
                 }
             });
             this.accordion.watch('selectedItem', function () {
+                console.log("selectedItem");
                 _this._clearDirections();
                 if (_this.accordion.selectedItem) {
                     _this._highlightFeature(_this.accordion.selectedItem);
@@ -218,6 +220,7 @@ define(["require", "exports", "esri/core/accessorSupport/decorators", "esri/widg
                             start = this._createStop(this.location);
                             stop = this._createStop(selected);
                             if (!(this.directions && this.directions.viewModel)) return [3 /*break*/, 4];
+                            alert("handleActionItems");
                             this._clearDirections();
                             this.directions.viewModel.stops.addMany([start, stop]);
                             return [4 /*yield*/, this.directions.viewModel.getDirections()];

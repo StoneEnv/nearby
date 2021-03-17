@@ -63,12 +63,15 @@ define(["require", "exports", "esri/widgets/support/widget", "esri/core/accessor
             }
         };
         Accordion.prototype.createPostText = function () {
+            alert("postText");
             return (widget_1.tsx("p", { key: "postText", class: CSS.messageText, innerHTML: this.config.resultsPanelPostText }));
         };
         Accordion.prototype.createPreText = function () {
+            alert("preText");
             return (widget_1.tsx("p", { key: "preText", class: CSS.messageText, innerHTML: this.config.resultsPanelPreText }));
         };
         Accordion.prototype.checkContent = function (feature) {
+            alert("checkContent");
             var content = feature.viewModel.content;
             if (Array.isArray(content)) {
                 if (content.length > 0 && content[0] && content[0].type === "fields") {

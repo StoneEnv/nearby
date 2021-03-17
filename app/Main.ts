@@ -53,11 +53,12 @@ class LocationApp {
 	_searchFeature: Graphic;
 	_results: Graphic[] = null;
 	_homeButton: HTMLButtonElement = null;
+	_closeResultsBtn: HTMLButtonElement = null;
+	_modelPanel: HTMLElement = null;
 	// DisplayLookupResults is the component that handles displaying the popup content
 	// using the Feature widget for the features that match the lookup search requirements
 	lookupResults: DisplayLookupResults;
 	//----------------------------------
-	_theTest: HTMLElement = null;
 	//  ApplicationBase
 	//----------------------------------
 	base: ApplicationBase = null;
@@ -74,14 +75,12 @@ class LocationApp {
 			return;
 		}
 
-
 		this._updateMapVisibility(base.config);
 
 		setPageLocale(base.locale);
 		setPageDirection(base.direction);
 
 		this.base = base;
-
 
 		const { config, results, portal } = base;
 
@@ -143,10 +142,10 @@ class LocationApp {
 			return;
 		}
 		this._createMap(item);
+		(<HTMLIFrameElement>document.getElementById("modelResults")).src = "/blank.html";
 
 		this._homeButton = document.getElementById("homeButton") as HTMLButtonElement;
 		this._homeButton.addEventListener("click", () => {
-			//home button is for clearing the search menu
 			this._cleanUpResults();
 			let initialSearchPanel = <HTMLElement> document.getElementById("initialSearchPanel");
 			let sidePanel = <HTMLElement> document.getElementById("sidePanel");
@@ -157,8 +156,20 @@ class LocationApp {
 			this.initialSearchWidget.searchTerm = null;
 			let panelId = "mapPanel";
 			mapPanel.style.opacity = "0%"
-			// initialSearchPanel.style.display = "none";
-			this._updateUrlParam();
+		});
+
+		this._modelPanel = document.getElementById("modelPanel") as HTMLElement;
+		this._modelPanel.classList.add("hidden");
+
+		this._closeResultsBtn = document.getElementById("modelPanelHeaderCloseBtn") as HTMLButtonElement;
+		this._closeResultsBtn.addEventListener("click", () => {
+			// Hide Results Panel
+			this._modelPanel.classList.add("hidden");
+
+			// Clear Search Widget
+			//this._cleanUpResults();
+
+
 		});
 	}
 	async _createMap(item) {
@@ -427,16 +438,21 @@ class LocationApp {
 			document.getElementById(panelId).style.opacity = "100%";
 		});
 
+		this.searchWidget.on('select-result', async (result) => {
+			
+		});
+
 		this.searchWidget.on('search-complete', async (results) => {
 			this._cleanUpResults();
-			document.getElementById("labels-container").style.marginTop = "10px";
-			document.getElementById("initialSearchPanel").style.marginLeft = "0px";
-			document.getElementById("initialSearchPanel").style.marginRight = "0px";
-			document.getElementById("initialSearchPanel").style.padding = "5px";
-			document.getElementById("searchIntro_welcome").style.display= 'none';
-			document.getElementById("searchIntro_groundwater").style.display= 'none';
-			let clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
-			(<HTMLIFrameElement>document.getElementById("modelResults")).src = "";
+			(<HTMLElement>document.getElementById("labels-container")).style.marginTop = "10px";
+			(<HTMLElement>document.getElementById("initialSearchPanel")).style.marginLeft = "0px";
+			(<HTMLElement>document.getElementById("initialSearchPanel")).style.marginRight = "0px";
+			(<HTMLElement>document.getElementById("initialSearchPanel")).style.padding = "5px";
+			(<HTMLElement>document.getElementById("searchIntro_welcome")).style.display= 'none';
+			(<HTMLElement>document.getElementById("searchIntro_groundwater")).style.display= 'none';
+			//let clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
+			(<HTMLIFrameElement>document.getElementById("modelResults")).src = "/blank.html";
+
 			if (results.numResults > 0) {
 				// Add find url param
 				container.classList.add("hide-search-btn");
@@ -482,91 +498,6 @@ class LocationApp {
 			menuShift.style.display = "none";
 		});
 		this.view.ui.add(this._clearButton, 'manual');
-	}
-
-	private _addInitialSearchWidget(): void {
-		const initSearchContainer = document.getElementById("initialSearch") as HTMLElement;
-		const { searchConfiguration, find, findSource } = this._appConfig;
-		let sources = searchConfiguration?.sources;
-		if (sources) {
-			sources.forEach((source) => {
-				if (source?.layer?.url) {
-					source.layer = new FeatureLayer(source?.layer?.url);
-				}
-			});
-		}
-		const searchProperties: esri.widgetsSearchProperties = {
-			...{
-				view: this.view,
-				resultGraphicEnabled: false,
-				autoSelect: false,
-				popupEnabled: false,
-				container: "initialSearch"
-			}, ...searchConfiguration
-		};
-		if (searchProperties?.sources?.length > 0) {
-			searchProperties.includeDefaultSources = false;
-		}
-
-		this.initialSearchWidget = new Search(searchProperties);
-		// If there's a find url param search for it when view is done updating once
-		if (find) {
-			whenFalseOnce(this.view, "updating", () => {
-
-				this.initialSearchWidget.viewModel.searchTerm = decodeURIComponent(find);
-				if (findSource) {
-					this.initialSearchWidget.activeSourceIndex = findSource;
-				}
-				this.initialSearchWidget.viewModel.search();
-			});
-		}
-
-		const handle = this.initialSearchWidget.viewModel.watch('state', (state) => {
-			if (state === 'ready') {
-				handle.remove();
-				// conditionally hide on tablet
-				if (!this.view.container.classList.contains('tablet-show')) {
-					this.view.container.classList.add('tablet-hide');
-				}
-				// force search within map if nothing is configured
-				if (!searchConfiguration) {
-					this.initialSearchWidget.viewModel.allSources.forEach((source) => {
-						source.withinViewEnabled = true;
-					});
-				}
-			}
-		});
-
-		this.initialSearchWidget.on(
-			"search-complete", 
-			() => {
-				console.log("Search Completed " + this.initialSearchWidget.searchTerm);
-				this.searchWidget.searchTerm = this.initialSearchWidget.searchTerm;
-				document.getElementById("initialSearchPanel").classList.add("hidden");
-				document.getElementById("sidePanel").classList.remove("hidden");
-				document.getElementById("initialSearchPanel").style.display = "none";
-				this.initialSearchWidget.destroy();
-			}
-		);
-
-		this.initialSearchWidget.on('search-clear', () => {
-			this._cleanUpResults();
-			initSearchContainer.classList.remove("hide-search-btn");
-			this._updateUrlParam();
-			this._searchFeature = null;
-			let panelId = "mapPanel"
-			document.getElementById(panelId).style.opacity = "100%";
-		});
-
-		this.initialSearchWidget.on('search-complete', async (results) => {
-			this._cleanUpResults();
-
-			if (results.numResults > 0) {
-				// Add find url param
-				initSearchContainer.classList.add("hide-search-btn");
-				this._displayResults(results);
-			}
-		});
 	}
 
 	async _displayResults(results) {

@@ -69,17 +69,19 @@ abstract class Accordion extends (Widget) {
         }
     }
     createPostText() {
+        alert("postText");
         return (
             <p key="postText" class={CSS.messageText} innerHTML={this.config.resultsPanelPostText} />
         )
     }
     createPreText() {
-
+        alert("preText");
         return (
             <p key="preText" class={CSS.messageText} innerHTML={this.config.resultsPanelPreText} />
         )
     }
     checkContent(feature: esri.Feature): boolean {
+        alert("checkContent");
         const content = feature.viewModel.content;
         if (Array.isArray(content)) {
             if (content.length > 0 && content[0] && content[0].type === "fields") {

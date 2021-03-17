@@ -89,15 +89,29 @@ class GroupedAccordion extends (Accordion) {
             });
         }
     }
-    render() {
 
+    _postRender() {
+        console.log("beep");
+        var linksToModel = document.querySelectorAll("a[href^='https://geothermaltool.axillis.nl']");
+        if (linksToModel.length > 0) {
+            var linkToModel = linksToModel[0] as HTMLButtonElement;
+            linkToModel.addEventListener("click", () => {
+                var modelPanel = document.getElementById("modelPanel") as HTMLElement;
+                modelPanel.classList.remove("hidden");
+            });
+        }
+        console.log("boop");
+    }
+
+    render() {
         const { resultsPanelPreText, resultsPanelPostText } = this.config;
         const preText = resultsPanelPreText && this._featureCount > 0 ? this.createPreText() : null;
         const postText = resultsPanelPostText && this._featureCount > 0 ? this.createPostText() : null;
 
         return (<div key="feature-container"
             class={this.classes(CSS.scrollable)}
-            afterCreate={this.updateCalcite}>
+            afterCreate={this._postRender}
+            afterUpdate={this._postRender}>
             {preText}
             <div class={this.classes(CSS.base, CSS.basejs)}>
                 {this.featureResults &&
@@ -161,6 +175,7 @@ class GroupedAccordion extends (Accordion) {
                             return (<li role='menuitem' tabindex="0">
                                 <div data-feature={feature}
                                     afterCreate={this._createFeature}
+                                    afterUpdate={this._postRender}
                                     class={this.classes(CSS.featureGroup)}
                                     bind={this}
                                     key={`feature${i}`}></div>
@@ -179,7 +194,6 @@ class GroupedAccordion extends (Accordion) {
     _createFeature(node: HTMLElement) {
         const graphic = node['data-feature'];
         const distNode = document.createElement("span");
-
         node.appendChild(distNode);
         const container = document.createElement("div");
         node.id = `${graphic.layer.id}${graphic.attributes[graphic.layer.objectIdField]}`;

@@ -143,6 +143,7 @@ class DisplayLookupResults extends (Widget) {
 			</div>
 		) : null;
 
+
 		const togglePanel = this._featureResults ? this.createTogglePanel() : null;
 
 		return (
@@ -176,7 +177,8 @@ class DisplayLookupResults extends (Widget) {
 			container
 		});
 
-		this.accordion.watch("hoveredItem", () => {
+		this.accordion.watch('hoveredItem', () => {
+			console.log("hoveredItem");
 			if (this.accordion.hoveredItem && this.accordion.hoveredItem.graphic) {
 				let location = this.accordion.hoveredItem.graphic.geometry;
 				if (location && location.type !== "point") {
@@ -203,6 +205,7 @@ class DisplayLookupResults extends (Widget) {
 			}
 		});
 		this.accordion.watch('selectedItem', () => {
+			console.log("selectedItem");
 			this._clearDirections();
 			if (this.accordion.selectedItem) {
 				this._highlightFeature(this.accordion.selectedItem);
@@ -219,6 +222,7 @@ class DisplayLookupResults extends (Widget) {
 		const start = this._createStop(this.location);
 		const stop = this._createStop(selected);
 		if (this.directions && this.directions.viewModel) {
+			alert("handleActionItems");
 			this._clearDirections();
 			this.directions.viewModel.stops.addMany([start, stop]);
 			await this.directions.viewModel.getDirections() as any;
@@ -241,7 +245,8 @@ class DisplayLookupResults extends (Widget) {
 				printPage.appendChild(closebutton);
 				printPage.appendChild(this.directions.container as HTMLElement);
 
-			} else {
+			} 
+			else {
 				// In mobile view switch to map after directions are calcuated. 
 				if (this.view && this.view.container && getComputedStyle(this.view.container).display === "none") {
 					const mainNodes = document.getElementsByClassName('icon-ui-maps');
@@ -316,6 +321,7 @@ class DisplayLookupResults extends (Widget) {
 							title: result.title,
 							features: sortedFeatures
 						});
+						
 					} else {
 						// all features shown as individual results
 						let features = [];
@@ -326,6 +332,7 @@ class DisplayLookupResults extends (Widget) {
 							title: null,
 							grouped: false
 						}];
+
 					}
 				}
 			});
@@ -387,6 +394,7 @@ class DisplayLookupResults extends (Widget) {
 				count += result.features.length;
 			}
 		});
+		
 		const countString = `${i18n.count}: ${count}`;
 		return count < 2 || !this.config.showResultCount ? null : <span class={this.classes('total-count')}>{countString}</span>;
 	}
@@ -518,7 +526,6 @@ class DisplayLookupResults extends (Widget) {
 			{toggleLinks}
 			{count}
 		</div>) : null;
-
 	}
 	_createToggleLinks() {
 		const buttonLabel = this._toggle ? i18n.tools.collapse : i18n.tools.open;

@@ -108,12 +108,13 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._handles = new Handles_1.default();
             this._results = null;
             this._homeButton = null;
-            this._closeResultsBtn = null;
-            this._modelPanel = null;
             //----------------------------------
+            this._theTest = null;
             //  ApplicationBase
             //----------------------------------
             this.base = null;
+            this._propertyButtonOne = null;
+            this._propertyButtonTwo = null;
         }
         //--------------------------------------------------------------------------
         //
@@ -184,9 +185,9 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 return;
             }
             this._createMap(item);
-            document.getElementById("modelResults").src = "/blank.html";
             this._homeButton = document.getElementById("homeButton");
             this._homeButton.addEventListener("click", function () {
+                //home button is for clearing the search menu
                 _this._cleanUpResults();
                 var initialSearchPanel = document.getElementById("initialSearchPanel");
                 var sidePanel = document.getElementById("sidePanel");
@@ -197,15 +198,30 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 _this.initialSearchWidget.searchTerm = null;
                 var panelId = "mapPanel";
                 mapPanel.style.opacity = "0%";
+                // initialSearchPanel.style.display = "none";
+                _this._updateUrlParam();
+                document.getElementById('background_image').style.backgroundImage = 'url(../images/nearby-background.jpg)';
+                document.getElementById('labels-container').style.marginTop = '200px';
+                document.getElementById("initialSearchPanel").style.marginLeft = "40px";
+                document.getElementById("initialSearchPanel").style.marginRight = "40px";
+                document.getElementById("initialSearchPanel").style.paddingTop = "50px";
+                document.getElementById("initialSearchPanel").style.paddingBottom = "50px";
+                document.getElementById("initialSearchPanel").style.paddingLeft = "100px";
+                document.getElementById("initialSearchPanel").style.paddingRight = "100px";
+                document.getElementById("searchIntro_welcome").style.display = 'inline';
+                document.getElementById("searchIntro_groundwater").style.display = 'inline';
             });
-            this._modelPanel = document.getElementById("modelPanel");
-            this._modelPanel.classList.add("hidden");
-            this._closeResultsBtn = document.getElementById("modelPanelHeaderCloseBtn");
-            this._closeResultsBtn.addEventListener("click", function () {
-                // Hide Results Panel
-                _this._modelPanel.classList.add("hidden");
-                // Clear Search Widget
-                //this._cleanUpResults();
+            this._propertyButtonOne = document.getElementById("label_1");
+            this._propertyButtonOne.addEventListener("click", function () {
+                _this._propertyButtonTwo = document.getElementById("label_2");
+                _this._propertyButtonTwo.style.backgroundColor = 'rgba(221, 200, 200, 0.8)';
+                _this._propertyButtonOne.style.backgroundColor = 'rgba(255, 165, 0, .8)';
+            });
+            this._propertyButtonTwo = document.getElementById("label_2");
+            this._propertyButtonTwo.addEventListener("click", function () {
+                _this._propertyButtonOne = document.getElementById("label_1");
+                _this._propertyButtonOne.style.backgroundColor = 'rgba(221, 200, 200, 0.8)';
+                _this._propertyButtonTwo.style.backgroundColor = 'rgba(255, 165, 0, .8)';
             });
         };
         LocationApp.prototype._createMap = function (item) {
@@ -376,6 +392,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                                     }
                                 });
                             }); }), "configuration");
+                            this._addInitialSearchWidget();
                             this._addSearchWidget();
                             // Wait for view model 
                             this._handles.add(watchUtils_1.init(this._appConfig, ["showDirections"], function () {
@@ -456,15 +473,15 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             }
             this.searchWidget = new Search_1.default(searchProperties);
             // If there's a find url param search for it when view is done updating once
-            // if (find) {
-            // 	whenFalseOnce(this.view, "updating", () => {
-            // 		this.searchWidget.viewModel.searchTerm = decodeURIComponent(find);
-            // 		if (findSource) {
-            // 			this.searchWidget.activeSourceIndex = findSource;
-            // 		}
-            // 		this.searchWidget.viewModel.search();
-            // 	});
-            // }
+            if (find) {
+                watchUtils_1.whenFalseOnce(this.view, "updating", function () {
+                    _this.searchWidget.viewModel.searchTerm = decodeURIComponent(find);
+                    if (findSource) {
+                        _this.searchWidget.activeSourceIndex = findSource;
+                    }
+                    _this.searchWidget.viewModel.search();
+                });
+            }
             var handle = this.searchWidget.viewModel.watch('state', function (state) {
                 if (state === 'ready') {
                     handle.remove();
@@ -494,12 +511,8 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 _this.view.zoom = _this.view.zoom - 3;
                 document.getElementById(panelId).style.opacity = "100%";
             });
-            this.searchWidget.on('select-result', function (result) { return __awaiter(_this, void 0, void 0, function () {
-                return __generator(this, function (_a) {
-                    return [2 /*return*/];
-                });
-            }); });
             this.searchWidget.on('search-complete', function (results) { return __awaiter(_this, void 0, void 0, function () {
+                var clearSearchBtns;
                 return __generator(this, function (_a) {
                     this._cleanUpResults();
                     document.getElementById("labels-container").style.marginTop = "10px";
@@ -508,8 +521,8 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                     document.getElementById("initialSearchPanel").style.padding = "5px";
                     document.getElementById("searchIntro_welcome").style.display = 'none';
                     document.getElementById("searchIntro_groundwater").style.display = 'none';
-                    //let clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
-                    document.getElementById("modelResults").src = "/blank.html";
+                    document.getElementById("background_image").style.backgroundImage = "none";
+                    clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
                     if (results.numResults > 0) {
                         // Add find url param
                         container.classList.add("hide-search-btn");
@@ -565,6 +578,84 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 menuShift.style.display = "none";
             });
             this.view.ui.add(this._clearButton, 'manual');
+        };
+        LocationApp.prototype._addInitialSearchWidget = function () {
+            var _this = this;
+            var _a;
+            var initSearchContainer = document.getElementById("initialSearch");
+            var _b = this._appConfig, searchConfiguration = _b.searchConfiguration, find = _b.find, findSource = _b.findSource;
+            var sources = searchConfiguration === null || searchConfiguration === void 0 ? void 0 : searchConfiguration.sources;
+            if (sources) {
+                sources.forEach(function (source) {
+                    var _a, _b;
+                    if ((_a = source === null || source === void 0 ? void 0 : source.layer) === null || _a === void 0 ? void 0 : _a.url) {
+                        source.layer = new FeatureLayer_1.default((_b = source === null || source === void 0 ? void 0 : source.layer) === null || _b === void 0 ? void 0 : _b.url);
+                    }
+                });
+            }
+            var searchProperties = __assign({
+                view: this.view,
+                resultGraphicEnabled: false,
+                autoSelect: false,
+                popupEnabled: false,
+                container: "initialSearch"
+            }, searchConfiguration);
+            if (((_a = searchProperties === null || searchProperties === void 0 ? void 0 : searchProperties.sources) === null || _a === void 0 ? void 0 : _a.length) > 0) {
+                searchProperties.includeDefaultSources = false;
+            }
+            this.initialSearchWidget = new Search_1.default(searchProperties);
+            // If there's a find url param search for it when view is done updating once
+            if (find) {
+                watchUtils_1.whenFalseOnce(this.view, "updating", function () {
+                    _this.initialSearchWidget.viewModel.searchTerm = decodeURIComponent(find);
+                    if (findSource) {
+                        _this.initialSearchWidget.activeSourceIndex = findSource;
+                    }
+                    _this.initialSearchWidget.viewModel.search();
+                });
+            }
+            var handle = this.initialSearchWidget.viewModel.watch('state', function (state) {
+                if (state === 'ready') {
+                    handle.remove();
+                    // conditionally hide on tablet
+                    if (!_this.view.container.classList.contains('tablet-show')) {
+                        _this.view.container.classList.add('tablet-hide');
+                    }
+                    // force search within map if nothing is configured
+                    if (!searchConfiguration) {
+                        _this.initialSearchWidget.viewModel.allSources.forEach(function (source) {
+                            source.withinViewEnabled = true;
+                        });
+                    }
+                }
+            });
+            this.initialSearchWidget.on("search-complete", function () {
+                console.log("Search Completed " + _this.initialSearchWidget.searchTerm);
+                _this.searchWidget.searchTerm = _this.initialSearchWidget.searchTerm;
+                document.getElementById("initialSearchPanel").classList.add("hidden");
+                document.getElementById("sidePanel").classList.remove("hidden");
+                document.getElementById("initialSearchPanel").style.display = "none";
+                _this.initialSearchWidget.destroy();
+            });
+            this.initialSearchWidget.on('search-clear', function () {
+                _this._cleanUpResults();
+                initSearchContainer.classList.remove("hide-search-btn");
+                _this._updateUrlParam();
+                _this._searchFeature = null;
+                var panelId = "mapPanel";
+                document.getElementById(panelId).style.opacity = "100%";
+            });
+            this.initialSearchWidget.on('search-complete', function (results) { return __awaiter(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    this._cleanUpResults();
+                    if (results.numResults > 0) {
+                        // Add find url param
+                        initSearchContainer.classList.add("hide-search-btn");
+                        this._displayResults(results);
+                    }
+                    return [2 /*return*/];
+                });
+            }); });
         };
         LocationApp.prototype._displayResults = function (results) {
             var _a;

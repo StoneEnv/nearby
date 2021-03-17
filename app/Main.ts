@@ -62,7 +62,8 @@ class LocationApp {
 	//  ApplicationBase
 	//----------------------------------
 	base: ApplicationBase = null;
-
+	_propertyButtonOne: HTMLButtonElement = null;
+	_propertyButtonTwo: HTMLButtonElement = null;
 	//--------------------------------------------------------------------------
 	//
 	//  Public Methods
@@ -156,9 +157,35 @@ class LocationApp {
 			this.initialSearchWidget.searchTerm = null;
 			let panelId = "mapPanel";
 			mapPanel.style.opacity = "0%"
+			// initialSearchPanel.style.display = "none";
+			this._updateUrlParam();
+			document.getElementById('background_image').style.backgroundImage = 'url(../images/nearby-background.jpg)';
+			document.getElementById('labels-container').style.marginTop = '200px';
+			document.getElementById("initialSearchPanel").style.marginLeft = "40px";
+			document.getElementById("initialSearchPanel").style.marginRight = "40px";
+			document.getElementById("initialSearchPanel").style.paddingTop = "50px";
+			document.getElementById("initialSearchPanel").style.paddingBottom = "50px";
+			document.getElementById("initialSearchPanel").style.paddingLeft = "100px";
+			document.getElementById("initialSearchPanel").style.paddingRight = "100px";
+			document.getElementById("searchIntro_welcome").style.display= 'inline';
+			document.getElementById("searchIntro_groundwater").style.display= 'inline';
 		});
 
-		this._modelPanel = document.getElementById("modelPanel") as HTMLElement;
+		this._propertyButtonOne = document.getElementById("label_1") as HTMLButtonElement;
+		this._propertyButtonOne.addEventListener("click", () => {
+			this._propertyButtonTwo = document.getElementById("label_2") as HTMLButtonElement;
+			this._propertyButtonTwo.style.backgroundColor = 'rgba(221, 200, 200, 0.8)';
+			this._propertyButtonOne.style.backgroundColor = 'rgba(255, 165, 0, .8)';
+
+		});
+		this._propertyButtonTwo = document.getElementById("label_2") as HTMLButtonElement;
+		this._propertyButtonTwo.addEventListener("click", () => {
+			this._propertyButtonOne = document.getElementById("label_1") as HTMLButtonElement;
+			this._propertyButtonOne.style.backgroundColor = 'rgba(221, 200, 200, 0.8)';
+			this._propertyButtonTwo.style.backgroundColor = 'rgba(255, 165, 0, .8)';
+		});
+        
+        this._modelPanel = document.getElementById("modelPanel") as HTMLElement;
 		this._modelPanel.classList.add("hidden");
 
 		this._closeResultsBtn = document.getElementById("modelPanelHeaderCloseBtn") as HTMLButtonElement;
@@ -171,6 +198,7 @@ class LocationApp {
 
 
 		});
+
 	}
 	async _createMap(item) {
 		this.mapPanel = await new MapPanel({
@@ -444,6 +472,14 @@ class LocationApp {
 
 		this.searchWidget.on('search-complete', async (results) => {
 			this._cleanUpResults();
+			document.getElementById("labels-container").style.marginTop = "10px";
+			document.getElementById("initialSearchPanel").style.marginLeft = "0px";
+			document.getElementById("initialSearchPanel").style.marginRight = "0px";
+			document.getElementById("initialSearchPanel").style.padding = "5px";
+			document.getElementById("searchIntro_welcome").style.display= 'none';
+			document.getElementById("searchIntro_groundwater").style.display= 'none';
+			document.getElementById("background_image").style.backgroundImage="none";
+			let clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
 			(<HTMLElement>document.getElementById("labels-container")).style.marginTop = "10px";
 			(<HTMLElement>document.getElementById("initialSearchPanel")).style.marginLeft = "0px";
 			(<HTMLElement>document.getElementById("initialSearchPanel")).style.marginRight = "0px";

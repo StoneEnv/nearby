@@ -90,7 +90,7 @@
     padding-bottom: 50px;
     padding-top: 50px;
     /* margin-top moved to #label-container on line 167 */
-    margin-top: 200px;
+    /* margin-top: 200px; */
     margin-left: 40px;
     margin-right: 40px;
 }

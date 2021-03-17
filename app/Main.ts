@@ -61,6 +61,7 @@ class LocationApp {
 	//  ApplicationBase
 	//----------------------------------
 	base: ApplicationBase = null;
+	_propertyButtonOne: HTMLButtonElement = null;
 
 	//--------------------------------------------------------------------------
 	//
@@ -732,5 +733,23 @@ class LocationApp {
 			this._handles.remove("configuration");
 		}
 	}
+	//bright orange = rgb(255, 165, 0, .8)
+	//dull orange = rgba(221, 200, 200, 0.8)
+	//this is code to toggle the color of the buttons with event listeners
+	// let propertyButtonOne = document.getElementById("label_1") as HTMLButtonElement;
+	// propertyButtonOne.addEventListener("click", () => {
+	// 	let otherButton = document.getElementById("label_2") as HTMLButtonElement;
+	// 	otherButton.style.backgroundColor = 'rgba(221, 200, 200, 0.8)';
+	// 	propertyButtonOne.style.backgroundColor = 'rgba(255, 165, 0, .8)';
+
+	// });
+	// let propertyButtonTwo = document.getElementById("label_2") as HTMLButtonElement;
+	// propertyButtonTwo.addEventListener("click", () => {
+	// 	let otherButton = document.getElementById("label_1") as HTMLButtonElement;
+	// 	otherButton.style.color = 'rgba(221, 200, 200, 0.8)';
+	// 	propertyButtonTwo.style.backgroundColor = 'rgba(255, 165, 0, .8)';
+	// });
+
+
 }
 export = LocationApp;

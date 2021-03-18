@@ -8053,7 +8053,9 @@ li h4.esri-feature__title {
   height: 100%;
   overflow: auto;
   margin-left: 0;
-  margin-right: 0; }
+  margin-right: 0; 
+  display:none;}
+  
   #detailPanel .esri-share {
     margin-bottom: 150px; }
 

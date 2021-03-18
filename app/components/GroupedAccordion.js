@@ -87,7 +87,7 @@ define(["require", "exports", "esri/core/promiseUtils", "./Accordion", "esri/cor
                 var linkToModel = linksToModel[0];
                 linkToModel.addEventListener("click", function () {
                     var modelPanel = document.getElementById("modelPanel");
-                    modelPanel.classList.remove("hidden");
+                    modelPanel.classList.add("shown");
                 });
             }
             console.log("boop");

@@ -19,15 +19,15 @@
   "scalebarPosition": "bottom-right",
   "home": true,
   "mapZoom": true,
-  "mapZoomPosition": "top-left",
+  "mapZoomPosition": "bottom-left",
   "mapPin": true,
   "mapPinLabel": false,
 
   "basemapToggle": true,
-  "basemapTogglePosition": "bottom-left",
+  "basemapTogglePosition": "bottom-right",
   "basemapSelector": "2ea9c9cf54cb494187b03a5057d1a830",
   "nextBasemap": "fae788aa91e54244b161b59725dcbb2a",
-  "homePosition": "top-right",
+  "homePosition": "bottom-right",
   "filters": false,
   "lookupLayers": {
     "layers": [

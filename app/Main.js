@@ -79,7 +79,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search", "esri/Graphic", "esri/core/Handles", "./utilites/lookupLayerUtils", "./utilites/esriWidgetUtils", "./utilites/errorUtils", "esri/core/watchUtils", "./components/DisplayLookupResults", "./components/Header", "./components/Footer", "./components/MapPanel", "dojo/i18n!./nls/resources", "ApplicationBase/support/domHelper", "./ConfigurationSettings", "./components/DetailPanel", "./components/LookupGraphics", "esri/layers/FeatureLayer"], function (require, exports, telemetry_dojo_1, Search_1, Graphic_1, Handles_1, lookupLayerUtils_1, esriWidgetUtils_1, errorUtils_1, watchUtils_1, DisplayLookupResults_1, Header_1, Footer_1, MapPanel_1, i18n, domHelper_1, ConfigurationSettings_1, DetailPanel_1, LookupGraphics, FeatureLayer_1) {
+define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search", "esri/Graphic", "esri/core/Handles", "./utilites/lookupLayerUtils", "./utilites/esriWidgetUtils", "./utilites/errorUtils", "esri/core/watchUtils", "./components/DisplayLookupResults", "./components/Header", "./components/Footer", "./components/MapPanel", "dojo/i18n!./nls/resources", "ApplicationBase/support/domHelper", "./ConfigurationSettings", "./components/LookupGraphics", "esri/layers/FeatureLayer"], function (require, exports, telemetry_dojo_1, Search_1, Graphic_1, Handles_1, lookupLayerUtils_1, esriWidgetUtils_1, errorUtils_1, watchUtils_1, DisplayLookupResults_1, Header_1, Footer_1, MapPanel_1, i18n, domHelper_1, ConfigurationSettings_1, LookupGraphics, FeatureLayer_1) {
     "use strict";
     telemetry_dojo_1 = __importDefault(telemetry_dojo_1);
     Search_1 = __importDefault(Search_1);
@@ -90,7 +90,6 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
     Footer_1 = __importDefault(Footer_1);
     MapPanel_1 = __importDefault(MapPanel_1);
     ConfigurationSettings_1 = __importDefault(ConfigurationSettings_1);
-    DetailPanel_1 = __importDefault(DetailPanel_1);
     FeatureLayer_1 = __importDefault(FeatureLayer_1);
     var CSS = {
         loading: 'configurable-application--loading'
@@ -201,13 +200,23 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 mapPanel.style.opacity = "0%";
                 _this._updateUrlParam();
                 document.getElementById('background_image').style.backgroundImage = 'url(../images/nearby-background.jpg)';
-                document.getElementById('labels-container').style.marginTop = '200px';
-                document.getElementById("initialSearchPanel").style.marginLeft = "40px";
-                document.getElementById("initialSearchPanel").style.marginRight = "40px";
-                document.getElementById("initialSearchPanel").style.paddingTop = "50px";
-                document.getElementById("initialSearchPanel").style.paddingBottom = "50px";
-                document.getElementById("initialSearchPanel").style.paddingLeft = "100px";
-                document.getElementById("initialSearchPanel").style.paddingRight = "100px";
+                //document.getElementById('labels-container').style.marginTop = '200px';
+                document.getElementById("labels-container").classList.remove("labels-container-top");
+                // document.getElementById("initialSearchPanel").style.marginLeft = "40px";
+                // document.getElementById("initialSearchPanel").style.marginRight = "40px";
+                // document.getElementById("initialSearchPanel").style.paddingTop = "50px";
+                // document.getElementById("initialSearchPanel").style.paddingBottom = "50px";
+                // document.getElementById("initialSearchPanel").style.paddingLeft = "100px";
+                // document.getElementById("initialSearchPanel").style.paddingRight = "100px";
+                ///// We could replace that with this /////
+                // initialSearchPanel.style.marginLeft = "40px";
+                // initialSearchPanel.style.marginRight = "40px";
+                // initialSearchPanel.style.paddingTop = "50px";
+                // initialSearchPanel.style.paddingBottom = "50px";
+                // initialSearchPanel.style.paddingLeft = "100px";
+                // initialSearchPanel.style.paddingRight = "100px";
+                ///// But for simplicty and consistency move the styling to a class and apply or remove it ////
+                initialSearchPanel.classList.remove("initialSearchPanelTop");
                 document.getElementById("searchIntro_welcome").style.display = 'inline';
                 document.getElementById("searchIntro_groundwater").style.display = 'inline';
             });
@@ -224,11 +233,11 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 _this._propertyButtonTwo.style.backgroundColor = 'rgba(255, 165, 0, .8)';
             });
             this._modelPanel = document.getElementById("modelPanel");
-            this._modelPanel.classList.add("hidden");
+            //this._modelPanel.classList.add("hidden");
             this._closeResultsBtn = document.getElementById("modelPanelHeaderCloseBtn");
             this._closeResultsBtn.addEventListener("click", function () {
                 // Hide Results Panel
-                _this._modelPanel.classList.add("hidden");
+                _this._modelPanel.classList.remove("shown");
                 // Clear Search Widget
                 //this._cleanUpResults();
             });
@@ -297,17 +306,17 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._appConfig.title = this._appConfig.title || item.title;
             domHelper_1.setPageTitle(this._appConfig.title);
             // Add info button 
-            this._detailPanel = new DetailPanel_1.default({
-                config: this._appConfig,
-                view: this.view,
-                container: document.getElementById('detailPanel')
-            });
+            // this._detailPanel = new DetailPanel({
+            // 	config: this._appConfig,
+            // 	view: this.view,
+            // 	container: document.getElementById('detailPanel')
+            // });
             // If there is a value in session storage don't open panel when app loads
-            var detailPanelShown = sessionStorage && sessionStorage.getItem("detailPanelShow") ? true : false;
-            if (!detailPanelShown) {
-                this._detailPanel.showPanel();
-                sessionStorage && sessionStorage.setItem("detailPanelShow", "true");
-            }
+            //const detailPanelShown = sessionStorage && sessionStorage.getItem("detailPanelShow") ? true : false;
+            //if (!detailPanelShown) {
+            //	this._detailPanel.showPanel();
+            //	sessionStorage && sessionStorage.setItem("detailPanelShow", "true");
+            //}
             new Header_1.default({
                 config: this._appConfig,
                 detailPanel: this._detailPanel,
@@ -513,10 +522,12 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 return __generator(this, function (_a) {
                     this._cleanUpResults();
                     document.getElementById("background_image").style.backgroundImage = "none";
-                    document.getElementById("labels-container").style.marginTop = "10px";
-                    document.getElementById("initialSearchPanel").style.marginLeft = "0px";
-                    document.getElementById("initialSearchPanel").style.marginRight = "0px";
-                    document.getElementById("initialSearchPanel").style.padding = "5px";
+                    // (<HTMLElement>document.getElementById("labels-container")).style.marginTop = "10px";
+                    document.getElementById("labels-container").classList.add("labels-container-top");
+                    // (<HTMLElement>document.getElementById("initialSearchPanel")).style.marginLeft = "0px";
+                    // (<HTMLElement>document.getElementById("initialSearchPanel")).style.marginRight = "0px";
+                    // (<HTMLElement>document.getElementById("initialSearchPanel")).style.padding = "5px";
+                    document.getElementById("initialSearchPanel").classList.add("initialSearchPanelTop");
                     document.getElementById("searchIntro_welcome").style.display = 'none';
                     document.getElementById("searchIntro_groundwater").style.display = 'none';
                     document.getElementById("modelResults").src = "/blank.html";

@@ -30,7 +30,7 @@
 
 #mapPanel {
     width: 100%;
-    height: 100%;
+    height: calc(100% - 100px);
     display: block;
     opacity: 0%;
 }
@@ -89,10 +89,19 @@
     text-align: center;
     padding-bottom: 50px;
     padding-top: 50px;
-    /* margin-top moved to #label-container on line 167 */
-    /* margin-top: 200px; */
     margin-left: 40px;
     margin-right: 40px;
+}
+
+.initialSearchPanelTop {
+    position: absolute !important;
+    top: 170px !important;
+    min-height: 150px !important;
+    z-index: 999 !important;
+    width: 100% !important;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 5px;
 }
 
 #initialSearch {
@@ -151,10 +160,15 @@
 
 .invisible {
     opacity: 0%;
+    pointer-events: none;
 }
 
 .hidden {
-    display: none;
+    display: none !important;
+}
+
+.shown {
+    display: block !important;
 }
 
 #background_image{
@@ -172,13 +186,14 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 999;
+    z-index: 1000;
+    display: none;
 }
 
 #modelPanelHeader {
     height: 50px;
     width: 100%;
-    background-color:rgb(255, 165, 0, .8);
+    background-color:rgb(255, 165, 0, .95);
     display: flex;
 }
 
@@ -214,8 +229,17 @@
 #labels-container{
     display: flex;
     margin-left: 40px;
-    margin-top: 200px;
+    margin-top: 10%;
     margin-bottom: 0px;
+}
+
+.labels-container-top {
+    position: absolute !important;
+    top: 100px !important;
+    width: 100% !important;
+    height: 100px !important;
+    z-index: 999 !important;
+    margin-top: 10px !important;
 }
 
 #label_2 {

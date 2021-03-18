@@ -159,13 +159,24 @@ class LocationApp {
 			mapPanel.style.opacity = "0%"
 			this._updateUrlParam();
 			document.getElementById('background_image').style.backgroundImage = 'url(../images/nearby-background.jpg)';
-			document.getElementById('labels-container').style.marginTop = '200px';
-			document.getElementById("initialSearchPanel").style.marginLeft = "40px";
-			document.getElementById("initialSearchPanel").style.marginRight = "40px";
-			document.getElementById("initialSearchPanel").style.paddingTop = "50px";
-			document.getElementById("initialSearchPanel").style.paddingBottom = "50px";
-			document.getElementById("initialSearchPanel").style.paddingLeft = "100px";
-			document.getElementById("initialSearchPanel").style.paddingRight = "100px";
+			//document.getElementById('labels-container').style.marginTop = '200px';
+			(<HTMLElement>document.getElementById("labels-container")).classList.remove("labels-container-top");
+			// document.getElementById("initialSearchPanel").style.marginLeft = "40px";
+			// document.getElementById("initialSearchPanel").style.marginRight = "40px";
+			// document.getElementById("initialSearchPanel").style.paddingTop = "50px";
+			// document.getElementById("initialSearchPanel").style.paddingBottom = "50px";
+			// document.getElementById("initialSearchPanel").style.paddingLeft = "100px";
+			// document.getElementById("initialSearchPanel").style.paddingRight = "100px";
+			///// We could replace that with this /////
+			// initialSearchPanel.style.marginLeft = "40px";
+			// initialSearchPanel.style.marginRight = "40px";
+			// initialSearchPanel.style.paddingTop = "50px";
+			// initialSearchPanel.style.paddingBottom = "50px";
+			// initialSearchPanel.style.paddingLeft = "100px";
+			// initialSearchPanel.style.paddingRight = "100px";
+			///// But for simplicty and consistency move the styling to a class and apply or remove it ////
+			initialSearchPanel.classList.remove("initialSearchPanelTop");
+
 			document.getElementById("searchIntro_welcome").style.display= 'inline';
 			document.getElementById("searchIntro_groundwater").style.display= 'inline';
 		});
@@ -185,12 +196,12 @@ class LocationApp {
 		});
         
         this._modelPanel = document.getElementById("modelPanel") as HTMLElement;
-		this._modelPanel.classList.add("hidden");
+		//this._modelPanel.classList.add("hidden");
 
 		this._closeResultsBtn = document.getElementById("modelPanelHeaderCloseBtn") as HTMLButtonElement;
 		this._closeResultsBtn.addEventListener("click", () => {
 			// Hide Results Panel
-			this._modelPanel.classList.add("hidden");
+			this._modelPanel.classList.remove("shown");
 
 			// Clear Search Widget
 			//this._cleanUpResults();
@@ -253,17 +264,17 @@ class LocationApp {
 		this._appConfig.title = this._appConfig.title || item.title;
 		setPageTitle(this._appConfig.title);
 		// Add info button 
-		this._detailPanel = new DetailPanel({
-			config: this._appConfig,
-			view: this.view,
-			container: document.getElementById('detailPanel')
-		});
+		// this._detailPanel = new DetailPanel({
+		// 	config: this._appConfig,
+		// 	view: this.view,
+		// 	container: document.getElementById('detailPanel')
+		// });
 		// If there is a value in session storage don't open panel when app loads
-		const detailPanelShown = sessionStorage && sessionStorage.getItem("detailPanelShow") ? true : false;
-		if (!detailPanelShown) {
-			this._detailPanel.showPanel();
-			sessionStorage && sessionStorage.setItem("detailPanelShow", "true");
-		}
+		//const detailPanelShown = sessionStorage && sessionStorage.getItem("detailPanelShow") ? true : false;
+		//if (!detailPanelShown) {
+		//	this._detailPanel.showPanel();
+		//	sessionStorage && sessionStorage.setItem("detailPanelShow", "true");
+		//}
 
 		new Header({
 			config: this._appConfig,
@@ -456,12 +467,18 @@ class LocationApp {
 		this.searchWidget.on('search-complete', async (results) => {
 			this._cleanUpResults();
 			(<HTMLElement>document.getElementById("background_image")).style.backgroundImage = "none";
-			(<HTMLElement>document.getElementById("labels-container")).style.marginTop = "10px";
-			(<HTMLElement>document.getElementById("initialSearchPanel")).style.marginLeft = "0px";
-			(<HTMLElement>document.getElementById("initialSearchPanel")).style.marginRight = "0px";
-			(<HTMLElement>document.getElementById("initialSearchPanel")).style.padding = "5px";
+			
+			// (<HTMLElement>document.getElementById("labels-container")).style.marginTop = "10px";
+			(<HTMLElement>document.getElementById("labels-container")).classList.add("labels-container-top");
+			
+			// (<HTMLElement>document.getElementById("initialSearchPanel")).style.marginLeft = "0px";
+			// (<HTMLElement>document.getElementById("initialSearchPanel")).style.marginRight = "0px";
+			// (<HTMLElement>document.getElementById("initialSearchPanel")).style.padding = "5px";
+			(<HTMLElement>document.getElementById("initialSearchPanel")).classList.add("initialSearchPanelTop");
+
 			(<HTMLElement>document.getElementById("searchIntro_welcome")).style.display= 'none';
 			(<HTMLElement>document.getElementById("searchIntro_groundwater")).style.display= 'none';
+			
 			(<HTMLIFrameElement>document.getElementById("modelResults")).src = "/blank.html";
 
 			if (results.numResults > 0) {

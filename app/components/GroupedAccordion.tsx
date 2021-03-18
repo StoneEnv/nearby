@@ -97,7 +97,7 @@ class GroupedAccordion extends (Accordion) {
             var linkToModel = linksToModel[0] as HTMLButtonElement;
             linkToModel.addEventListener("click", () => {
                 var modelPanel = document.getElementById("modelPanel") as HTMLElement;
-                modelPanel.classList.remove("hidden");
+                modelPanel.classList.add("shown");
             });
         }
         console.log("boop");

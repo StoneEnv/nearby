@@ -108,14 +108,22 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._handles = new Handles_1.default();
             this._results = null;
             this._homeButton = null;
+<<<<<<< HEAD
             this._closeResultsBtn = null;
             this._modelPanel = null;
             //----------------------------------
             //  ApplicationBase
             //----------------------------------
             this.base = null;
+=======
+            //----------------------------------
+            this._theTest = null;
+            //  ApplicationBase
+            //----------------------------------
+            this.base = null;
             this._propertyButtonOne = null;
             this._propertyButtonTwo = null;
+>>>>>>> adding-html-css-typescript-to-wireframe
         }
         //--------------------------------------------------------------------------
         //
@@ -186,9 +194,15 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 return;
             }
             this._createMap(item);
+<<<<<<< HEAD
             document.getElementById("modelResults").src = "/blank.html";
             this._homeButton = document.getElementById("homeButton");
             this._homeButton.addEventListener("click", function () {
+=======
+            this._homeButton = document.getElementById("homeButton");
+            this._homeButton.addEventListener("click", function () {
+                //home button is for clearing the search menu
+>>>>>>> adding-html-css-typescript-to-wireframe
                 _this._cleanUpResults();
                 var initialSearchPanel = document.getElementById("initialSearchPanel");
                 var sidePanel = document.getElementById("sidePanel");
@@ -199,6 +213,19 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 _this.initialSearchWidget.searchTerm = null;
                 var panelId = "mapPanel";
                 mapPanel.style.opacity = "0%";
+<<<<<<< HEAD
+            });
+            this._modelPanel = document.getElementById("modelPanel");
+            this._modelPanel.classList.add("hidden");
+            this._closeResultsBtn = document.getElementById("modelPanelHeaderCloseBtn");
+            this._closeResultsBtn.addEventListener("click", function () {
+                // Hide Results Panel
+                _this._modelPanel.classList.add("hidden");
+                // Clear Search Widget
+                //this._cleanUpResults();
+            });
+=======
+                // initialSearchPanel.style.display = "none";
                 _this._updateUrlParam();
                 document.getElementById('background_image').style.backgroundImage = 'url(../images/nearby-background.jpg)';
                 document.getElementById('labels-container').style.marginTop = '200px';
@@ -223,15 +250,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 _this._propertyButtonOne.style.backgroundColor = 'rgba(221, 200, 200, 0.8)';
                 _this._propertyButtonTwo.style.backgroundColor = 'rgba(255, 165, 0, .8)';
             });
-            this._modelPanel = document.getElementById("modelPanel");
-            this._modelPanel.classList.add("hidden");
-            this._closeResultsBtn = document.getElementById("modelPanelHeaderCloseBtn");
-            this._closeResultsBtn.addEventListener("click", function () {
-                // Hide Results Panel
-                _this._modelPanel.classList.add("hidden");
-                // Clear Search Widget
-                //this._cleanUpResults();
-            });
+>>>>>>> adding-html-css-typescript-to-wireframe
         };
         LocationApp.prototype._createMap = function (item) {
             return __awaiter(this, void 0, void 0, function () {
@@ -359,6 +378,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                                     _this._generateSearchResults();
                                 }
                                 _this._updateUrlParam();
+<<<<<<< HEAD
                             });
                             lookupGraphics = new LookupGraphics({
                                 view: this.view,
@@ -376,6 +396,25 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                                 container: 'resultsPanel',
                                 footer: this.footer ? this.footer : null
                             });
+=======
+                            });
+                            lookupGraphics = new LookupGraphics({
+                                view: this.view,
+                                config: this._appConfig
+                            });
+                            this._handles.add(watchUtils_1.init(this._appConfig, ["drawBuffer", "mapPinLabel", "mapPin"], function (value, oldValue, propertyName) {
+                                lookupGraphics.updateGraphics(propertyName, value);
+                            }), "configuration");
+                            this.lookupResults = new DisplayLookupResults_1.default({
+                                lookupGraphics: lookupGraphics,
+                                config: this._appConfig,
+                                view: this.view,
+                                mapPanel: this.mapPanel,
+                                portal: this.base.config.portal,
+                                container: 'resultsPanel',
+                                footer: this.footer ? this.footer : null
+                            });
+>>>>>>> adding-html-css-typescript-to-wireframe
                             this._handles.add(watchUtils_1.init(this._appConfig, ["lookupLayers", "hideLayers"], function () { return __awaiter(_this, void 0, void 0, function () {
                                 var parsedLayers, lookupLayers;
                                 var _a;
@@ -401,6 +440,10 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                                     }
                                 });
                             }); }), "configuration");
+<<<<<<< HEAD
+=======
+                            this._addInitialSearchWidget();
+>>>>>>> adding-html-css-typescript-to-wireframe
                             this._addSearchWidget();
                             // Wait for view model 
                             this._handles.add(watchUtils_1.init(this._appConfig, ["showDirections"], function () {
@@ -453,6 +496,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                             return [2 /*return*/];
                     }
                 });
+<<<<<<< HEAD
             });
         };
         LocationApp.prototype._addSearchWidget = function () {
@@ -480,6 +524,16 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 searchProperties.includeDefaultSources = false;
             }
             this.searchWidget = new Search_1.default(searchProperties);
+            // If there's a find url param search for it when view is done updating once
+            // if (find) {
+            // 	whenFalseOnce(this.view, "updating", () => {
+            // 		this.searchWidget.viewModel.searchTerm = decodeURIComponent(find);
+            // 		if (findSource) {
+            // 			this.searchWidget.activeSourceIndex = findSource;
+            // 		}
+            // 		this.searchWidget.viewModel.search();
+            // 	});
+            // }
             var handle = this.searchWidget.viewModel.watch('state', function (state) {
                 if (state === 'ready') {
                     handle.remove();
@@ -509,16 +563,21 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 _this.view.zoom = _this.view.zoom - 3;
                 document.getElementById(panelId).style.opacity = "100%";
             });
+            this.searchWidget.on('select-result', function (result) { return __awaiter(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    return [2 /*return*/];
+                });
+            }); });
             this.searchWidget.on('search-complete', function (results) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     this._cleanUpResults();
-                    document.getElementById("background_image").style.backgroundImage = "none";
                     document.getElementById("labels-container").style.marginTop = "10px";
                     document.getElementById("initialSearchPanel").style.marginLeft = "0px";
                     document.getElementById("initialSearchPanel").style.marginRight = "0px";
                     document.getElementById("initialSearchPanel").style.padding = "5px";
                     document.getElementById("searchIntro_welcome").style.display = 'none';
                     document.getElementById("searchIntro_groundwater").style.display = 'none';
+                    //let clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
                     document.getElementById("modelResults").src = "/blank.html";
                     if (results.numResults > 0) {
                         // Add find url param
@@ -648,30 +707,347 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             }
         };
         LocationApp.prototype._updateUrlParam = function (index) {
-            // if ('URLSearchParams' in window) {
-            // 	const params = new URLSearchParams(document.location.search);
-            // 	const searchTerm = encodeURIComponent(this.searchWidget.searchTerm);
-            // 	if (searchTerm) {
-            // 		if (index && (index > 0 || index === 0)) {
-            // 			params.set('findSource', index);
-            // 		} else {
-            // 			params.delete('findSource');
-            // 		}
-            // 		if (this._appConfig.sliderRange?.default) {
-            // 			params.set('sliderDistance', this._appConfig.sliderRange.default as any);
-            // 		}
-            // 		params.set('find', encodeURIComponent(this.searchWidget.searchTerm));
-            // 	} else {
-            // 		params.delete('find');
-            // 		params.delete('findSource');
-            // 		params.delete('sliderDistance');
-            // 	}
-            // 	if (params && params.toString()) {
-            // 		window.history.replaceState({}, '', `${location.pathname}?${params}`);
-            // 	} else {
-            // 		window.history.replaceState({}, '', `${location.pathname}`);
-            // 	}
-            // }
+            var _a;
+            if ('URLSearchParams' in window) {
+                var params = new URLSearchParams(document.location.search);
+                var searchTerm = encodeURIComponent(this.searchWidget.searchTerm);
+                if (searchTerm) {
+                    if (index && (index > 0 || index === 0)) {
+                        params.set('findSource', index);
+                    }
+                    else {
+                        params.delete('findSource');
+                    }
+                    if ((_a = this._appConfig.sliderRange) === null || _a === void 0 ? void 0 : _a.default) {
+                        params.set('sliderDistance', this._appConfig.sliderRange.default);
+                    }
+                    params.set('find', encodeURIComponent(this.searchWidget.searchTerm));
+                }
+                else {
+                    params.delete('find');
+                    params.delete('findSource');
+                    params.delete('sliderDistance');
+                }
+                if (params && params.toString()) {
+                    window.history.replaceState({}, '', location.pathname + "?" + params);
+                }
+                else {
+                    window.history.replaceState({}, '', "" + location.pathname);
+                }
+=======
+            });
+        };
+        LocationApp.prototype._addSearchWidget = function () {
+            var _this = this;
+            var _a;
+            var container = document.getElementById("search");
+            var _b = this._appConfig, searchConfiguration = _b.searchConfiguration, find = _b.find, findSource = _b.findSource;
+            var sources = searchConfiguration === null || searchConfiguration === void 0 ? void 0 : searchConfiguration.sources;
+            if (sources) {
+                sources.forEach(function (source) {
+                    var _a, _b;
+                    if ((_a = source === null || source === void 0 ? void 0 : source.layer) === null || _a === void 0 ? void 0 : _a.url) {
+                        source.layer = new FeatureLayer_1.default((_b = source === null || source === void 0 ? void 0 : source.layer) === null || _b === void 0 ? void 0 : _b.url);
+                    }
+                });
+            }
+            var searchProperties = __assign({
+                view: this.view,
+                resultGraphicEnabled: false,
+                autoSelect: false,
+                popupEnabled: false,
+                container: "search"
+            }, searchConfiguration);
+            if (((_a = searchProperties === null || searchProperties === void 0 ? void 0 : searchProperties.sources) === null || _a === void 0 ? void 0 : _a.length) > 0) {
+                searchProperties.includeDefaultSources = false;
+            }
+            this.searchWidget = new Search_1.default(searchProperties);
+            // If there's a find url param search for it when view is done updating once
+            if (find) {
+                watchUtils_1.whenFalseOnce(this.view, "updating", function () {
+                    _this.searchWidget.viewModel.searchTerm = decodeURIComponent(find);
+                    if (findSource) {
+                        _this.searchWidget.activeSourceIndex = findSource;
+                    }
+                    _this.searchWidget.viewModel.search();
+                });
+            }
+            var handle = this.searchWidget.viewModel.watch('state', function (state) {
+                if (state === 'ready') {
+                    handle.remove();
+                    // conditionally hide on tablet
+                    if (!_this.view.container.classList.contains('tablet-show')) {
+                        _this.view.container.classList.add('tablet-hide');
+                    }
+                    // force search within map if nothing is configured
+                    if (!searchConfiguration) {
+                        _this.searchWidget.viewModel.allSources.forEach(function (source) {
+                            source.withinViewEnabled = true;
+                        });
+                    }
+                }
+            });
+            // in progress migrate search logic from lookup 
+            // to nearby and work on rest of the props
+            this.searchWidget.on('search-clear', function () {
+                var _a;
+                _this._cleanUpResults();
+                container.classList.remove("hide-search-btn");
+                (_a = _this._clearButton) === null || _a === void 0 ? void 0 : _a.classList.add("hide");
+                // Remove find url param
+                _this._updateUrlParam();
+                _this._searchFeature = null;
+                var panelId = "mapPanel";
+                _this.view.zoom = _this.view.zoom - 3;
+                document.getElementById(panelId).style.opacity = "100%";
+            });
+            this.searchWidget.on('search-complete', function (results) { return __awaiter(_this, void 0, void 0, function () {
+                var clearSearchBtns;
+                return __generator(this, function (_a) {
+                    this._cleanUpResults();
+                    document.getElementById("labels-container").style.marginTop = "10px";
+                    document.getElementById("initialSearchPanel").style.marginLeft = "0px";
+                    document.getElementById("initialSearchPanel").style.marginRight = "0px";
+                    document.getElementById("initialSearchPanel").style.padding = "5px";
+                    document.getElementById("searchIntro_welcome").style.display = 'none';
+                    document.getElementById("searchIntro_groundwater").style.display = 'none';
+                    document.getElementById("background_image").style.backgroundImage = "none";
+                    clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
+                    if (results.numResults > 0) {
+                        // Add find url param
+                        container.classList.add("hide-search-btn");
+                        this._displayResults(results);
+                    }
+                    return [2 /*return*/];
+                });
+            }); });
+            // Search for location where user clicked on the map 
+            this.view.on('click', function (e) { return __awaiter(_this, void 0, void 0, function () {
+                var point, screenPoint, results_1;
+                var _this = this;
+                var _a;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0:
+                            point = e.mapPoint;
+                            if (!this.lookupResults.empty) return [3 /*break*/, 1];
+                            this._performSearch(point);
+                            return [3 /*break*/, 3];
+                        case 1:
+                            screenPoint = this.view.toScreen(point);
+                            return [4 /*yield*/, this.view.hitTest(screenPoint)];
+                        case 2:
+                            results_1 = _b.sent();
+                            // If we are in mobile view let's wait until we switch out
+                            this._getSelectedAccordionItem(results_1);
+                            if (this.mapPanel.isMobileView) {
+                                watchUtils_1.whenFalseOnce(this.mapPanel, "isMobileView", function () {
+                                    _this._getSelectedAccordionItem(results_1);
+                                });
+                            }
+                            _b.label = 3;
+                        case 3:
+                            (_a = this._clearButton) === null || _a === void 0 ? void 0 : _a.classList.remove("hide");
+                            return [2 /*return*/];
+                    }
+                });
+            }); });
+            // add clear  button to map view 
+            this._clearButton = document.createElement("button");
+            this._clearButton.innerHTML = i18n.tools.clearLocation;
+            this._clearButton.classList.add("btn");
+            this._clearButton.classList.add("clear-btn");
+            this._clearButton.classList.add('hide');
+            this._clearButton.classList.add("app-button");
+            this._clearButton.addEventListener("click", function () {
+                var menuShift = document.getElementById('initialSearchPanel');
+                _this._clearButton.classList.add("hide");
+                _this.searchWidget && _this.searchWidget.clear();
+                var panelId = "mapPanel";
+                document.getElementById(panelId).style.opacity = "100%";
+                menuShift.style.display = "none";
+            });
+            this.view.ui.add(this._clearButton, 'manual');
+        };
+        LocationApp.prototype._addInitialSearchWidget = function () {
+            var _this = this;
+            var _a;
+            var initSearchContainer = document.getElementById("initialSearch");
+            var _b = this._appConfig, searchConfiguration = _b.searchConfiguration, find = _b.find, findSource = _b.findSource;
+            var sources = searchConfiguration === null || searchConfiguration === void 0 ? void 0 : searchConfiguration.sources;
+            if (sources) {
+                sources.forEach(function (source) {
+                    var _a, _b;
+                    if ((_a = source === null || source === void 0 ? void 0 : source.layer) === null || _a === void 0 ? void 0 : _a.url) {
+                        source.layer = new FeatureLayer_1.default((_b = source === null || source === void 0 ? void 0 : source.layer) === null || _b === void 0 ? void 0 : _b.url);
+                    }
+                });
+            }
+            var searchProperties = __assign({
+                view: this.view,
+                resultGraphicEnabled: false,
+                autoSelect: false,
+                popupEnabled: false,
+                container: "initialSearch"
+            }, searchConfiguration);
+            if (((_a = searchProperties === null || searchProperties === void 0 ? void 0 : searchProperties.sources) === null || _a === void 0 ? void 0 : _a.length) > 0) {
+                searchProperties.includeDefaultSources = false;
+            }
+            this.initialSearchWidget = new Search_1.default(searchProperties);
+            // If there's a find url param search for it when view is done updating once
+            if (find) {
+                watchUtils_1.whenFalseOnce(this.view, "updating", function () {
+                    _this.initialSearchWidget.viewModel.searchTerm = decodeURIComponent(find);
+                    if (findSource) {
+                        _this.initialSearchWidget.activeSourceIndex = findSource;
+                    }
+                    _this.initialSearchWidget.viewModel.search();
+                });
+            }
+            var handle = this.initialSearchWidget.viewModel.watch('state', function (state) {
+                if (state === 'ready') {
+                    handle.remove();
+                    // conditionally hide on tablet
+                    if (!_this.view.container.classList.contains('tablet-show')) {
+                        _this.view.container.classList.add('tablet-hide');
+                    }
+                    // force search within map if nothing is configured
+                    if (!searchConfiguration) {
+                        _this.initialSearchWidget.viewModel.allSources.forEach(function (source) {
+                            source.withinViewEnabled = true;
+                        });
+                    }
+                }
+            });
+            this.initialSearchWidget.on("search-complete", function () {
+                console.log("Search Completed " + _this.initialSearchWidget.searchTerm);
+                _this.searchWidget.searchTerm = _this.initialSearchWidget.searchTerm;
+                document.getElementById("initialSearchPanel").classList.add("hidden");
+                document.getElementById("sidePanel").classList.remove("hidden");
+                document.getElementById("initialSearchPanel").style.display = "none";
+                _this.initialSearchWidget.destroy();
+            });
+            this.initialSearchWidget.on('search-clear', function () {
+                _this._cleanUpResults();
+                initSearchContainer.classList.remove("hide-search-btn");
+                _this._updateUrlParam();
+                _this._searchFeature = null;
+                var panelId = "mapPanel";
+                document.getElementById(panelId).style.opacity = "100%";
+            });
+            this.initialSearchWidget.on('search-complete', function (results) { return __awaiter(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    this._cleanUpResults();
+                    if (results.numResults > 0) {
+                        // Add find url param
+                        initSearchContainer.classList.add("hide-search-btn");
+                        this._displayResults(results);
+                    }
+                    return [2 /*return*/];
+                });
+            }); });
+        };
+        LocationApp.prototype._displayResults = function (results) {
+            var _a;
+            return __awaiter(this, void 0, void 0, function () {
+                var index, feature;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0:
+                            (_a = this._clearButton) === null || _a === void 0 ? void 0 : _a.classList.remove("hide");
+                            index = results && results.activeSourceIndex ? results.activeSourceIndex : null;
+                            this._results = results;
+                            this._updateUrlParam(index);
+                            return [4 /*yield*/, lookupLayerUtils_1.getSearchGeometry({
+                                    config: this.base.config,
+                                    view: this.view,
+                                    results: results
+                                })];
+                        case 1:
+                            feature = _b.sent();
+                            this._searchFeature = feature;
+                            this._generateSearchResults();
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        LocationApp.prototype._getSelectedAccordionItem = function (results) {
+            if (this.lookupResults.accordion) {
+                this.lookupResults.accordion.findAccordionItem(results);
+            }
+            ;
+        };
+        LocationApp.prototype._performSearch = function (mapPoint) {
+            var _this = this;
+            this.searchWidget.search(mapPoint).then(function (response) {
+                if ((response === null || response === void 0 ? void 0 : response.numResults) < 1) {
+                    _this._displayNoResultsMessage(mapPoint);
+                }
+                if ((response === null || response === void 0 ? void 0 : response.numErrors) > 0) {
+                    _this._displayNoResultsMessage(mapPoint);
+                }
+            });
+        };
+        LocationApp.prototype._displayNoResultsMessage = function (geometry) {
+            // display no results message
+            this._searchFeature = new Graphic_1.default({ geometry: geometry });
+            this._generateSearchResults();
+            this.searchWidget.activeMenu = null;
+        };
+        LocationApp.prototype._generateSearchResults = function () {
+            return __awaiter(this, void 0, void 0, function () {
+                var location;
+                return __generator(this, function (_a) {
+                    location = this._searchFeature ? this._searchFeature : null;
+                    if (this._detailPanel) {
+                        this._detailPanel.hidePanel();
+                    }
+                    this.lookupResults && this.lookupResults.queryFeatures(location);
+                    return [2 /*return*/];
+                });
+            });
+        };
+        LocationApp.prototype._cleanUpResults = function () {
+            // Clear the lookup results displayed in the side panel
+            this.lookupResults && this.lookupResults.clearResults();
+            this._results = null;
+            this.view.graphics.removeAll();
+            this.mapPanel && this.mapPanel.clearResults();
+            if (!this.mapPanel.isMobileView) {
+                this.view.popup.autoOpenEnabled = false;
+            }
+        };
+        LocationApp.prototype._updateUrlParam = function (index) {
+            var _a;
+            if ('URLSearchParams' in window) {
+                var params = new URLSearchParams(document.location.search);
+                var searchTerm = encodeURIComponent(this.searchWidget.searchTerm);
+                if (searchTerm) {
+                    if (index && (index > 0 || index === 0)) {
+                        params.set('findSource', index);
+                    }
+                    else {
+                        params.delete('findSource');
+                    }
+                    if ((_a = this._appConfig.sliderRange) === null || _a === void 0 ? void 0 : _a.default) {
+                        params.set('sliderDistance', this._appConfig.sliderRange.default);
+                    }
+                    params.set('find', encodeURIComponent(this.searchWidget.searchTerm));
+                }
+                else {
+                    params.delete('find');
+                    params.delete('findSource');
+                    params.delete('sliderDistance');
+                }
+                if (params && params.toString()) {
+                    window.history.replaceState({}, '', location.pathname + "?" + params);
+                }
+                else {
+                    window.history.replaceState({}, '', "" + location.pathname);
+                }
+>>>>>>> adding-html-css-typescript-to-wireframe
+            }
         };
         LocationApp.prototype._createSharedTheme = function () {
             var _a, _b, _c;

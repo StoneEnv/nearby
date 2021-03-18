@@ -157,6 +157,23 @@ class LocationApp {
 			this.initialSearchWidget.searchTerm = null;
 			let panelId = "mapPanel";
 			mapPanel.style.opacity = "0%"
+<<<<<<< HEAD
+		});
+
+		this._modelPanel = document.getElementById("modelPanel") as HTMLElement;
+		this._modelPanel.classList.add("hidden");
+
+		this._closeResultsBtn = document.getElementById("modelPanelHeaderCloseBtn") as HTMLButtonElement;
+		this._closeResultsBtn.addEventListener("click", () => {
+			// Hide Results Panel
+			this._modelPanel.classList.add("hidden");
+
+			// Clear Search Widget
+			//this._cleanUpResults();
+
+
+=======
+			// initialSearchPanel.style.display = "none";
 			this._updateUrlParam();
 			document.getElementById('background_image').style.backgroundImage = 'url(../images/nearby-background.jpg)';
 			document.getElementById('labels-container').style.marginTop = '200px';
@@ -182,22 +199,8 @@ class LocationApp {
 			this._propertyButtonOne = document.getElementById("label_1") as HTMLButtonElement;
 			this._propertyButtonOne.style.backgroundColor = 'rgba(221, 200, 200, 0.8)';
 			this._propertyButtonTwo.style.backgroundColor = 'rgba(255, 165, 0, .8)';
+>>>>>>> adding-html-css-typescript-to-wireframe
 		});
-        
-        this._modelPanel = document.getElementById("modelPanel") as HTMLElement;
-		this._modelPanel.classList.add("hidden");
-
-		this._closeResultsBtn = document.getElementById("modelPanelHeaderCloseBtn") as HTMLButtonElement;
-		this._closeResultsBtn.addEventListener("click", () => {
-			// Hide Results Panel
-			this._modelPanel.classList.add("hidden");
-
-			// Clear Search Widget
-			//this._cleanUpResults();
-
-
-		});
-
 	}
 	async _createMap(item) {
 		this.mapPanel = await new MapPanel({
@@ -423,8 +426,20 @@ class LocationApp {
 		}
 
 		this.searchWidget = new Search(searchProperties);
+		// If there's a find url param search for it when view is done updating once
+		// if (find) {
+		// 	whenFalseOnce(this.view, "updating", () => {
+
+		// 		this.searchWidget.viewModel.searchTerm = decodeURIComponent(find);
+		// 		if (findSource) {
+		// 			this.searchWidget.activeSourceIndex = findSource;
+		// 		}
+		// 		this.searchWidget.viewModel.search();
+		// 	});
+		// }
 
 		const handle = this.searchWidget.viewModel.watch('state', (state) => {
+
 			if (state === 'ready') {
 				handle.remove();
 				// conditionally hide on tablet
@@ -453,17 +468,32 @@ class LocationApp {
 			document.getElementById(panelId).style.opacity = "100%";
 		});
 
+		this.searchWidget.on('select-result', async (result) => {
+			
+		});
+
 		this.searchWidget.on('search-complete', async (results) => {
 			this._cleanUpResults();
-			(<HTMLElement>document.getElementById("background_image")).style.backgroundImage = "none";
+<<<<<<< HEAD
 			(<HTMLElement>document.getElementById("labels-container")).style.marginTop = "10px";
 			(<HTMLElement>document.getElementById("initialSearchPanel")).style.marginLeft = "0px";
 			(<HTMLElement>document.getElementById("initialSearchPanel")).style.marginRight = "0px";
 			(<HTMLElement>document.getElementById("initialSearchPanel")).style.padding = "5px";
 			(<HTMLElement>document.getElementById("searchIntro_welcome")).style.display= 'none';
 			(<HTMLElement>document.getElementById("searchIntro_groundwater")).style.display= 'none';
+			//let clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
 			(<HTMLIFrameElement>document.getElementById("modelResults")).src = "/blank.html";
 
+=======
+			document.getElementById("labels-container").style.marginTop = "10px";
+			document.getElementById("initialSearchPanel").style.marginLeft = "0px";
+			document.getElementById("initialSearchPanel").style.marginRight = "0px";
+			document.getElementById("initialSearchPanel").style.padding = "5px";
+			document.getElementById("searchIntro_welcome").style.display= 'none';
+			document.getElementById("searchIntro_groundwater").style.display= 'none';
+			document.getElementById("background_image").style.backgroundImage="none";
+			let clearSearchBtns = document.getElementsByClassName("esri-search__clear-button");
+>>>>>>> adding-html-css-typescript-to-wireframe
 			if (results.numResults > 0) {
 				// Add find url param
 				container.classList.add("hide-search-btn");
@@ -504,8 +534,8 @@ class LocationApp {
 			let menuShift = document.getElementById('initialSearchPanel')
 			this._clearButton.classList.add("hide");
 			this.searchWidget && this.searchWidget.clear();
-			let panelId = "mapPanel";
-			(<HTMLElement>document.getElementById(panelId)).style.opacity = "100%";
+			let panelId = "mapPanel"
+			document.getElementById(panelId).style.opacity = "100%";
 			menuShift.style.display = "none";
 		});
 		this.view.ui.add(this._clearButton, 'manual');
@@ -569,30 +599,30 @@ class LocationApp {
 	}
 
 	private _updateUrlParam(index?) {
-		// if ('URLSearchParams' in window) {
-		// 	const params = new URLSearchParams(document.location.search);
-		// 	const searchTerm = encodeURIComponent(this.searchWidget.searchTerm);
-		// 	if (searchTerm) {
-		// 		if (index && (index > 0 || index === 0)) {
-		// 			params.set('findSource', index);
-		// 		} else {
-		// 			params.delete('findSource');
-		// 		}
-		// 		if (this._appConfig.sliderRange?.default) {
-		// 			params.set('sliderDistance', this._appConfig.sliderRange.default as any);
-		// 		}
-		// 		params.set('find', encodeURIComponent(this.searchWidget.searchTerm));
-		// 	} else {
-		// 		params.delete('find');
-		// 		params.delete('findSource');
-		// 		params.delete('sliderDistance');
-		// 	}
-		// 	if (params && params.toString()) {
-		// 		window.history.replaceState({}, '', `${location.pathname}?${params}`);
-		// 	} else {
-		// 		window.history.replaceState({}, '', `${location.pathname}`);
-		// 	}
-		// }
+		if ('URLSearchParams' in window) {
+			const params = new URLSearchParams(document.location.search);
+			const searchTerm = encodeURIComponent(this.searchWidget.searchTerm);
+			if (searchTerm) {
+				if (index && (index > 0 || index === 0)) {
+					params.set('findSource', index);
+				} else {
+					params.delete('findSource');
+				}
+				if (this._appConfig.sliderRange?.default) {
+					params.set('sliderDistance', this._appConfig.sliderRange.default as any);
+				}
+				params.set('find', encodeURIComponent(this.searchWidget.searchTerm));
+			} else {
+				params.delete('find');
+				params.delete('findSource');
+				params.delete('sliderDistance');
+			}
+			if (params && params.toString()) {
+				window.history.replaceState({}, '', `${location.pathname}?${params}`);
+			} else {
+				window.history.replaceState({}, '', `${location.pathname}`);
+			}
+		}
 	}
 	private _createSharedTheme() {
 		// use shared theme colors for header and buttons 

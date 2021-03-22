@@ -246,18 +246,6 @@ class LocationApp {
 		// Add a page header
 		this._appConfig.title = this._appConfig.title || item.title;
 		setPageTitle(this._appConfig.title);
-		// Add info button 
-		// this._detailPanel = new DetailPanel({
-		// 	config: this._appConfig,
-		// 	view: this.view,
-		// 	container: document.getElementById('detailPanel')
-		// });
-		// If there is a value in session storage don't open panel when app loads
-		//const detailPanelShown = sessionStorage && sessionStorage.getItem("detailPanelShow") ? true : false;
-		//if (!detailPanelShown) {
-		//	this._detailPanel.showPanel();
-		//	sessionStorage && sessionStorage.setItem("detailPanelShow", "true");
-		//}
 
 		new Header({
 			config: this._appConfig,
@@ -443,7 +431,7 @@ class LocationApp {
 			this._updateUrlParam();
 			this._searchFeature = null;
 			let panelId = "mapPanel";
-			this.view.zoom = this.view.zoom - 3;
+			if (this.view.zoom > 18) this.view.zoom = 18;
 			this._mapPanel.classList.add("mapPanelOn");
 			(<HTMLElement>document.getElementById("body")).classList.remove("background_image");
 		});

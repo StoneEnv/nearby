@@ -326,7 +326,6 @@ define(["require", "exports", "esri/core/accessorSupport/decorators", "esri/widg
                                             title: result.title,
                                             features: sortedFeatures
                                         });
-                                        _this.accordion.render();
                                     }
                                     else {
                                         // all features shown as individual results

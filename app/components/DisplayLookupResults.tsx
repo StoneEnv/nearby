@@ -322,7 +322,6 @@ class DisplayLookupResults extends (Widget) {
 							title: result.title,
 							features: sortedFeatures
 						});
-						
 					} else {
 						// all features shown as individual results
 						let features = [];

@@ -93,11 +93,6 @@ class GroupedAccordion extends (Accordion) {
 
 
     _postRender() {
-        function sleep(ms:number) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-          }
-        //console.log("beep");
-        sleep(10000);
         var linksToModel = document.querySelectorAll("a[href^='https://geothermaltool.axillis.nl']");
         if (linksToModel.length > 0) {
             console.log("trying to add event handler");
@@ -196,7 +191,6 @@ class GroupedAccordion extends (Accordion) {
                                         this.actionBarItems.map((item) => this.createActionItem(item, feature))}
                                 </nav>) : null}
                             </li>)
-
                         })}
                 </ul>
             </section>);
@@ -234,6 +228,8 @@ class GroupedAccordion extends (Accordion) {
                 this.hoveredItem = feature;
             }));
         }
+
+        this._postRender();
     }
     clear() {
         this.featureResults = null;
@@ -300,7 +296,7 @@ class GroupedAccordion extends (Accordion) {
         for (let j = 0; j < mainNodes.length; j++) {
             mainNodes[j].classList.remove(selectedClassName);
         }
-
+        this._postRender();
         node.classList.add(selectedClassName);
         this.selectedItem = graphic;
     }

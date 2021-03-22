@@ -81,11 +81,6 @@ define(["require", "exports", "esri/core/promiseUtils", "./Accordion", "esri/cor
             return _this;
         }
         GroupedAccordion.prototype._postRender = function () {
-            function sleep(ms) {
-                return new Promise(function (resolve) { return setTimeout(resolve, ms); });
-            }
-            //console.log("beep");
-            sleep(10000);
             var linksToModel = document.querySelectorAll("a[href^='https://geothermaltool.axillis.nl']");
             if (linksToModel.length > 0) {
                 console.log("trying to add event handler");
@@ -184,6 +179,7 @@ define(["require", "exports", "esri/core/promiseUtils", "./Accordion", "esri/cor
                     _this.hoveredItem = feature;
                 }));
             }
+            this._postRender();
         };
         GroupedAccordion.prototype.clear = function () {
             this.featureResults = null;
@@ -252,6 +248,7 @@ define(["require", "exports", "esri/core/promiseUtils", "./Accordion", "esri/cor
             for (var j = 0; j < mainNodes.length; j++) {
                 mainNodes[j].classList.remove(selectedClassName);
             }
+            this._postRender();
             node.classList.add(selectedClassName);
             this.selectedItem = graphic;
         };

@@ -289,18 +289,6 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             // Add a page header
             this._appConfig.title = this._appConfig.title || item.title;
             domHelper_1.setPageTitle(this._appConfig.title);
-            // Add info button 
-            // this._detailPanel = new DetailPanel({
-            // 	config: this._appConfig,
-            // 	view: this.view,
-            // 	container: document.getElementById('detailPanel')
-            // });
-            // If there is a value in session storage don't open panel when app loads
-            //const detailPanelShown = sessionStorage && sessionStorage.getItem("detailPanelShow") ? true : false;
-            //if (!detailPanelShown) {
-            //	this._detailPanel.showPanel();
-            //	sessionStorage && sessionStorage.setItem("detailPanelShow", "true");
-            //}
             new Header_1.default({
                 config: this._appConfig,
                 detailPanel: this._detailPanel,
@@ -499,7 +487,8 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 _this._updateUrlParam();
                 _this._searchFeature = null;
                 var panelId = "mapPanel";
-                _this.view.zoom = _this.view.zoom - 3;
+                if (_this.view.zoom > 18)
+                    _this.view.zoom = 18;
                 _this._mapPanel.classList.add("mapPanelOn");
                 document.getElementById("body").classList.remove("background_image");
             });

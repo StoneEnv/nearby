@@ -179,6 +179,7 @@ class DisplayLookupResults extends (Widget) {
 
 		this.accordion.watch('hoveredItem', () => {
 			console.log("hoveredItem");
+			this.accordion.render();
 			if (this.accordion.hoveredItem && this.accordion.hoveredItem.graphic) {
 				let location = this.accordion.hoveredItem.graphic.geometry;
 				if (location && location.type !== "point") {
@@ -204,18 +205,18 @@ class DisplayLookupResults extends (Widget) {
 				this._highlightFeature(this.accordion.hoveredItem.graphic);
 			}
 		});
-		this.accordion.watch('selectedItem', () => {
-			console.log("selectedItem");
-			this._clearDirections();
-			if (this.accordion.selectedItem) {
-				this._highlightFeature(this.accordion.selectedItem);
-				this.accordion.zoom && this._zoomToFeature(this.accordion.selectedItem);
-				this.mapPanel.selectedItemTitle =
-					this.accordion.selectedItem.attributes['app-accordion-title'] || null;
+		// this.accordion.watch('selectedItem', () => {
+		// 	console.log("selectedItem");
+		// 	this._clearDirections();
+		// 	if (this.accordion.selectedItem) {
+		// 		this._highlightFeature(this.accordion.selectedItem);
+		// 		this.accordion.zoom && this._zoomToFeature(this.accordion.selectedItem);
+		// 		this.mapPanel.selectedItemTitle =
+		// 			this.accordion.selectedItem.attributes['app-accordion-title'] || null;
 
-			}
-			this.accordion.selectedItem = null;
-		});
+		// 	}
+		// 	this.accordion.selectedItem = null;
+		// });
 	}
 	async _handleActionItem(name: string, selected: esri.Graphic) {
 
@@ -321,6 +322,7 @@ class DisplayLookupResults extends (Widget) {
 							title: result.title,
 							features: sortedFeatures
 						});
+						this.accordion.render();
 						
 					} else {
 						// all features shown as individual results

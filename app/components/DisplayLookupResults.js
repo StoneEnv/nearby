@@ -175,6 +175,7 @@ define(["require", "exports", "esri/core/accessorSupport/decorators", "esri/widg
             });
             this.accordion.watch('hoveredItem', function () {
                 console.log("hoveredItem");
+                _this.accordion.render();
                 if (_this.accordion.hoveredItem && _this.accordion.hoveredItem.graphic) {
                     var location_1 = _this.accordion.hoveredItem.graphic.geometry;
                     if (location_1 && location_1.type !== "point") {
@@ -199,17 +200,17 @@ define(["require", "exports", "esri/core/accessorSupport/decorators", "esri/widg
                     _this._highlightFeature(_this.accordion.hoveredItem.graphic);
                 }
             });
-            this.accordion.watch('selectedItem', function () {
-                console.log("selectedItem");
-                _this._clearDirections();
-                if (_this.accordion.selectedItem) {
-                    _this._highlightFeature(_this.accordion.selectedItem);
-                    _this.accordion.zoom && _this._zoomToFeature(_this.accordion.selectedItem);
-                    _this.mapPanel.selectedItemTitle =
-                        _this.accordion.selectedItem.attributes['app-accordion-title'] || null;
-                }
-                _this.accordion.selectedItem = null;
-            });
+            // this.accordion.watch('selectedItem', () => {
+            // 	console.log("selectedItem");
+            // 	this._clearDirections();
+            // 	if (this.accordion.selectedItem) {
+            // 		this._highlightFeature(this.accordion.selectedItem);
+            // 		this.accordion.zoom && this._zoomToFeature(this.accordion.selectedItem);
+            // 		this.mapPanel.selectedItemTitle =
+            // 			this.accordion.selectedItem.attributes['app-accordion-title'] || null;
+            // 	}
+            // 	this.accordion.selectedItem = null;
+            // });
         };
         DisplayLookupResults.prototype._handleActionItem = function (name, selected) {
             return __awaiter(this, void 0, void 0, function () {
@@ -325,6 +326,7 @@ define(["require", "exports", "esri/core/accessorSupport/decorators", "esri/widg
                                             title: result.title,
                                             features: sortedFeatures
                                         });
+                                        _this.accordion.render();
                                     }
                                     else {
                                         // all features shown as individual results

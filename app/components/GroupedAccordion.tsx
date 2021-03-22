@@ -90,17 +90,28 @@ class GroupedAccordion extends (Accordion) {
         }
     }
 
+
+
     _postRender() {
-        console.log("beep");
+        function sleep(ms:number) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+          }
+        //console.log("beep");
+        sleep(10000);
         var linksToModel = document.querySelectorAll("a[href^='https://geothermaltool.axillis.nl']");
         if (linksToModel.length > 0) {
+            console.log("trying to add event handler");
             var linkToModel = linksToModel[0] as HTMLButtonElement;
+            if (linkToModel) console.log("got Anchor element");
             linkToModel.addEventListener("click", () => {
                 var modelPanel = document.getElementById("modelPanel") as HTMLElement;
                 modelPanel.classList.add("shown");
             });
         }
-        console.log("boop");
+        else {
+            console.log("no matching Anchors to add click event to");
+        }
+        //console.log("boop");
     }
 
     render() {

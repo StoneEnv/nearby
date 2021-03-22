@@ -128,7 +128,9 @@
   z-index: 10; }
 
 #searchPanelWrapper #searchPanel #searchContent #searchIntro {
-  text-align: center; }
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 10px; }
 
 #searchPanelWrapper #searchPanel #searchContent #searchIntro h1 {
   font-weight: 900;
@@ -158,11 +160,21 @@
 #searchPanelWrapper #searchPanel #searchContent #searchWidget header {
   display: none; }
 
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel {
+  background: none !important; }
+
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel #distanceOptions {
   display: none; }
 
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel {
+  background: none !important; }
+
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search {
-  width: 100%; }
+  width: 100%;
+  background: none !important; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__input-container {
+  margin-right: 5px; }
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__clear-button, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__clear-button {
   height: 42px;
@@ -175,7 +187,10 @@
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__submit-button .esri-icon-search:before, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__submit-button .esri-icon-search:before {
   content: "Check Geothermal Potential" !important;
-  color: white; }
+  color: white;
+  font-family: sans-serif;
+  font-size: 16px;
+  margin-left: 5px; }
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper {
   border-top: none; }
@@ -191,6 +206,9 @@
   overflow: auto; }
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper #resultsPanel #resultsList .scrollable-content div > section {
+  border: none !important; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper #resultsPanel #resultsList .scrollable-content .group-accordion-content li.accordion-section-selected {
   border: none !important; }
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget .initialSearchPanelTop {
@@ -259,12 +277,12 @@
 #modelPanel #modelPanelHeaderCloseBtn {
   flex: 0 0 auto;
   background-color: white;
-  width: 50px;
-  max-width: 50px;
+  width: 150px;
+  max-width: 150px;
   height: 100%;
   text-align: center;
-  padding-top: 5px;
-  font-size: 20pt;
+  padding-top: 10px;
+  font-size: 16pt;
   font-weight: bolder;
   cursor: pointer; }
 

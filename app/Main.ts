@@ -156,13 +156,12 @@ class LocationApp {
 			this._cleanUpResults();
 			this._clearButton.classList.add("hide");
 			this.searchWidget && this.searchWidget.clear();
-			(<HTMLElement>document.getElementById("searchIntro")).classList.remove("hidden");
 			this._sidePanel.classList.add("hidden");
 			this._searchFeature = null;
-			this.initialSearchWidget.searchTerm = null;
-			(<HTMLElement>document.getElementById("body")).classList.add("background_image");
 			this._mapPanel.classList.remove("mapPanelOn");
 			this._updateUrlParam();
+			(<HTMLElement>document.getElementById("body")).classList.add("background_image");
+			(<HTMLElement>document.getElementById("searchIntro")).classList.remove("hidden");
 		});
 
 		this._propertyButtonOne = document.getElementById("label_1") as HTMLButtonElement;
@@ -494,9 +493,9 @@ class LocationApp {
 			//let menuShift = document.getElementById('initialSearchPanel')
 			this._clearButton.classList.add("hide");
 			this.searchWidget && this.searchWidget.clear();
-			this._mapPanel.classList.remove("mapPanelOn");
+			//this._mapPanel.classList.remove("mapPanelOn");
 			//menuShift.style.display = "none";
-			(<HTMLElement>document.getElementById("body")).classList.add("background_image");
+			//(<HTMLElement>document.getElementById("body")).classList.add("background_image");
 		});
 		this.view.ui.add(this._clearButton, 'manual');
 	}

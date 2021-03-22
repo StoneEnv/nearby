@@ -195,13 +195,14 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._homeButton = document.getElementById("homeButton");
             this._homeButton.addEventListener("click", function () {
                 _this._cleanUpResults();
-                document.getElementById("searchIntro").classList.remove("hidden");
+                _this._clearButton.classList.add("hide");
+                _this.searchWidget && _this.searchWidget.clear();
                 _this._sidePanel.classList.add("hidden");
                 _this._searchFeature = null;
-                _this.initialSearchWidget.searchTerm = null;
-                document.getElementById("body").classList.add("background_image");
                 _this._mapPanel.classList.remove("mapPanelOn");
                 _this._updateUrlParam();
+                document.getElementById("body").classList.add("background_image");
+                document.getElementById("searchIntro").classList.remove("hidden");
             });
             this._propertyButtonOne = document.getElementById("label_1");
             this._propertyButtonOne.addEventListener("click", function () {
@@ -557,10 +558,9 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 //let menuShift = document.getElementById('initialSearchPanel')
                 _this._clearButton.classList.add("hide");
                 _this.searchWidget && _this.searchWidget.clear();
-                var panelId = "mapPanel";
-                _this._mapPanel.classList.remove("mapPanelOn");
+                //this._mapPanel.classList.remove("mapPanelOn");
                 //menuShift.style.display = "none";
-                document.getElementById("body").classList.add("background_image");
+                //(<HTMLElement>document.getElementById("body")).classList.add("background_image");
             });
             this.view.ui.add(this._clearButton, 'manual');
         };

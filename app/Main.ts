@@ -154,6 +154,8 @@ class LocationApp {
 		this._homeButton = document.getElementById("homeButton") as HTMLButtonElement;
 		this._homeButton.addEventListener("click", () => {
 			this._cleanUpResults();
+			this._clearButton.classList.add("hide");
+			this.searchWidget && this.searchWidget.clear();
 			(<HTMLElement>document.getElementById("searchIntro")).classList.remove("hidden");
 			this._sidePanel.classList.add("hidden");
 			this._searchFeature = null;
@@ -492,7 +494,6 @@ class LocationApp {
 			//let menuShift = document.getElementById('initialSearchPanel')
 			this._clearButton.classList.add("hide");
 			this.searchWidget && this.searchWidget.clear();
-			let panelId = "mapPanel";
 			this._mapPanel.classList.remove("mapPanelOn");
 			//menuShift.style.display = "none";
 			(<HTMLElement>document.getElementById("body")).classList.add("background_image");

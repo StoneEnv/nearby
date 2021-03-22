@@ -322,7 +322,6 @@ class DisplayLookupResults extends (Widget) {
 							title: result.title,
 							features: sortedFeatures
 						});
-						this.accordion.render();
 						
 					} else {
 						// all features shown as individual results

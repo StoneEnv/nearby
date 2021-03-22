@@ -203,6 +203,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 _this._updateUrlParam();
                 document.getElementById("body").classList.add("background_image");
                 document.getElementById("searchIntro").classList.remove("hidden");
+                document.getElementById("searchPanelWrapper").classList.remove("top");
             });
             this._propertyButtonOne = document.getElementById("label_1");
             this._propertyButtonOne.addEventListener("click", function () {
@@ -491,6 +492,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                     _this.view.zoom = 18;
                 _this._mapPanel.classList.add("mapPanelOn");
                 document.getElementById("body").classList.remove("background_image");
+                document.getElementById("searchPanelWrapper").classList.add("top");
             });
             this.searchWidget.on('search-complete', function (results) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
@@ -544,12 +546,8 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._clearButton.classList.add('hide');
             this._clearButton.classList.add("app-button");
             this._clearButton.addEventListener("click", function () {
-                //let menuShift = document.getElementById('initialSearchPanel')
                 _this._clearButton.classList.add("hide");
                 _this.searchWidget && _this.searchWidget.clear();
-                //this._mapPanel.classList.remove("mapPanelOn");
-                //menuShift.style.display = "none";
-                //(<HTMLElement>document.getElementById("body")).classList.add("background_image");
             });
             this.view.ui.add(this._clearButton, 'manual');
         };

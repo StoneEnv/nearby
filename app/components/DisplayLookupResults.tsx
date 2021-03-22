@@ -508,7 +508,6 @@ class DisplayLookupResults extends (Widget) {
 		});
 	}
 
-
 	_zoomToFeature(graphic: esri.Graphic) {
 		this.view.goTo(graphic);
 		this._highlightFeature(graphic);

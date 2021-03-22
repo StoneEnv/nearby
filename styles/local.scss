@@ -12,8 +12,6 @@
     display: block !important;
 }
 
-
-
 .side-panel {
     background: none !important;
     height: auto;
@@ -42,7 +40,6 @@
     opacity: 100% !important;
     pointer-events: all !important;
 }
-
 
 #navigationPanel {
     height: 80px;
@@ -306,6 +303,11 @@
 
     }
 
+    &.top {
+        justify-content: flex-end;
+        margin-top: -50px;
+    }
+
 }
 
 .background_image{
@@ -364,9 +366,3 @@
         height: 100%;
     }
 }
-
-
-
-
-
-

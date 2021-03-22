@@ -162,6 +162,7 @@ class LocationApp {
 			this._updateUrlParam();
 			(<HTMLElement>document.getElementById("body")).classList.add("background_image");
 			(<HTMLElement>document.getElementById("searchIntro")).classList.remove("hidden");
+			(<HTMLElement>document.getElementById("searchPanelWrapper")).classList.remove("top");
 		});
 
 		this._propertyButtonOne = document.getElementById("label_1") as HTMLButtonElement;
@@ -434,6 +435,7 @@ class LocationApp {
 			if (this.view.zoom > 18) this.view.zoom = 18;
 			this._mapPanel.classList.add("mapPanelOn");
 			(<HTMLElement>document.getElementById("body")).classList.remove("background_image");
+			(<HTMLElement>document.getElementById("searchPanelWrapper")).classList.add("top");
 		});
 
 		this.searchWidget.on('search-complete', async (results) => {
@@ -478,12 +480,8 @@ class LocationApp {
 		this._clearButton.classList.add('hide');
 		this._clearButton.classList.add("app-button");
 		this._clearButton.addEventListener("click", () => {
-			//let menuShift = document.getElementById('initialSearchPanel')
 			this._clearButton.classList.add("hide");
 			this.searchWidget && this.searchWidget.clear();
-			//this._mapPanel.classList.remove("mapPanelOn");
-			//menuShift.style.display = "none";
-			//(<HTMLElement>document.getElementById("body")).classList.add("background_image");
 		});
 		this.view.ui.add(this._clearButton, 'manual');
 	}

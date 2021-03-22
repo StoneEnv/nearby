@@ -250,6 +250,10 @@
 #searchPanelWrapper #searchPanel #searchContent #searchWidget .light .text-fade:after {
   display: none; }
 
+#searchPanelWrapper.top {
+  justify-content: flex-end;
+  margin-top: -50px; }
+
 .background_image {
   background-image: url("../images/nearby-background.jpg");
   background-repeat: no-repeat;

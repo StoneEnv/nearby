@@ -203,6 +203,11 @@
                             .esri-search__input-container {
                                 margin-right: 5px;
                                 border-radius: 4px;
+
+                                #search-suggest-menu {
+                                    top: unset;
+                                    bottom: 43px;
+                                }
                             }
 
                             .esri-search--show-suggestions, .esri-search__container {
@@ -366,3 +371,5 @@
         height: 100%;
     }
 }
+
+

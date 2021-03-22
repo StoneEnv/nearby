@@ -177,6 +177,10 @@
   margin-right: 5px;
   border-radius: 4px; }
 
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__input-container #search-suggest-menu {
+  top: unset;
+  bottom: 43px; }
+
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__clear-button, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__clear-button {
   height: 42px;
   width: 42px; }

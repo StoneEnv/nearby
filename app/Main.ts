@@ -55,6 +55,9 @@ class LocationApp {
 	_homeButton: HTMLButtonElement = null;
 	_closeResultsBtn: HTMLButtonElement = null;
 	_modelPanel: HTMLElement = null;
+	_initialSearchPanel: HTMLElement = null;
+	_mapPanel: HTMLElement = null;
+	_sidePanel: HTMLElement = null;
 	// DisplayLookupResults is the component that handles displaying the popup content
 	// using the Feature widget for the features that match the lookup search requirements
 	lookupResults: DisplayLookupResults;
@@ -144,41 +147,20 @@ class LocationApp {
 		}
 		this._createMap(item);
 		(<HTMLIFrameElement>document.getElementById("modelResults")).src = "/blank.html";
+		this._initialSearchPanel = <HTMLElement> document.getElementById("initialSearchPanel");
+		this._sidePanel = <HTMLElement> document.getElementById("sidePanel");
+		this._mapPanel = <HTMLElement> document.getElementById("mapPanel");
 
 		this._homeButton = document.getElementById("homeButton") as HTMLButtonElement;
 		this._homeButton.addEventListener("click", () => {
 			this._cleanUpResults();
-			let initialSearchPanel = <HTMLElement> document.getElementById("initialSearchPanel");
-			let sidePanel = <HTMLElement> document.getElementById("sidePanel");
-			let mapPanel = <HTMLElement> document.getElementById("mapPanel");
-			initialSearchPanel.classList.remove("hidden");
-			sidePanel.classList.add("hidden");
+			(<HTMLElement>document.getElementById("searchIntro")).classList.remove("hidden");
+			this._sidePanel.classList.add("hidden");
 			this._searchFeature = null;
 			this.initialSearchWidget.searchTerm = null;
-			let panelId = "mapPanel";
-			mapPanel.style.opacity = "0%"
+			(<HTMLElement>document.getElementById("body")).classList.add("background_image");
+			this._mapPanel.classList.remove("mapPanelOn");
 			this._updateUrlParam();
-			document.getElementById('background_image').style.backgroundImage = 'url(../images/nearby-background.jpg)';
-			//document.getElementById('labels-container').style.marginTop = '200px';
-			(<HTMLElement>document.getElementById("labels-container")).classList.remove("labels-container-top");
-			// document.getElementById("initialSearchPanel").style.marginLeft = "40px";
-			// document.getElementById("initialSearchPanel").style.marginRight = "40px";
-			// document.getElementById("initialSearchPanel").style.paddingTop = "50px";
-			// document.getElementById("initialSearchPanel").style.paddingBottom = "50px";
-			// document.getElementById("initialSearchPanel").style.paddingLeft = "100px";
-			// document.getElementById("initialSearchPanel").style.paddingRight = "100px";
-			///// We could replace that with this /////
-			// initialSearchPanel.style.marginLeft = "40px";
-			// initialSearchPanel.style.marginRight = "40px";
-			// initialSearchPanel.style.paddingTop = "50px";
-			// initialSearchPanel.style.paddingBottom = "50px";
-			// initialSearchPanel.style.paddingLeft = "100px";
-			// initialSearchPanel.style.paddingRight = "100px";
-			///// But for simplicty and consistency move the styling to a class and apply or remove it ////
-			initialSearchPanel.classList.remove("initialSearchPanelTop");
-
-			document.getElementById("searchIntro_welcome").style.display= 'inline';
-			document.getElementById("searchIntro_groundwater").style.display= 'inline';
 		});
 
 		this._propertyButtonOne = document.getElementById("label_1") as HTMLButtonElement;
@@ -461,24 +443,13 @@ class LocationApp {
 			this._searchFeature = null;
 			let panelId = "mapPanel";
 			this.view.zoom = this.view.zoom - 3;
-			document.getElementById(panelId).style.opacity = "100%";
+			this._mapPanel.classList.add("mapPanelOn");
+			(<HTMLElement>document.getElementById("body")).classList.remove("background_image");
 		});
 
 		this.searchWidget.on('search-complete', async (results) => {
 			this._cleanUpResults();
-			(<HTMLElement>document.getElementById("background_image")).style.backgroundImage = "none";
-			
-			// (<HTMLElement>document.getElementById("labels-container")).style.marginTop = "10px";
-			(<HTMLElement>document.getElementById("labels-container")).classList.add("labels-container-top");
-			
-			// (<HTMLElement>document.getElementById("initialSearchPanel")).style.marginLeft = "0px";
-			// (<HTMLElement>document.getElementById("initialSearchPanel")).style.marginRight = "0px";
-			// (<HTMLElement>document.getElementById("initialSearchPanel")).style.padding = "5px";
-			(<HTMLElement>document.getElementById("initialSearchPanel")).classList.add("initialSearchPanelTop");
-
-			(<HTMLElement>document.getElementById("searchIntro_welcome")).style.display= 'none';
-			(<HTMLElement>document.getElementById("searchIntro_groundwater")).style.display= 'none';
-			
+			(<HTMLElement>document.getElementById("searchIntro")).classList.add("hidden");
 			(<HTMLIFrameElement>document.getElementById("modelResults")).src = "/blank.html";
 
 			if (results.numResults > 0) {
@@ -518,12 +489,13 @@ class LocationApp {
 		this._clearButton.classList.add('hide');
 		this._clearButton.classList.add("app-button");
 		this._clearButton.addEventListener("click", () => {
-			let menuShift = document.getElementById('initialSearchPanel')
+			//let menuShift = document.getElementById('initialSearchPanel')
 			this._clearButton.classList.add("hide");
 			this.searchWidget && this.searchWidget.clear();
 			let panelId = "mapPanel";
-			(<HTMLElement>document.getElementById(panelId)).style.opacity = "100%";
-			menuShift.style.display = "none";
+			this._mapPanel.classList.remove("mapPanelOn");
+			//menuShift.style.display = "none";
+			(<HTMLElement>document.getElementById("body")).classList.add("background_image");
 		});
 		this.view.ui.add(this._clearButton, 'manual');
 	}

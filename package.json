@@ -36,8 +36,8 @@
     "start": "npm-run-all --parallel watch:sass watch:ts",
     "watch:ts": "tsc --watch",
     "build:ts": "tsc",
-    "build:sass": "./node_modules/.bin/node-sass styles/main.scss styles/main.css",
-    "watch:sass": "./node_modules/.bin/node-sass --watch styles/main.scss styles/main.css",
+    "build:sass": "./node_modules/.bin/node-sass styles -o styles",
+    "watch:sass": "./node_modules/.bin/node-sass --watch styles -o styles",
     "deploy": "npm run build:sass & npm run build:ts"
   },
   "dependencies": {

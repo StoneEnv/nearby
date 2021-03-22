@@ -109,6 +109,9 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._homeButton = null;
             this._closeResultsBtn = null;
             this._modelPanel = null;
+            this._initialSearchPanel = null;
+            this._mapPanel = null;
+            this._sidePanel = null;
             //----------------------------------
             //  ApplicationBase
             //----------------------------------
@@ -186,39 +189,19 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             }
             this._createMap(item);
             document.getElementById("modelResults").src = "/blank.html";
+            this._initialSearchPanel = document.getElementById("initialSearchPanel");
+            this._sidePanel = document.getElementById("sidePanel");
+            this._mapPanel = document.getElementById("mapPanel");
             this._homeButton = document.getElementById("homeButton");
             this._homeButton.addEventListener("click", function () {
                 _this._cleanUpResults();
-                var initialSearchPanel = document.getElementById("initialSearchPanel");
-                var sidePanel = document.getElementById("sidePanel");
-                var mapPanel = document.getElementById("mapPanel");
-                initialSearchPanel.classList.remove("hidden");
-                sidePanel.classList.add("hidden");
+                document.getElementById("searchIntro").classList.remove("hidden");
+                _this._sidePanel.classList.add("hidden");
                 _this._searchFeature = null;
                 _this.initialSearchWidget.searchTerm = null;
-                var panelId = "mapPanel";
-                mapPanel.style.opacity = "0%";
+                document.getElementById("body").classList.add("background_image");
+                _this._mapPanel.classList.remove("mapPanelOn");
                 _this._updateUrlParam();
-                document.getElementById('background_image').style.backgroundImage = 'url(../images/nearby-background.jpg)';
-                //document.getElementById('labels-container').style.marginTop = '200px';
-                document.getElementById("labels-container").classList.remove("labels-container-top");
-                // document.getElementById("initialSearchPanel").style.marginLeft = "40px";
-                // document.getElementById("initialSearchPanel").style.marginRight = "40px";
-                // document.getElementById("initialSearchPanel").style.paddingTop = "50px";
-                // document.getElementById("initialSearchPanel").style.paddingBottom = "50px";
-                // document.getElementById("initialSearchPanel").style.paddingLeft = "100px";
-                // document.getElementById("initialSearchPanel").style.paddingRight = "100px";
-                ///// We could replace that with this /////
-                // initialSearchPanel.style.marginLeft = "40px";
-                // initialSearchPanel.style.marginRight = "40px";
-                // initialSearchPanel.style.paddingTop = "50px";
-                // initialSearchPanel.style.paddingBottom = "50px";
-                // initialSearchPanel.style.paddingLeft = "100px";
-                // initialSearchPanel.style.paddingRight = "100px";
-                ///// But for simplicty and consistency move the styling to a class and apply or remove it ////
-                initialSearchPanel.classList.remove("initialSearchPanelTop");
-                document.getElementById("searchIntro_welcome").style.display = 'inline';
-                document.getElementById("searchIntro_groundwater").style.display = 'inline';
             });
             this._propertyButtonOne = document.getElementById("label_1");
             this._propertyButtonOne.addEventListener("click", function () {
@@ -516,20 +499,13 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 _this._searchFeature = null;
                 var panelId = "mapPanel";
                 _this.view.zoom = _this.view.zoom - 3;
-                document.getElementById(panelId).style.opacity = "100%";
+                _this._mapPanel.classList.add("mapPanelOn");
+                document.getElementById("body").classList.remove("background_image");
             });
             this.searchWidget.on('search-complete', function (results) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     this._cleanUpResults();
-                    document.getElementById("background_image").style.backgroundImage = "none";
-                    // (<HTMLElement>document.getElementById("labels-container")).style.marginTop = "10px";
-                    document.getElementById("labels-container").classList.add("labels-container-top");
-                    // (<HTMLElement>document.getElementById("initialSearchPanel")).style.marginLeft = "0px";
-                    // (<HTMLElement>document.getElementById("initialSearchPanel")).style.marginRight = "0px";
-                    // (<HTMLElement>document.getElementById("initialSearchPanel")).style.padding = "5px";
-                    document.getElementById("initialSearchPanel").classList.add("initialSearchPanelTop");
-                    document.getElementById("searchIntro_welcome").style.display = 'none';
-                    document.getElementById("searchIntro_groundwater").style.display = 'none';
+                    document.getElementById("searchIntro").classList.add("hidden");
                     document.getElementById("modelResults").src = "/blank.html";
                     if (results.numResults > 0) {
                         // Add find url param
@@ -578,12 +554,13 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._clearButton.classList.add('hide');
             this._clearButton.classList.add("app-button");
             this._clearButton.addEventListener("click", function () {
-                var menuShift = document.getElementById('initialSearchPanel');
+                //let menuShift = document.getElementById('initialSearchPanel')
                 _this._clearButton.classList.add("hide");
                 _this.searchWidget && _this.searchWidget.clear();
                 var panelId = "mapPanel";
-                document.getElementById(panelId).style.opacity = "100%";
-                menuShift.style.display = "none";
+                _this._mapPanel.classList.remove("mapPanelOn");
+                //menuShift.style.display = "none";
+                document.getElementById("body").classList.add("background_image");
             });
             this.view.ui.add(this._clearButton, 'manual');
         };

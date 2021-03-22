@@ -70,8 +70,8 @@
           "url": "https://services.arcgis.com/pwNwIGBE7M7VOXjQ/arcgis/rest/services/WestchesterBuilding_ExistingProperties_view/FeatureServer",
           "id": "WestchesterBuilding_ExistingProperties_view_3661"
         },
-        "maxResults": 6,
-        "maxSuggestions": 6,
+        "maxResults": 1,
+        "maxSuggestions": 10,
         "name": "WestchesterBuilding_ExistingProperties_view",
         "outFields": [
           "build_addr"

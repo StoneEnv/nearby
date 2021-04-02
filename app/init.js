@@ -41,14 +41,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-define(["require", "exports", "dojo/text!config/applicationBase.json", "dojo/text!config/application.json", "ApplicationBase/ApplicationBase", "./Main", "dojo/i18n!./nls/resources", "./utilites/errorUtils", "./components/unsupported/UnsupportedBrowser"], function (require, exports, applicationBaseConfig, applicationConfig, ApplicationBase, Application, i18n, errorUtils, UnsupportedBrowser_1) {
+define(["require", "exports", "dojo/text!config/applicationBase.json", "dojo/text!config/application.json", "dojo/text!config/applicationAlt.json", "ApplicationBase/ApplicationBase", "./Main", "dojo/i18n!./nls/resources", "./utilites/errorUtils", "./components/unsupported/UnsupportedBrowser"], function (require, exports, applicationBaseConfig, applicationConfig, applicationAltConfig, ApplicationBase, Application, i18n, errorUtils, UnsupportedBrowser_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     errorUtils = __importStar(errorUtils);
     UnsupportedBrowser_1 = __importDefault(UnsupportedBrowser_1);
+    var devFlag = document.getElementById("convertProp");
+    var configToUse = devFlag != null ? applicationConfig : applicationAltConfig;
+    console.log("Using Config for Mode: " + JSON.parse(configToUse).mode);
     var Main = new Application();
     new ApplicationBase({
-        config: applicationConfig,
+        config: configToUse,
         settings: applicationBaseConfig
     })
         .load()

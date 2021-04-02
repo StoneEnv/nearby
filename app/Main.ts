@@ -165,34 +165,45 @@ class LocationApp {
 			(<HTMLElement>document.getElementById("searchPanelWrapper")).classList.remove("top");
 		});
 
+		let modeLabel = document.getElementById("ModeLabel") as HTMLElement;
+		//modeLabel.innerHTML = "<h3>" + config.mode + "</h3>";
+
 		this._propertyButtonOne = document.getElementById("label_1") as HTMLButtonElement;
+		this._propertyButtonTwo = document.getElementById("label_2") as HTMLButtonElement;
+
+		if (config.mode == "Convert Property") {
+			this._propertyButtonTwo.style.backgroundColor = 'rgba(221, 200, 200, 0.8)';
+			this._propertyButtonOne.style.backgroundColor = 'rgba(255, 165, 0, .8)';			
+		}
+		else {
+
+			this._propertyButtonOne.style.backgroundColor = 'rgba(221, 200, 200, 0.8)';
+			this._propertyButtonTwo.style.backgroundColor = 'rgba(255, 165, 0, .8)';
+		}
+
+		
 		this._propertyButtonOne.addEventListener("click", () => {
 			this._propertyButtonTwo = document.getElementById("label_2") as HTMLButtonElement;
 			this._propertyButtonTwo.style.backgroundColor = 'rgba(221, 200, 200, 0.8)';
 			this._propertyButtonOne.style.backgroundColor = 'rgba(255, 165, 0, .8)';
+			window.location.href = "/index.html";
 
 		});
-		this._propertyButtonTwo = document.getElementById("label_2") as HTMLButtonElement;
+		
 		this._propertyButtonTwo.addEventListener("click", () => {
 			this._propertyButtonOne = document.getElementById("label_1") as HTMLButtonElement;
 			this._propertyButtonOne.style.backgroundColor = 'rgba(221, 200, 200, 0.8)';
 			this._propertyButtonTwo.style.backgroundColor = 'rgba(255, 165, 0, .8)';
+			window.location.href = "/newdev.html";
 		});
         
         this._modelPanel = document.getElementById("modelPanel") as HTMLElement;
-		//this._modelPanel.classList.add("hidden");
 
 		this._closeResultsBtn = document.getElementById("modelPanelHeaderCloseBtn") as HTMLButtonElement;
 		this._closeResultsBtn.addEventListener("click", () => {
-			// Hide Results Panel
 			this._modelPanel.classList.remove("shown");
-
-			// Clear Search Widget
-			//this._cleanUpResults();
-
-
 		});
-
+		
 	}
 	async _createMap(item) {
 		this.mapPanel = await new MapPanel({

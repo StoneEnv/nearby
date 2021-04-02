@@ -22,6 +22,7 @@
 
 import applicationBaseConfig = require("dojo/text!config/applicationBase.json");
 import applicationConfig = require("dojo/text!config/application.json");
+import applicationAltConfig = require("dojo/text!config/applicationAlt.json");
 
 import ApplicationBase = require("ApplicationBase/ApplicationBase");
 
@@ -31,9 +32,12 @@ import i18n = require("dojo/i18n!./nls/resources");
 import * as errorUtils from './utilites/errorUtils';
 import UnsupportedBrowser from "./components/unsupported/UnsupportedBrowser";
 
+const devFlag = document.getElementById("convertProp");
+const configToUse  = devFlag != null ? applicationConfig:applicationAltConfig;
+console.log("Using Config for Mode: " + JSON.parse(configToUse).mode);
 const Main = new Application();
 new ApplicationBase({
-  config: applicationConfig,
+  config: configToUse,
   settings: applicationBaseConfig
 })
   .load()

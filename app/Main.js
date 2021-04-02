@@ -205,26 +205,34 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 document.getElementById("searchIntro").classList.remove("hidden");
                 document.getElementById("searchPanelWrapper").classList.remove("top");
             });
+            var modeLabel = document.getElementById("ModeLabel");
+            //modeLabel.innerHTML = "<h3>" + config.mode + "</h3>";
             this._propertyButtonOne = document.getElementById("label_1");
+            this._propertyButtonTwo = document.getElementById("label_2");
+            if (config.mode == "Convert Property") {
+                this._propertyButtonTwo.style.backgroundColor = 'rgba(221, 200, 200, 0.8)';
+                this._propertyButtonOne.style.backgroundColor = 'rgba(255, 165, 0, .8)';
+            }
+            else {
+                this._propertyButtonOne.style.backgroundColor = 'rgba(221, 200, 200, 0.8)';
+                this._propertyButtonTwo.style.backgroundColor = 'rgba(255, 165, 0, .8)';
+            }
             this._propertyButtonOne.addEventListener("click", function () {
                 _this._propertyButtonTwo = document.getElementById("label_2");
                 _this._propertyButtonTwo.style.backgroundColor = 'rgba(221, 200, 200, 0.8)';
                 _this._propertyButtonOne.style.backgroundColor = 'rgba(255, 165, 0, .8)';
+                window.location.href = "/index.html";
             });
-            this._propertyButtonTwo = document.getElementById("label_2");
             this._propertyButtonTwo.addEventListener("click", function () {
                 _this._propertyButtonOne = document.getElementById("label_1");
                 _this._propertyButtonOne.style.backgroundColor = 'rgba(221, 200, 200, 0.8)';
                 _this._propertyButtonTwo.style.backgroundColor = 'rgba(255, 165, 0, .8)';
+                window.location.href = "/newdev.html";
             });
             this._modelPanel = document.getElementById("modelPanel");
-            //this._modelPanel.classList.add("hidden");
             this._closeResultsBtn = document.getElementById("modelPanelHeaderCloseBtn");
             this._closeResultsBtn.addEventListener("click", function () {
-                // Hide Results Panel
                 _this._modelPanel.classList.remove("shown");
-                // Clear Search Widget
-                //this._cleanUpResults();
             });
         };
         LocationApp.prototype._createMap = function (item) {

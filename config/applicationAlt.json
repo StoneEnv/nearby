@@ -29,10 +29,14 @@
   "nextBasemap": "fae788aa91e54244b161b59725dcbb2a",
   "homePosition": "bottom-right",
   "filters": false,
-  "lookupLayers": [
-    {"id":"Westchester_Export_Parcels_20201127","fields":[],"type":"FeatureLayer"},
-    {"id":"Westchester_NewConstruction_ParcelPoly_1789","fields":[],"type":"FeatureLayer"}
-  ],
+  "lookupLayers": {
+    "layers": [
+        {
+            "id": "Westchester_NewConstruction_ParcelPoly_1789",
+            "fields": []
+        }
+    ]
+},
   "interactiveResults": true,
   "hideLayers": false,
   "zoomScale": null,
@@ -54,54 +58,29 @@
   "resultsPanelPostText": null,
   "noResultsMessage": null,
   "groupResultsByLayer": true,
-  "searchConfig": {
+  "searchConfiguration": {
     "sources": [
-      {
-        "displayField": "nys_addres",
-        "exactMatch": false,
-        "layer": {
-          "url": "https://services.arcgis.com/pwNwIGBE7M7VOXjQ/arcgis/rest/services/Westchester_NewConstruction_ParcelPoly/FeatureServer/0",
-          "id": "Westchester_NewConstruction_ParcelPoly_1789"
-        },
-        "maxResults": 1,
-        "maxSuggestions": 10,
-        "name": "Westchester_NewConstruction_ParcelPoly",
-        "outFields": [
-          "nys_addres"
-        ],
-        "searchFields": [
-          "nys_addres"
-        ],
-        "placeholder": "Westchester_Export_Parcels_20200520",
-        "suggestionsEnabled": true,
-        "withinViewEnabled": false,
-        "zoomScale": null
-      },
-      {
-        "displayField": "nys_addres",
-        "exactMatch": false,
-        "layer": {
-          "url": "https://services5.arcgis.com/PZYGbbhVncO1YI8q/arcgis/rest/services/Westchester_Export_Parcels_20201127/FeatureServer/0",
-          "id": "Westchester_Export_Parcels_20201127"
-        },
-        "maxResults": 1,
-        "maxSuggestions": 10,
-        "name": "Westchester_Export_Parcels_20200520",
-        "outFields": [
-          "nys_addres"
-        ],
-        "searchFields": [
-          "nys_addres"
-        ],
-        "placeholder": "Westchester_Export_Parcels_20200520",
-        "suggestionsEnabled": true,
-        "withinViewEnabled": false,
-        "zoomScale": null
-      }
+        {
+            "locator": {
+                "url": "https://utility.arcgis.com/usrsvcs/servers/9b64fd44781d45dfa76e43a20bbb0a2a/rest/services/World/GeocodeServer"
+            },
+            "singleLineFieldName": "SingleLine",
+            "name": "Westchester Addresses",
+            "placeholder": "Address",
+            "maxResults": 6,
+            "maxSuggestions": 6,
+            "suggestionsEnabled": true,
+            "minSuggestCharacters": 1,
+            "withinViewEnabled": false,
+            "countryCode": "",
+            "zoomScale": null
+        }
     ],
-    "activeSourceIndex": "all",
-    "enableSearchingAll": true
-  },
+    "activeSourceIndex": 0,
+    "includeDefaultSources": false
+},
+"activeSourceIndex": 0,
+"includeDefaultSources": false,
   "telemetry": {
     "prod": {
       "debug": false,

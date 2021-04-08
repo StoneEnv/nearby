@@ -114,6 +114,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._sidePanel = null;
             this._webAppBuilder = null;
             this._inerstitialDiv = null;
+            this._inerstitialDivReset = null;
             //----------------------------------
             //  ApplicationBase
             //----------------------------------
@@ -238,7 +239,6 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             });
             this._webAppBuilder = document.getElementById("explorerButton");
             this._webAppBuilder.addEventListener("click", function () {
-                alert('the alert fired');
                 _this._initialSearchPanel = document.getElementById("searchPanelWrapper");
                 _this._inerstitialDiv = document.getElementById("interstitial-div");
                 _this._mapPanel.classList.add("hide");
@@ -248,6 +248,13 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 console.log(_this._initialSearchPanel);
                 _this._initialSearchPanel.classList.add("hidden");
                 _this._inerstitialDiv.classList.remove("hidden");
+            });
+            this._inerstitialDivReset = document.getElementById("return-to-default");
+            this._inerstitialDivReset.addEventListener("click", function () {
+                _this._inerstitialDiv.classList.remove("hidden");
+                _this._mapPanel.classList.remove("hide");
+                _this._modelPanel.classList.remove("hidden");
+                _this._initialSearchPanel.classList.remove("hidden");
             });
         };
         LocationApp.prototype._createMap = function (item) {

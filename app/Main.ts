@@ -59,6 +59,7 @@ class LocationApp {
 	_mapPanel: HTMLElement = null;
 	_sidePanel: HTMLElement = null;
 	_webAppBuilder: HTMLElement = null;
+	_inerstitialDiv: HTMLElement = null;
 	// DisplayLookupResults is the component that handles displaying the popup content
 	// using the Feature widget for the features that match the lookup search requirements
 	lookupResults: DisplayLookupResults;
@@ -208,6 +209,15 @@ class LocationApp {
 		this._webAppBuilder = document.getElementById("explorerButton") as HTMLElement;
 		this._webAppBuilder.addEventListener("click", () => {
 			alert('the alert fired');
+			this._initialSearchPanel = <HTMLElement> document.getElementById("searchPanelWrapper");
+			this._inerstitialDiv = <HTMLElement> document.getElementById("interstitial-div");
+			this._mapPanel.classList.add("hide");
+			this._modelPanel.classList.add("hidden");
+			console.log(this._mapPanel)
+			//why is this null?
+			console.log(this._initialSearchPanel)
+			this._initialSearchPanel.classList.add("hidden");
+			this._inerstitialDiv.classList.remove("hidden");
 		})
 	}
 	async _createMap(item) {

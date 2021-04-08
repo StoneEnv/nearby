@@ -113,6 +113,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._mapPanel = null;
             this._sidePanel = null;
             this._webAppBuilder = null;
+            this._inerstitialDiv = null;
             //----------------------------------
             //  ApplicationBase
             //----------------------------------
@@ -238,6 +239,15 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._webAppBuilder = document.getElementById("explorerButton");
             this._webAppBuilder.addEventListener("click", function () {
                 alert('the alert fired');
+                _this._initialSearchPanel = document.getElementById("searchPanelWrapper");
+                _this._inerstitialDiv = document.getElementById("interstitial-div");
+                _this._mapPanel.classList.add("hide");
+                _this._modelPanel.classList.add("hidden");
+                console.log(_this._mapPanel);
+                //why is this null?
+                console.log(_this._initialSearchPanel);
+                _this._initialSearchPanel.classList.add("hidden");
+                _this._inerstitialDiv.classList.remove("hidden");
             });
         };
         LocationApp.prototype._createMap = function (item) {

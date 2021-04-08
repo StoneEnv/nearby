@@ -243,9 +243,6 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 _this._inerstitialDiv = document.getElementById("interstitial-div");
                 _this._mapPanel.classList.add("hide");
                 _this._modelPanel.classList.add("hidden");
-                console.log(_this._mapPanel);
-                //why is this null?
-                console.log(_this._initialSearchPanel);
                 _this._initialSearchPanel.classList.add("hidden");
                 _this._inerstitialDiv.classList.remove("hidden");
             });

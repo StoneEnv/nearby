@@ -213,9 +213,6 @@ class LocationApp {
 			this._inerstitialDiv = <HTMLElement> document.getElementById("interstitial-div");
 			this._mapPanel.classList.add("hide");
 			this._modelPanel.classList.add("hidden");
-			console.log(this._mapPanel)
-			//why is this null?
-			console.log(this._initialSearchPanel)
 			this._initialSearchPanel.classList.add("hidden");
 			this._inerstitialDiv.classList.remove("hidden");
 		})

@@ -269,7 +269,7 @@
   margin-top: 60px;
   text-align: center; }
 
-#intersitial-div > button {
+.interstitial-div-button {
   background-color: #002D72;
   color: white;
   border-radius: 4px;

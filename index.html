@@ -60,6 +60,13 @@
     
     <div id="mapDescription" aria-live="polite" class="hide"></div>
     
+    <div id="interstitial-div" class="hidden">
+      <h1>Click below to go to the Web App Builder</h1><br/>
+      <h4>(we can change the text + layout too)</h4>
+      <button class="interstitial-div-button"><a href="/gshp" target="_blank">Click here to continue</a></button>
+      <button id="return-to-default" class="interstitial-div-button">Click here to return</button>
+    </div>
+
     <div id="navigationPanel">
       <div class="logo">
         <svg 
@@ -80,28 +87,26 @@
         <!-- href="/gshp" was removed from the prior line-->
         <a style="color:white; text-decoration: none;white-space: nowrap;">Multi-Property / Contractor</a>
       </div>
-      <div id="aboutButton" class="navButton navButtonRight">
+      <!-- <div id="aboutButton" class="navButton navButtonRight"> -->
         <!-- interaction code is in Main.ts at end of init() -->
-        About
+        <!-- About -->
+      <!-- </div> -->
+    </div>
+
+    <div id="modelPanel">
+      <div id="modelPanelHeader">
+        <div id="modelPanelHeaderTitle">Results</div>
+        <div id="modelPanelHeaderCloseBtn">Close Results</div>
       </div>
-      
+      <iframe id="modelResults" name="modelResults" src=""></iframe>
     </div>
-  
-      
+    
   <div id="mapPanel" tabindex="0"></div>
-  
-  <div id="modelPanel">
-    <div id="modelPanelHeader">
-      <div id="modelPanelHeaderTitle">Results</div>
-      <div id="modelPanelHeaderCloseBtn">Close Results</div>
-    </div>
-    <iframe id="modelResults" name="modelResults" src=""></iframe>
-  </div>
   
   <div id="searchPanelWrapper">
     <div id="searchPanel">
       <div id="searchTabs">
-          <button id="label_1">Convert a Property</button>
+          <button id="label_1" style="background: rgba(255, 165, 0, .8);">Convert a Property</button>
           <button id="label_2">Develop New Property</button>
       </div>
       <div id="searchContent" class="searchContent">
@@ -123,7 +128,11 @@
           <div id="printPanel" class="print-panel panel hide phone-column-6 tablet-column-12 column-10"></div>
           <div id="filterPanel" class="panel panel-no-border panel-no-padding leader-0 trailer-0 padding-leader-0 trailing-leader-0 main-map-content">
             <div class="search-panel">
-              <div id="search"></div>
+              <div id="search">
+                <div id="searchLoader" style="position: absolute;">
+                  <img style="height: 50px;position: relative; top: -20px; left: 50px;" src="assets/loader-ie9.gif"/>
+                </div>
+              </div>
             </div>
             <div id="distanceOptions"></div>
             <div class="hide" id="filterOptions"></div>
@@ -142,12 +151,7 @@
     </footer>
   </div>
 
-  <div class="hidden" id="interstitial-div">
-    <h1>Click below to go to the Web App Builder</h1><br/>
-    <h4>(we can change the text + layout too)</h4>
-    <button class="interstitial-div-button"><a href="/gshp" target="_blank">Click here to continue</a></button>
-    <button id="return-to-default" class="interstitial-div-button">Click here to return</button>
-  </div>
+
   
 </div>
 

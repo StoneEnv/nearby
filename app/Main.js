@@ -195,6 +195,8 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._initialSearchPanel = document.getElementById("initialSearchPanel");
             this._sidePanel = document.getElementById("sidePanel");
             this._mapPanel = document.getElementById("mapPanel");
+            this._initialSearchPanel = document.getElementById("searchPanelWrapper");
+            this._inerstitialDiv = document.getElementById("interstitial-div");
             this._homeButton = document.getElementById("homeButton");
             this._homeButton.addEventListener("click", function () {
                 _this._cleanUpResults();
@@ -203,6 +205,8 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 _this._sidePanel.classList.add("hidden");
                 _this._searchFeature = null;
                 _this._mapPanel.classList.remove("mapPanelOn");
+                _this._inerstitialDiv.classList.add("hidden");
+                _this._modelPanel.classList.remove("shown");
                 _this._updateUrlParam();
                 document.getElementById("body").classList.add("background_image");
                 document.getElementById("searchIntro").classList.remove("hidden");
@@ -241,16 +245,14 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             });
             this._webAppBuilder = document.getElementById("explorerButton");
             this._webAppBuilder.addEventListener("click", function () {
-                _this._initialSearchPanel = document.getElementById("searchPanelWrapper");
-                _this._inerstitialDiv = document.getElementById("interstitial-div");
-                _this._mapPanel.classList.add("hide");
-                _this._modelPanel.classList.add("hidden");
-                _this._initialSearchPanel.classList.add("hidden");
+                //this._mapPanel.classList.add("hide");
+                ///this._modelPanel.classList.add("hidden");
+                //this._initialSearchPanel.classList.add("hidden");
                 _this._inerstitialDiv.classList.remove("hidden");
             });
             this._inerstitialDivReset = document.getElementById("return-to-default");
             this._inerstitialDivReset.addEventListener("click", function () {
-                _this._inerstitialDiv.classList.remove("hidden");
+                _this._inerstitialDiv.classList.add("hidden");
                 _this._mapPanel.classList.remove("hide");
                 _this._modelPanel.classList.remove("hidden");
                 _this._initialSearchPanel.classList.remove("hidden");
@@ -493,6 +495,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this.searchWidget = new Search_1.default(searchProperties);
             var handle = this.searchWidget.viewModel.watch('state', function (state) {
                 if (state === 'ready') {
+                    document.getElementById("searchLoader").style.display = "none";
                     handle.remove();
                     // conditionally hide on tablet
                     if (!_this.view.container.classList.contains('tablet-show')) {

@@ -153,8 +153,10 @@ class LocationApp {
 		this._initialSearchPanel = <HTMLElement> document.getElementById("initialSearchPanel");
 		this._sidePanel = <HTMLElement> document.getElementById("sidePanel");
 		this._mapPanel = <HTMLElement> document.getElementById("mapPanel");
-
+		this._initialSearchPanel = <HTMLElement> document.getElementById("searchPanelWrapper");
+		this._inerstitialDiv = <HTMLElement> document.getElementById("interstitial-div");
 		this._homeButton = document.getElementById("homeButton") as HTMLButtonElement;
+
 		this._homeButton.addEventListener("click", () => {
 			this._cleanUpResults();
 			this._clearButton.classList.add("hide");
@@ -162,6 +164,8 @@ class LocationApp {
 			this._sidePanel.classList.add("hidden");
 			this._searchFeature = null;
 			this._mapPanel.classList.remove("mapPanelOn");
+			this._inerstitialDiv.classList.add("hidden");
+			this._modelPanel.classList.remove("shown");
 			this._updateUrlParam();
 			(<HTMLElement>document.getElementById("body")).classList.add("background_image");
 			(<HTMLElement>document.getElementById("searchIntro")).classList.remove("hidden");
@@ -211,16 +215,14 @@ class LocationApp {
 		
 		this._webAppBuilder = document.getElementById("explorerButton") as HTMLElement;
 		this._webAppBuilder.addEventListener("click", () => {
-			this._initialSearchPanel = <HTMLElement> document.getElementById("searchPanelWrapper");
-			this._inerstitialDiv = <HTMLElement> document.getElementById("interstitial-div");
-			this._mapPanel.classList.add("hide");
-			this._modelPanel.classList.add("hidden");
-			this._initialSearchPanel.classList.add("hidden");
+			//this._mapPanel.classList.add("hide");
+			///this._modelPanel.classList.add("hidden");
+			//this._initialSearchPanel.classList.add("hidden");
 			this._inerstitialDiv.classList.remove("hidden");
 		})
 		this._inerstitialDivReset = <HTMLElement> document.getElementById("return-to-default");
 		this._inerstitialDivReset.addEventListener("click", () => {
-			this._inerstitialDiv.classList.remove("hidden");
+			this._inerstitialDiv.classList.add("hidden");
 			this._mapPanel.classList.remove("hide");
 			this._modelPanel.classList.remove("hidden");
 			this._initialSearchPanel.classList.remove("hidden");
@@ -443,6 +445,7 @@ class LocationApp {
 
 		const handle = this.searchWidget.viewModel.watch('state', (state) => {
 			if (state === 'ready') {
+				(<HTMLElement>document.getElementById("searchLoader")).style.display = "none";
 				handle.remove();
 				// conditionally hide on tablet
 				if (!this.view.container.classList.contains('tablet-show')) {

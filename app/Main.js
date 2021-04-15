@@ -207,6 +207,8 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 document.getElementById("body").classList.add("background_image");
                 document.getElementById("searchIntro").classList.remove("hidden");
                 document.getElementById("searchPanelWrapper").classList.remove("top");
+                document.getElementById("searchPanel").classList.remove("top");
+                document.getElementById("searchWidget").classList.remove("top");
             });
             var modeLabel = document.getElementById("ModeLabel");
             //modeLabel.innerHTML = "<h3>" + config.mode + "</h3>";
@@ -522,8 +524,17 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 document.getElementById("searchPanelWrapper").classList.add("top");
             });
             this.searchWidget.on('search-complete', function (results) { return __awaiter(_this, void 0, void 0, function () {
+                var panelId;
                 return __generator(this, function (_a) {
                     this._cleanUpResults();
+                    if (this.view.zoom < 18)
+                        this.view.zoom = 18;
+                    panelId = "mapPanel";
+                    this._mapPanel.classList.add("mapPanelOn");
+                    document.getElementById("body").classList.remove("background_image");
+                    document.getElementById("searchPanelWrapper").classList.add("top");
+                    document.getElementById("searchPanel").classList.add("top");
+                    document.getElementById("searchWidget").classList.add("top");
                     document.getElementById("searchIntro").classList.add("hidden");
                     document.getElementById("modelResults").src = "/blank.html";
                     if (results.numResults > 0) {
@@ -534,16 +545,12 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                     return [2 /*return*/];
                 });
             }); });
-            this.searchWidget.on('suggest-start', function (results) { return __awaiter(_this, void 0, void 0, function () {
-                var panelId;
-                return __generator(this, function (_a) {
-                    panelId = "mapPanel";
-                    this._mapPanel.classList.add("mapPanelOn");
-                    document.getElementById("body").classList.remove("background_image");
-                    document.getElementById("searchPanelWrapper").classList.add("top");
-                    return [2 /*return*/];
-                });
-            }); });
+            // this.searchWidget.on('suggest-start', async (results) => {
+            // 	let panelId = "mapPanel";
+            // 	this._mapPanel.classList.add("mapPanelOn");
+            // 	(<HTMLElement>document.getElementById("body")).classList.remove("background_image");
+            // 	(<HTMLElement>document.getElementById("searchPanelWrapper")).classList.add("top");
+            // });
             // Search for location where user clicked on the map 
             this.view.on('click', function (e) { return __awaiter(_this, void 0, void 0, function () {
                 var point, screenPoint, results_1;

@@ -140,8 +140,14 @@ define(["require", "exports", "esri/core/accessorSupport/decorators", "esri/core
                             });
                             this.view.graphics.add(this._bufferGraphic);
                             if (!geometry) return [3 /*break*/, 3];
-                            return [4 /*yield*/, this.view.goTo(geometry)];
+                            // await this.view.goTo(geometry);
+                            // THIS CONTROLS HOW ZOOMED IN THE RESULTS OF A SEARCH ARE - NICK
+                            //this.view.center = geometry.extent.center; // Non-animated
+                            return [4 /*yield*/, this.view.goTo(geometry.extent.center)];
                         case 2:
+                            // await this.view.goTo(geometry);
+                            // THIS CONTROLS HOW ZOOMED IN THE RESULTS OF A SEARCH ARE - NICK
+                            //this.view.center = geometry.extent.center; // Non-animated
                             _a.sent();
                             _a.label = 3;
                         case 3: return [2 /*return*/];
@@ -166,12 +172,13 @@ define(["require", "exports", "esri/core/accessorSupport/decorators", "esri/core
                     this._graphicMarker = new Graphic_1.default({
                         geometry: this.graphic.geometry,
                         symbol: new symbols_1.TextSymbol({
-                            color: this._theme,
+                            color: "#FF0000",
                             text: '\ue61d',
-                            haloColor: this._theme,
+                            haloColor: "#FFFFFF",
+                            haloSize: "2px",
                             yoffset: 10,
                             font: {
-                                size: 20,
+                                size: 40,
                                 family: 'calcite-web-icons'
                             }
                         })

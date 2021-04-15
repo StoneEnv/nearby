@@ -166,6 +166,8 @@ class LocationApp {
 			(<HTMLElement>document.getElementById("body")).classList.add("background_image");
 			(<HTMLElement>document.getElementById("searchIntro")).classList.remove("hidden");
 			(<HTMLElement>document.getElementById("searchPanelWrapper")).classList.remove("top");
+			(<HTMLElement>document.getElementById("searchPanel")).classList.remove("top");
+			(<HTMLElement>document.getElementById("searchWidget")).classList.remove("top");
 		});
 
 		let modeLabel = document.getElementById("ModeLabel") as HTMLElement;
@@ -472,6 +474,13 @@ class LocationApp {
 
 		this.searchWidget.on('search-complete', async (results) => {
 			this._cleanUpResults();
+			if (this.view.zoom < 18) this.view.zoom = 18;
+			let panelId = "mapPanel";
+			this._mapPanel.classList.add("mapPanelOn");
+			(<HTMLElement>document.getElementById("body")).classList.remove("background_image");
+			(<HTMLElement>document.getElementById("searchPanelWrapper")).classList.add("top");
+			(<HTMLElement>document.getElementById("searchPanel")).classList.add("top");
+			(<HTMLElement>document.getElementById("searchWidget")).classList.add("top");
 			(<HTMLElement>document.getElementById("searchIntro")).classList.add("hidden");
 			(<HTMLIFrameElement>document.getElementById("modelResults")).src = "/blank.html";
 
@@ -482,12 +491,12 @@ class LocationApp {
 			}
 		});
 
-		this.searchWidget.on('suggest-start', async (results) => {
-			let panelId = "mapPanel";
-			this._mapPanel.classList.add("mapPanelOn");
-			(<HTMLElement>document.getElementById("body")).classList.remove("background_image");
-			(<HTMLElement>document.getElementById("searchPanelWrapper")).classList.add("top");
-		});
+		// this.searchWidget.on('suggest-start', async (results) => {
+		// 	let panelId = "mapPanel";
+		// 	this._mapPanel.classList.add("mapPanelOn");
+		// 	(<HTMLElement>document.getElementById("body")).classList.remove("background_image");
+		// 	(<HTMLElement>document.getElementById("searchPanelWrapper")).classList.add("top");
+		// });
 
 		// Search for location where user clicked on the map 
 		this.view.on('click', async (e: esri.MapViewClickEvent) => {

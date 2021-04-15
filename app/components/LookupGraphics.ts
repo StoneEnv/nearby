@@ -93,7 +93,11 @@ class LookupGraphics extends (Accessor) {
         });
         this.view.graphics.add(this._bufferGraphic);
         if (geometry) {
-            await this.view.goTo(geometry);
+            // await this.view.goTo(geometry);
+            // THIS CONTROLS HOW ZOOMED IN THE RESULTS OF A SEARCH ARE - NICK
+            //this.view.center = geometry.extent.center; // Non-animated
+            await this.view.goTo(geometry.extent.center);
+            //this.view.zoom = 17;
         }
 
 
@@ -112,12 +116,13 @@ class LookupGraphics extends (Accessor) {
         this._graphicMarker = new Graphic({
             geometry: this.graphic.geometry,
             symbol: new TextSymbol({
-                color: this._theme,
+                color: "#FF0000", //this._theme,
                 text: '\ue61d',// esri-icon-map-pin
-                haloColor: this._theme,
+                haloColor: "#FFFFFF", //this._theme,
+                haloSize: "2px",
                 yoffset: 10,
                 font: {
-                    size: 20,
+                    size: 40,
                     family: 'calcite-web-icons'
                 }
             })

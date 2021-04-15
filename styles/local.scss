@@ -104,6 +104,10 @@
         width: 900px;
         z-index: 10;
 
+        &.top {
+            width: 600px !important;
+        }
+
         #searchTabs {
             display: flex;
             flex-direction: row;
@@ -176,6 +180,10 @@
                 margin-bottom: 30px;
                 margin-top: 30px;
     
+                &.top {
+                    width: 580px !important;
+                }
+
                 header {
                     display: none;
                 }
@@ -228,7 +236,7 @@
                                 .esri-search__clear-button {
                                     background-color: #002D72;
                                     height: 42px;
-                                    width: 260px;
+                                    width: 120px;
                                     border-radius: 4px;
 
                                     .esri-icon-close:before {
@@ -319,8 +327,9 @@
     }
 
     &.top {
-        justify-content: flex-end;
-        margin-top: -50px;
+        // justify-content: flex-end;
+        align-items: unset !important;
+        margin-left: 50px;
     }
 
 }

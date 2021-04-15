@@ -515,7 +515,7 @@ define(["require", "exports", "esri/core/accessorSupport/decorators", "esri/widg
             });
         };
         DisplayLookupResults.prototype._zoomToFeature = function (graphic) {
-            this.view.goTo(graphic);
+            //this.view.goTo(graphic);
             this._highlightFeature(graphic);
         };
         DisplayLookupResults.prototype.destroy = function () {

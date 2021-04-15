@@ -66,8 +66,8 @@
         "displayField": "REV_LongLabel",
         "exactMatch": true,
         "layer": {
-          "url": "https://services.arcgis.com/pwNwIGBE7M7VOXjQ/arcgis/rest/services/WestchesterBuilding_ExistingProperties_view/FeatureServer",
-          "id": "WestchesterBuilding_ExistingProperties_view_3661"
+          "url": "https://services.arcgis.com/pwNwIGBE7M7VOXjQ/arcgis/rest/services/Westchester_Building_Footprints/FeatureServer",
+          "id": "Westchester_Building_Footprints_6767"
         },
         "maxResults": 1,
         "maxSuggestions": 10,
@@ -78,7 +78,7 @@
         "searchFields": [
           "REV_LongLabel"
         ],
-        "placeholder": "WestchesterBuilding_ExistingProperties_view",
+        "placeholder": "Enter a Westchester Address",
         "suggestionsEnabled": true,
         "withinViewEnabled": false,
         "zoomScale": null

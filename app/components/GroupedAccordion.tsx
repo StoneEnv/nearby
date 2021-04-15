@@ -221,7 +221,7 @@ class GroupedAccordion extends (Accordion) {
         const clickableResults = this.config.interactiveResults === false ? false : true;
         if (clickableResults) {
             node.addEventListener("click", () => {
-                this.zoom = true;
+                //this.zoom = true;
                 this._selectAccordionSection(node.parentElement, graphic);
             });
             node.addEventListener("mouseover", debounce(() => {

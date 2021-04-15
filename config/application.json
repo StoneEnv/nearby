@@ -23,6 +23,8 @@
   "mapZoomPosition": "bottom-left",
   "mapPin": true,
   "mapPinLabel": false,
+  "mapPinColor": "#ff0000",
+  "mapPinLabelColor": "#ffffff",
   "basemapToggle": true,
   "basemapTogglePosition": "bottom-right",
   "basemapSelector": "2ea9c9cf54cb494187b03a5057d1a830",
@@ -71,7 +73,7 @@
         "maxSuggestions": 10,
         "name": "WestchesterBuilding_ExistingProperties_view",
         "outFields": [
-          "build_addr"
+          "REV_LongLabel"
         ],
         "searchFields": [
           "REV_LongLabel"

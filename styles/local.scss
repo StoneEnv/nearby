@@ -66,7 +66,7 @@
     }
 
     .navButton {
-        flex: 0 0 150px;
+        /* flex: 0 0 150px; */
         height: 60px;
         /* border: 1px solid white; */
         display: flex;
@@ -78,16 +78,10 @@
         color: white;
         cursor: pointer;
         border-radius: 5px;
+        padding: 0 10px;
+        width: auto;
     }
-    
-    .navButtonLeft {
-        flex: 3 1 150px;
-    }
-    
-    .navButtonLeft {
-        flex: 1 1 150px;
-    }
-    
+       
     .navButton:hover {
         background-color: #006FC9 !important;
     }
@@ -223,6 +217,22 @@
 
                                     .esri-icon-search:before {
                                         content: "Check Geothermal Potential" !important;
+                                        color: white;
+                                        font-family: sans-serif;
+                                        font-size: 16px;
+                                        margin-left: 5px;
+                                        box-shadow: none !important;
+                                    }
+                                }
+
+                                .esri-search__clear-button {
+                                    background-color: #002D72;
+                                    height: 42px;
+                                    width: 260px;
+                                    border-radius: 4px;
+
+                                    .esri-icon-close:before {
+                                        content: "Go To Map" !important;
                                         color: white;
                                         font-family: sans-serif;
                                         font-size: 16px;

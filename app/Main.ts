@@ -437,6 +437,8 @@ class LocationApp {
 
 		this.searchWidget = new Search(searchProperties);
 
+
+
 		const handle = this.searchWidget.viewModel.watch('state', (state) => {
 			if (state === 'ready') {
 				handle.remove();
@@ -480,6 +482,13 @@ class LocationApp {
 			}
 		});
 
+		this.searchWidget.on('suggest-start', async (results) => {
+			let panelId = "mapPanel";
+			this._mapPanel.classList.add("mapPanelOn");
+			(<HTMLElement>document.getElementById("body")).classList.remove("background_image");
+			(<HTMLElement>document.getElementById("searchPanelWrapper")).classList.add("top");
+		});
+
 		// Search for location where user clicked on the map 
 		this.view.on('click', async (e: esri.MapViewClickEvent) => {
 			// document.getElementById("body").style.display = "none"
@@ -502,6 +511,13 @@ class LocationApp {
 			}
 			this._clearButton?.classList.remove("hide");
 		});
+
+
+		this.searchWidget.goToOverride = function(view, goToParams) {
+			console.log("goToParams: ", goToParams);
+			//goToParams.options.duration = 100;
+			return view.goTo(goToParams.target, goToParams.options);
+		};
 		// add clear  button to map view 
 		this._clearButton = document.createElement("button");
 		this._clearButton.innerHTML = i18n.tools.clearLocation;

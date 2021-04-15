@@ -172,7 +172,7 @@ define(["require", "exports", "esri/core/promiseUtils", "./Accordion", "esri/cor
             var clickableResults = this.config.interactiveResults === false ? false : true;
             if (clickableResults) {
                 node.addEventListener("click", function () {
-                    _this.zoom = true;
+                    //this.zoom = true;
                     _this._selectAccordionSection(node.parentElement, graphic);
                 });
                 node.addEventListener("mouseover", promiseUtils_1.debounce(function () {

@@ -534,6 +534,16 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                     return [2 /*return*/];
                 });
             }); });
+            this.searchWidget.on('suggest-start', function (results) { return __awaiter(_this, void 0, void 0, function () {
+                var panelId;
+                return __generator(this, function (_a) {
+                    panelId = "mapPanel";
+                    this._mapPanel.classList.add("mapPanelOn");
+                    document.getElementById("body").classList.remove("background_image");
+                    document.getElementById("searchPanelWrapper").classList.add("top");
+                    return [2 /*return*/];
+                });
+            }); });
             // Search for location where user clicked on the map 
             this.view.on('click', function (e) { return __awaiter(_this, void 0, void 0, function () {
                 var point, screenPoint, results_1;
@@ -565,6 +575,11 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                     }
                 });
             }); });
+            this.searchWidget.goToOverride = function (view, goToParams) {
+                console.log("goToParams: ", goToParams);
+                //goToParams.options.duration = 100;
+                return view.goTo(goToParams.target, goToParams.options);
+            };
             // add clear  button to map view 
             this._clearButton = document.createElement("button");
             this._clearButton.innerHTML = i18n.tools.clearLocation;

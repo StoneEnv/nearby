@@ -33,12 +33,12 @@
   "filters": false,
   "lookupLayers": {
     "layers": [
-      {
-        "id": "WestchesterBuilding_ExistingProperties_view_3661",
-        "fields": []
-      }
+        {
+            "id": "Westchester_Building_Footprints_6767",
+            "fields": []
+        }
     ]
-  },
+},
   "interactiveResults": true,
   "hideLayers": false,
   "zoomScale": null,

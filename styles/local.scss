@@ -393,7 +393,6 @@
 
 #interstitial-div{
     background-color: white;
-    padding-top: 60px;
     text-align: center;
     height: calc(100% - 60px);
     top: 100px;
@@ -407,6 +406,10 @@
         background-color: white;
         display: none;
         border: none;
+    }
+
+    #interstitial-content {
+        margin-top: 60px;
     }
 }
 

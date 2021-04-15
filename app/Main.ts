@@ -61,6 +61,7 @@ class LocationApp {
 	_webAppBuilder: HTMLElement = null;
 	_inerstitialDiv: HTMLElement = null;
 	_inerstitialDivReset: HTMLElement = null;
+	_inerstitialDivOpen: HTMLElement = null;
 	// DisplayLookupResults is the component that handles displaying the popup content
 	// using the Feature widget for the features that match the lookup search requirements
 	lookupResults: DisplayLookupResults;
@@ -167,6 +168,9 @@ class LocationApp {
 			this._inerstitialDiv.classList.add("hidden");
 			this._modelPanel.classList.remove("shown");
 			this._updateUrlParam();
+			(<HTMLIFrameElement>document.getElementById("multiplePropertiesIFrame")).src = "blank.html";
+			(<HTMLElement>document.getElementById("multiplePropertiesIFrame")).classList.remove("shown");
+			(<HTMLElement>document.getElementById("interstitial-content")).classList.remove("hidden");
 			(<HTMLElement>document.getElementById("body")).classList.add("background_image");
 			(<HTMLElement>document.getElementById("searchIntro")).classList.remove("hidden");
 			(<HTMLElement>document.getElementById("searchPanelWrapper")).classList.remove("top");
@@ -219,13 +223,21 @@ class LocationApp {
 			///this._modelPanel.classList.add("hidden");
 			//this._initialSearchPanel.classList.add("hidden");
 			this._inerstitialDiv.classList.remove("hidden");
-		})
+		});
+
 		this._inerstitialDivReset = <HTMLElement> document.getElementById("return-to-default");
 		this._inerstitialDivReset.addEventListener("click", () => {
 			this._inerstitialDiv.classList.add("hidden");
 			this._mapPanel.classList.remove("hide");
 			this._modelPanel.classList.remove("hidden");
 			this._initialSearchPanel.classList.remove("hidden");
+		});
+
+		this._inerstitialDivOpen = <HTMLElement> document.getElementById("showMultiplePropertiesButton");
+		this._inerstitialDivOpen.addEventListener("click", () => {
+			(<HTMLElement>document.getElementById("interstitial-content")).classList.add("hidden");
+			(<HTMLIFrameElement>document.getElementById("multiplePropertiesIFrame")).src = "/gshp";
+			(<HTMLElement>document.getElementById("multiplePropertiesIFrame")).classList.add("shown");
 		})
 	}
 	async _createMap(item) {

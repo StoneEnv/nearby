@@ -115,6 +115,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._webAppBuilder = null;
             this._inerstitialDiv = null;
             this._inerstitialDivReset = null;
+            this._inerstitialDivOpen = null;
             //----------------------------------
             //  ApplicationBase
             //----------------------------------
@@ -208,6 +209,9 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 _this._inerstitialDiv.classList.add("hidden");
                 _this._modelPanel.classList.remove("shown");
                 _this._updateUrlParam();
+                document.getElementById("multiplePropertiesIFrame").src = "blank.html";
+                document.getElementById("multiplePropertiesIFrame").classList.remove("shown");
+                document.getElementById("interstitial-content").classList.remove("hidden");
                 document.getElementById("body").classList.add("background_image");
                 document.getElementById("searchIntro").classList.remove("hidden");
                 document.getElementById("searchPanelWrapper").classList.remove("top");
@@ -256,6 +260,12 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 _this._mapPanel.classList.remove("hide");
                 _this._modelPanel.classList.remove("hidden");
                 _this._initialSearchPanel.classList.remove("hidden");
+            });
+            this._inerstitialDivOpen = document.getElementById("showMultiplePropertiesButton");
+            this._inerstitialDivOpen.addEventListener("click", function () {
+                document.getElementById("interstitial-content").classList.add("hidden");
+                document.getElementById("multiplePropertiesIFrame").src = "/gshp";
+                document.getElementById("multiplePropertiesIFrame").classList.add("shown");
             });
         };
         LocationApp.prototype._createMap = function (item) {

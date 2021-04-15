@@ -61,10 +61,13 @@
     <div id="mapDescription" aria-live="polite" class="hide"></div>
     
     <div id="interstitial-div" class="hidden">
-      <h1>Click below to go to the Web App Builder</h1><br/>
-      <h4>(we can change the text + layout too)</h4>
-      <button class="interstitial-div-button"><a href="/gshp" target="_blank">Click here to continue</a></button>
-      <button id="return-to-default" class="interstitial-div-button">Click here to return</button>
+      <div id="interstitial-content">
+        <h1>Click below to go to the Web App Builder</h1><br/>
+        <h4>(we can change the text + layout too)</h4>
+        <button id="showMultiplePropertiesButton" class="interstitial-div-button">Click here to continue</button>
+        <button id="return-to-default" class="interstitial-div-button">Click here to return</button>
+      </div>
+      <iframe id="multiplePropertiesIFrame" name="multiplePropertiesIFrame" src="blank.html"></iframe>
     </div>
 
     <div id="navigationPanel">

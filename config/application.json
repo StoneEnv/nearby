@@ -33,12 +33,12 @@
   "filters": false,
   "lookupLayers": {
     "layers": [
-        {
-            "id": "Westchester_Building_Footprints_6767",
-            "fields": []
-        }
+      {
+        "id": "Westchester_Building_Footprints_6767",
+        "fields": []
+      }
     ]
-},
+  },
   "interactiveResults": true,
   "hideLayers": false,
   "zoomScale": null,
@@ -54,7 +54,7 @@
   "showDirections": false,
   "showResultCount": true,
   "drawBuffer": true,
-  "singleLocationPolygons": false,
+  "singleLocationPolygons": true,
   "relationship": "intersects",
   "resultsPanelPreText": null,
   "resultsPanelPostText": null,
@@ -63,21 +63,42 @@
   "searchConfiguration": {
     "sources": [
       {
-          "locator": {
-              "url": "https://utility.arcgis.com/usrsvcs/servers/9b64fd44781d45dfa76e43a20bbb0a2a/rest/services/World/GeocodeServer"
-          },
-          "singleLineFieldName": "SingleLine",
-          "name": "Westchester Addresses",
-          "placeholder": "Address",
-          "maxResults": 6,
-          "maxSuggestions": 6,
-          "suggestionsEnabled": true,
-          "minSuggestCharacters": 1,
-          "withinViewEnabled": false,
-          "countryCode": "",
-          "zoomScale": null
+        "displayField": "REV_LongLabel",
+        "exactMatch": true,
+        "layer": {
+          "url": "https://services.arcgis.com/pwNwIGBE7M7VOXjQ/arcgis/rest/services/Westchester_Building_Footprints/FeatureServer",
+          "id": "Westchester_Building_Footprints_6767"
+        },
+        "maxResults": 1,
+        "maxSuggestions": 10,
+        "name": "Westchester Buildings",
+        "outFields": [
+          "REV_LongLabel"
+        ],
+        "searchFields": [
+          "REV_LongLabel"
+        ],
+        "placeholder": "Westchester Buildings",
+        "suggestionsEnabled": true,
+        "withinViewEnabled": false,
+        "zoomScale": null
+      },
+      {
+        "locator": {
+          "url": "https://utility.arcgis.com/usrsvcs/servers/9b64fd44781d45dfa76e43a20bbb0a2a/rest/services/World/GeocodeServer"
+        },
+        "singleLineFieldName": "SingleLine",
+        "name": "Westchester Geocoder",
+        "placeholder": "",
+        "maxResults": 0,
+        "maxSuggestions": 10,
+        "suggestionsEnabled": true,
+        "minSuggestCharacters": 1,
+        "withinViewEnabled": false,
+        "countryCode": "",
+        "zoomScale": null
       }
-  ],
+    ],
     "activeSourceIndex": -1,
     "includeDefaultSources": false
   },
@@ -131,6 +152,7 @@
     },
     "geocode": [{
       "url": null
-    }]
+      }]
+    }
   }
-}
+  

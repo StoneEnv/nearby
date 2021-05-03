@@ -190,7 +190,8 @@
   background-color: #002D72;
   height: 42px;
   width: 260px;
-  border-radius: 4px; }
+  border-radius: 4px;
+  display: none; }
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__submit-button .esri-icon-search:before, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__submit-button .esri-icon-search:before {
   content: "Check Geothermal Potential" !important;
@@ -207,7 +208,7 @@
   border-radius: 4px; }
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__clear-button .esri-icon-close:before, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__clear-button .esri-icon-close:before {
-  content: "Go To Map" !important;
+  content: "Clear Search" !important;
   color: white;
   font-family: sans-serif;
   font-size: 16px;

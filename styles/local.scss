@@ -222,6 +222,7 @@
                                     height: 42px;
                                     width: 260px;
                                     border-radius: 4px;
+                                    display: none;
 
                                     .esri-icon-search:before {
                                         content: "Check Geothermal Potential" !important;
@@ -240,7 +241,7 @@
                                     border-radius: 4px;
 
                                     .esri-icon-close:before {
-                                        content: "Go To Map" !important;
+                                        content: "Clear Search" !important;
                                         color: white;
                                         font-family: sans-serif;
                                         font-size: 16px;

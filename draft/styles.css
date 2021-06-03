@@ -1,0 +1,213 @@
+/* NYSERDA GEOTHERMAL SCSS */
+html, body {
+  font-size: 1em;
+  color: #000;
+  font-family: "Proxima Nova", sans-serif;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/*COLORS*/
+/*FONT*/
+/*LINKS*/
+a.light:link, a.light:visited, a.light:hover {
+  color: #FFF;
+  text-decoration: none;
+}
+
+a.dark:link, a.dark:visited, a.dark:hover {
+  color: #080808;
+  text-decoration: none;
+}
+
+/*MAIN*/
+header {
+  background: #002D72;
+  padding: 20px;
+}
+
+.logo-title {
+  display: grid;
+  grid-template-columns: min-content auto;
+  align-items: center;
+  grid-gap: 15px;
+}
+.logo-title .logo svg {
+  width: 253px;
+  height: 60px;
+}
+
+nav.flexbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav.flexbox ul {
+  list-style-type: none;
+  margin: 0 50px 0 0;
+  padding: 0;
+  overflow: hidden;
+}
+nav.flexbox li {
+  float: left;
+}
+nav.flexbox li a, nav.flexbox .dropbtn {
+  display: inline-block;
+  color: #FFF;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+nav.flexbox li.dropdown {
+  display: inline-block;
+}
+nav.flexbox .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #FFF;
+  min-width: 110px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+nav.flexbox .dropdown-content a {
+  color: #000;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+nav.flexbox .dropdown-content a:hover {
+  background-color: #002D72;
+  color: #FFF;
+}
+nav.flexbox .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("jimmy-tompkins-pEjUQ1Tftxc-unsplash.jpg");
+  /* The image used */
+  background-color: #cccccc;
+  /* Used if the image is unavailable */
+  height: 900px;
+  /* You must set a specified height */
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+  /* Resize the background image to cover the entire container */
+}
+
+/*TABS*/
+.tab-container {
+  position: relative;
+  top: -60px;
+}
+.tab-container h1 {
+  font-size: 40px;
+  margin: 20px 0 10px 0;
+}
+.tab-container input[type=text] {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  resize: vertical;
+  width: 570px;
+  height: 50px;
+}
+.tab-container button {
+  background: #002D72;
+  border: none;
+  border-radius: 5px;
+  color: #FFF;
+  font-size: 16px;
+  height: 50px;
+  padding: 15px;
+  text-decoration: none;
+}
+.tab-container .tabs {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 900px;
+  background: transparent;
+  text-align: center;
+}
+.tab-container .input {
+  position: absolute;
+  opacity: 0;
+}
+.tab-container .form-container {
+  margin: 30px 0;
+}
+.tab-container .multiple-listings {
+  text-decoration: underline;
+  margin: 40px 0 20px 0;
+}
+.tab-container .label {
+  width: 100%;
+  padding: 20px 30px;
+  background: rgba(221, 200, 151, 0.9);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  color: #080808;
+  transition: background 0.1s, color 0.1s;
+}
+.tab-container .label:hover {
+  background: rgba(242, 169, 0, 0.9);
+}
+.tab-container .label:active {
+  background: rgba(242, 169, 0, 0.9);
+}
+.tab-container .input:focus + .label {
+  box-shadow: inset 0px 0px 0px 3px #2aa1c0;
+  z-index: 1;
+}
+.tab-container .input:checked + .label {
+  background: rgba(242, 169, 0, 0.9);
+  color: #080808;
+}
+@media (min-width: 600px) {
+  .tab-container .label {
+    width: auto;
+  }
+}
+.tab-container .panel {
+  display: none;
+  padding: 20px 30px 30px;
+  background: rgba(242, 169, 0, 0.9);
+}
+@media (min-width: 600px) {
+  .tab-container .panel {
+    order: 99;
+  }
+}
+.tab-container .input:checked + .label + .panel {
+  display: block;
+}
+
+.about-container {
+  margin: 20px;
+  padding: 20px;
+}
+.about-container h2 {
+  text-align: center;
+}
+
+footer {
+  background: #080808;
+  color: #FFF;
+  padding: 40px;
+}

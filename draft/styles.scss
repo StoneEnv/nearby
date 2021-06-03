@@ -1,0 +1,251 @@
+/* NYSERDA GEOTHERMAL SCSS */
+
+html, body {
+  font-size: 1em;
+  color: #000;
+  font-family: "Proxima Nova",sans-serif;
+  height:100%;
+  width:100%;
+  margin:0;
+  padding:0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/*COLORS*/
+$midnight-blue: #002D72;
+$white: #FFF;
+$black: #000;
+$web-orange: #F2A900;
+$brandy: #DDC897;
+$cod-gray: #080808;
+$transparent: transparent;
+
+/*FONT*/
+$semi-bold: 600;
+
+/*LINKS*/
+a.light {
+  &:link, &:visited, &:hover {
+    color: $white;
+    text-decoration: none;
+  }
+}
+
+a.dark {
+  &:link, &:visited, &:hover {
+    color: $cod-gray;
+    text-decoration: none;
+  }
+}
+
+/*MAIN*/
+header {
+  background: $midnight-blue;
+  padding: 20px;
+}
+.logo-title {
+  display: grid;
+  grid-template-columns: min-content auto;
+  align-items: center;
+  grid-gap: 15px;
+
+  .logo {
+
+    svg {
+      width: 253px;
+      height: 60px;
+    }
+  }
+}
+
+nav.flexbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    ul {
+    list-style-type: none;
+    margin: 0 50px 0 0;
+    padding: 0;
+    overflow: hidden;
+    }
+
+    li {
+      float: left;
+    }
+
+    li a, .dropbtn {
+      display: inline-block;
+      color: $white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li.dropdown {
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: $white;
+      min-width: 110px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: $black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    .dropdown-content a:hover {
+      background-color: $midnight-blue;
+      color: $white;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("jimmy-tompkins-pEjUQ1Tftxc-unsplash.jpg"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 900px; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+/*TABS*/
+
+.tab-container {
+  position: relative;
+  top: -60px;
+
+  h1 {
+    font-size: 40px;
+    margin: 20px 0 10px 0;
+  }
+
+  input[type=text] {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: $semi-bold;
+    resize: vertical;
+    width: 570px;
+    height: 50px;
+  }
+
+  button {
+    background: $midnight-blue;
+    border: none;
+    border-radius: 5px;
+    color: $white;
+    font-size: 16px;
+    height: 50px;
+    padding: 15px;
+    text-decoration: none;
+  }
+
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 900px;
+    background: $transparent;
+    text-align: center;
+  }
+
+  .input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .form-container {
+    margin: 30px 0;
+  }
+
+  .multiple-listings {
+    text-decoration: underline;
+    margin: 40px 0 20px 0;
+  }
+
+  .label {
+    width: 100%;
+    padding: 20px 30px;
+    background: rgba($brandy, 0.9);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    color: $cod-gray;
+    transition: background 0.1s, color 0.1s;
+  }
+
+  .label:hover {
+    background: rgba($web-orange, 0.9);
+  }
+
+  .label:active {
+    background: rgba($web-orange, 0.9);
+  }
+
+  .input:focus + .label {
+    box-shadow: inset 0px 0px 0px 3px #2aa1c0;
+    z-index: 1;
+  }
+
+  .input:checked + .label {
+    background: rgba($web-orange, 0.9);
+    color: $cod-gray;
+  }
+
+  @media (min-width: 600px) {
+    .label {
+      width: auto;
+    }
+  }
+
+  .panel {
+    display: none;
+    padding: 20px 30px 30px;
+    background: rgba($web-orange, 0.9);
+  }
+
+  @media (min-width: 600px) {
+    .panel {
+      order: 99;
+    }
+  }
+
+  .input:checked + .label + .panel {
+    display: block;
+  }
+}
+
+.about-container {
+
+  h2 {
+    text-align: center;
+  }
+  margin: 20px;
+  padding: 20px;
+}
+
+footer {
+  background: $cod-gray;
+  color: $white;
+  padding: 40px;
+}

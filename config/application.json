@@ -69,7 +69,7 @@
           "url": "https://services.arcgis.com/pwNwIGBE7M7VOXjQ/arcgis/rest/services/Westchester_Building_Footprints/FeatureServer",
           "id": "Westchester_Building_Footprints_6767"
         },
-        "maxResults": 1,
+        "maxResults": 3,
         "maxSuggestions": 10,
         "name": "Westchester Buildings",
         "outFields": [
@@ -90,7 +90,7 @@
         "singleLineFieldName": "SingleLine",
         "name": "Westchester Geocoder",
         "placeholder": "",
-        "maxResults": 0,
+        "maxResults": 3,
         "maxSuggestions": 10,
         "suggestionsEnabled": true,
         "minSuggestCharacters": 1,

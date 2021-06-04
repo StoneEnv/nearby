@@ -156,7 +156,6 @@ class GroupedAccordion extends (Accordion) {
         return (
             <section
                 bind={this}
-                role="menu"
                 key={`section${key}`}
                 class={this.classes(classes)}
             >

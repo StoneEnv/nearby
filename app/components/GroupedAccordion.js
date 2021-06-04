@@ -133,7 +133,7 @@ define(["require", "exports", "esri/core/promiseUtils", "./Accordion", "esri/cor
                         widget_1.tsx("span", { class: this.classes(CSS.count, CSS.flexCount) }, count));
                 }
             }
-            return (widget_1.tsx("section", { bind: this, role: "menu", key: "section" + key, class: this.classes(classes) },
+            return (widget_1.tsx("section", { bind: this, key: "section" + key, class: this.classes(classes) },
                 widget_1.tsx("h5", { class: CSS.title },
                     widget_1.tsx("div", { class: this.classes(CSS.accordionIcon, CSS.groupAccordionIcon, CSS.flexArrow) },
                         widget_1.tsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "14", height: "14", viewBox: "0 0 32 32", class: "svg-icon" },

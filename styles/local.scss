@@ -220,15 +220,18 @@
                                 .esri-search__submit-button {
                                     background-color: #002D72;
                                     height: 42px;
-                                    width: 260px;
+                                    width: 150px;
                                     border-radius: 4px;
-                                    display: none;
-
+                                    display: block;
+                                    padding: 3px;
+                                    span {
+                                        line-height: 12px;
+                                    }
                                     .esri-icon-search:before {
                                         content: "Check Geothermal Potential" !important;
                                         color: white;
                                         font-family: sans-serif;
-                                        font-size: 16px;
+                                        font-size: 12px;
                                         margin-left: 5px;
                                         box-shadow: none !important;
                                     }
@@ -432,3 +435,15 @@
 
 }
 
+.esri-attribution__powered-by {
+    a {
+        color: black !important;
+        text-decoration: underline;
+    }
+    
+}
+
+.esri-attribution {
+    background-color: white !important;
+}
+    

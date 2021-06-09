@@ -45,30 +45,34 @@
   align-items: normal;
   flex-direction: row;
   justify-content: space-between; }
-  #navigationPanel .logo {
-    flex: 0 0 auto;
-    display: flex;
-    margin-right: 50px; }
-  #navigationPanel .logo svg {
-    width: 253px;
-    height: 60px; }
-  #navigationPanel .navButton {
-    /* flex: 0 0 150px; */
-    height: 60px;
-    /* border: 1px solid white; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14pt;
-    font-family: sans-serif;
-    font-weight: normal;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    padding: 0 10px;
-    width: auto; }
-  #navigationPanel .navButton:hover {
-    background-color: #006FC9 !important; }
+
+#navigationPanel .logo {
+  flex: 0 0 auto;
+  display: flex;
+  margin-right: 50px; }
+
+#navigationPanel .logo svg {
+  width: 253px;
+  height: 60px; }
+
+#navigationPanel .navButton {
+  /* flex: 0 0 150px; */
+  height: 60px;
+  /* border: 1px solid white; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14pt;
+  font-family: sans-serif;
+  font-weight: normal;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0 10px;
+  width: auto; }
+
+#navigationPanel .navButton:hover {
+  background-color: #006FC9 !important; }
 
 #searchPanelWrapper {
   display: flex;
@@ -77,161 +81,202 @@
   justify-content: space-evenly;
   align-items: center;
   z-index: 10; }
-  #searchPanelWrapper #searchPanel {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    width: 900px;
-    z-index: 10; }
-    #searchPanelWrapper #searchPanel.top {
-      width: 600px !important; }
-    #searchPanelWrapper #searchPanel #searchTabs {
-      display: flex;
-      flex-direction: row;
-      z-index: 10; }
-      #searchPanelWrapper #searchPanel #searchTabs .searchTabs-top {
-        position: absolute !important;
-        top: 100px !important;
-        width: 100% !important;
-        height: 100px !important;
-        z-index: 999 !important;
-        margin-top: 10px !important; }
-      #searchPanelWrapper #searchPanel #searchTabs #label_2 {
-        background: rgba(221, 200, 200, 0.8);
-        border: none; }
-      #searchPanelWrapper #searchPanel #searchTabs #label_1 {
-        background: rgba(221, 200, 200, 0.8);
-        border: none; }
-      #searchPanelWrapper #searchPanel #searchTabs #label_1, #searchPanelWrapper #searchPanel #searchTabs #label_2 {
-        height: 60px;
-        width: 200px;
-        color: black;
-        font-size: 20px;
-        font-weight: 850; }
-    #searchPanelWrapper #searchPanel #searchContent {
-      background-color: rgba(255, 165, 0, 0.8);
-      height: auto;
-      z-index: 10; }
-      #searchPanelWrapper #searchPanel #searchContent #searchIntro {
-        text-align: center;
-        margin-top: 30px;
-        margin-bottom: 10px; }
-        #searchPanelWrapper #searchPanel #searchContent #searchIntro h1 {
-          font-weight: 900;
-          font-size: 40px;
-          color: black; }
-        #searchPanelWrapper #searchPanel #searchContent #searchIntro h2 {
-          font-size: 16px;
-          color: black; }
-      #searchPanelWrapper #searchPanel #searchContent #searchWidget {
-        -webkit-box-flex: 1;
-        -ms-flex: 1 0 auto;
-        flex: 1 1 auto;
-        width: 850px;
-        max-width: 1000px;
-        /* height: 10%; */
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-        /* border: 1px solid red; */
-        height: auto;
-        margin-right: auto;
-        margin-left: auto;
-        margin-bottom: 30px;
-        margin-top: 30px; }
-        #searchPanelWrapper #searchPanel #searchContent #searchWidget.top {
-          width: 580px !important; }
-        #searchPanelWrapper #searchPanel #searchContent #searchWidget header {
-          display: none; }
-        #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel {
-          background: none !important; }
-          #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel #distanceOptions {
-            display: none; }
-          #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel {
-            background: none !important; }
-            #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search {
-              width: 100%;
-              background: none !important; }
-              #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__input-container {
-                margin-right: 5px;
-                border-radius: 4px; }
-                #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__input-container #search-suggest-menu {
-                  top: unset;
-                  bottom: 43px; }
-              #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__clear-button, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__clear-button {
-                height: 42px;
-                width: 42px; }
-              #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__submit-button, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__submit-button {
-                background-color: #002D72;
-                height: 42px;
-                width: 260px;
-                border-radius: 4px;
-                display: none; }
-                #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__submit-button .esri-icon-search:before, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__submit-button .esri-icon-search:before {
-                  content: "Check Geothermal Potential" !important;
-                  color: white;
-                  font-family: sans-serif;
-                  font-size: 16px;
-                  margin-left: 5px;
-                  box-shadow: none !important; }
-              #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__clear-button, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__clear-button {
-                background-color: #002D72;
-                height: 42px;
-                width: 120px;
-                border-radius: 4px; }
-                #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__clear-button .esri-icon-close:before, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__clear-button .esri-icon-close:before {
-                  content: "Clear Search" !important;
-                  color: white;
-                  font-family: sans-serif;
-                  font-size: 16px;
-                  margin-left: 5px;
-                  box-shadow: none !important; }
-              #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__submit-button:hover, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__submit-button:hover {
-                filter: none;
-                box-shadow: 0 0 10px white; }
-        #searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper {
-          border-top: none; }
-          #searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper #resultsPanel {
-            height: auto; }
-            #searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper #resultsPanel #resultsList {
-              height: auto; }
-              #searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper #resultsPanel #resultsList .scrollable-content {
-                height: auto !important;
-                overflow: auto; }
-                #searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper #resultsPanel #resultsList .scrollable-content div > section {
-                  border: none !important; }
-                #searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper #resultsPanel #resultsList .scrollable-content .group-accordion-content li.accordion-section-selected {
-                  border: none !important; }
-        #searchPanelWrapper #searchPanel #searchContent #searchWidget .initialSearchPanelTop {
-          position: absolute !important;
-          top: 170px !important;
-          min-height: 150px !important;
-          z-index: 999 !important;
-          width: 100% !important;
-          margin-left: 0px;
-          margin-right: 0px;
-          padding: 5px; }
-        #searchPanelWrapper #searchPanel #searchContent #searchWidget #initialSearch {
-          width: 50% !important;
-          margin-left: auto;
-          margin-right: auto; }
-        #searchPanelWrapper #searchPanel #searchContent #searchWidget .toggle-panel {
-          color: #474749;
-          height: 32px;
-          background: #fff;
-          padding: 0;
-          line-height: 32px;
-          font-size: .875rem;
-          margin-left: auto;
-          margin-right: auto;
-          white-space: nowrap;
-          display: flex;
-          justify-content: space-between;
-          width: 95%; }
-        #searchPanelWrapper #searchPanel #searchContent #searchWidget .light .text-fade:after {
-          display: none; }
-  #searchPanelWrapper.top {
-    align-items: unset !important;
-    margin-left: 50px; }
+
+#searchPanelWrapper #searchPanel {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 900px;
+  z-index: 10; }
+
+#searchPanelWrapper #searchPanel.top {
+  width: 600px !important; }
+
+#searchPanelWrapper #searchPanel #searchTabs {
+  display: flex;
+  flex-direction: row;
+  z-index: 10; }
+
+#searchPanelWrapper #searchPanel #searchTabs .searchTabs-top {
+  position: absolute !important;
+  top: 100px !important;
+  width: 100% !important;
+  height: 100px !important;
+  z-index: 999 !important;
+  margin-top: 10px !important; }
+
+#searchPanelWrapper #searchPanel #searchTabs #label_2 {
+  background: rgba(221, 200, 200, 0.8);
+  border: none; }
+
+#searchPanelWrapper #searchPanel #searchTabs #label_1 {
+  background: rgba(221, 200, 200, 0.8);
+  border: none; }
+
+#searchPanelWrapper #searchPanel #searchTabs #label_1, #searchPanelWrapper #searchPanel #searchTabs #label_2 {
+  height: 60px;
+  width: 200px;
+  color: black;
+  font-size: 20px;
+  font-weight: 850; }
+
+#searchPanelWrapper #searchPanel #searchContent {
+  background-color: rgba(255, 165, 0, 0.8);
+  height: auto;
+  z-index: 10; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchIntro {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 10px; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchIntro h1 {
+  font-weight: 900;
+  font-size: 40px;
+  color: black; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchIntro h2 {
+  font-size: 16px;
+  color: black; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 0 auto;
+  flex: 1 1 auto;
+  width: 850px;
+  max-width: 1000px;
+  /* height: 10%; */
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  /* border: 1px solid red; */
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 30px;
+  margin-top: 30px; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget.top {
+  width: 580px !important; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget header {
+  display: none; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel {
+  background: none !important; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel #distanceOptions {
+  display: none; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel {
+  background: none !important; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search {
+  width: 100%;
+  background: none !important; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__input-container {
+  margin-right: 5px;
+  border-radius: 4px; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__input-container #search-suggest-menu {
+  top: unset;
+  bottom: 43px; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__clear-button, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__clear-button {
+  height: 42px;
+  width: 42px; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__submit-button, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__submit-button {
+  background-color: #002D72;
+  height: 42px;
+  width: 150px;
+  border-radius: 4px;
+  display: block;
+  padding: 3px; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__submit-button span, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__submit-button span {
+  line-height: 12px; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__submit-button .esri-icon-search:before, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__submit-button .esri-icon-search:before {
+  content: "Check Geothermal Potential" !important;
+  color: white;
+  font-family: sans-serif;
+  font-size: 12px;
+  margin-left: 5px;
+  box-shadow: none !important; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__clear-button, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__clear-button {
+  background-color: #002D72;
+  height: 42px;
+  width: 120px;
+  border-radius: 4px; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__clear-button .esri-icon-close:before, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__clear-button .esri-icon-close:before {
+  content: "Clear Search" !important;
+  color: white;
+  font-family: sans-serif;
+  font-size: 16px;
+  margin-left: 5px;
+  box-shadow: none !important; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__submit-button:hover, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__submit-button:hover {
+  filter: none;
+  box-shadow: 0 0 10px white; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper {
+  border-top: none; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper #resultsPanel {
+  height: auto; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper #resultsPanel #resultsList {
+  height: auto; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper #resultsPanel #resultsList .scrollable-content {
+  height: auto !important;
+  overflow: auto; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper #resultsPanel #resultsList .scrollable-content div > section {
+  border: none !important; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper #resultsPanel #resultsList .scrollable-content .group-accordion-content li.accordion-section-selected {
+  border: none !important; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget .initialSearchPanelTop {
+  position: absolute !important;
+  top: 170px !important;
+  min-height: 150px !important;
+  z-index: 999 !important;
+  width: 100% !important;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 5px; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #initialSearch {
+  width: 50% !important;
+  margin-left: auto;
+  margin-right: auto; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget .toggle-panel {
+  color: #474749;
+  height: 32px;
+  background: #fff;
+  padding: 0;
+  line-height: 32px;
+  font-size: .875rem;
+  margin-left: auto;
+  margin-right: auto;
+  white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+  width: 95%; }
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget .light .text-fade:after {
+  display: none; }
+
+#searchPanelWrapper.top {
+  align-items: unset !important;
+  margin-left: 50px; }
 
 .background_image {
   background-image: url("../images/nearby-background.jpg");
@@ -250,33 +295,38 @@
   bottom: 0;
   z-index: 998;
   display: none; }
-  #modelPanel #modelPanelHeader {
-    height: 50px;
-    width: 100%;
-    background-color: rgba(255, 165, 0, 0.95);
-    display: flex; }
-  #modelPanel #modelPanelHeaderTitle {
-    flex: 2 2 auto;
-    text-align: center;
-    font-size: 14pt;
-    font-weight: bold;
-    padding-top: 10px; }
-  #modelPanel #modelPanelHeaderCloseBtn {
-    flex: 0 0 auto;
-    background-color: white;
-    width: 150px;
-    max-width: 150px;
-    height: 100%;
-    text-align: center;
-    padding-top: 10px;
-    font-size: 16pt;
-    font-weight: bolder;
-    cursor: pointer; }
-  #modelPanel #modelPanelHeaderCloseBtn:hover {
-    background-color: silver; }
-  #modelPanel #modelResults {
-    width: 100%;
-    height: 100%; }
+
+#modelPanel #modelPanelHeader {
+  height: 50px;
+  width: 100%;
+  background-color: rgba(255, 165, 0, 0.95);
+  display: flex; }
+
+#modelPanel #modelPanelHeaderTitle {
+  flex: 2 2 auto;
+  text-align: center;
+  font-size: 14pt;
+  font-weight: bold;
+  padding-top: 10px; }
+
+#modelPanel #modelPanelHeaderCloseBtn {
+  flex: 0 0 auto;
+  background-color: white;
+  width: 150px;
+  max-width: 150px;
+  height: 100%;
+  text-align: center;
+  padding-top: 10px;
+  font-size: 16pt;
+  font-weight: bolder;
+  cursor: pointer; }
+
+#modelPanel #modelPanelHeaderCloseBtn:hover {
+  background-color: silver; }
+
+#modelPanel #modelResults {
+  width: 100%;
+  height: 100%; }
 
 #interstitial-div {
   background-color: white;
@@ -286,14 +336,16 @@
   z-index: 999;
   width: 100%;
   position: absolute; }
-  #interstitial-div #multiplePropertiesIFrame {
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    display: none;
-    border: none; }
-  #interstitial-div #interstitial-content {
-    margin-top: 60px; }
+
+#interstitial-div #multiplePropertiesIFrame {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: none;
+  border: none; }
+
+#interstitial-div #interstitial-content {
+  margin-top: 60px; }
 
 .interstitial-div-button {
   background-color: #002D72;
@@ -302,7 +354,16 @@
   margin: 10px;
   font-size: 20px;
   cursor: pointer; }
-  .interstitial-div-button a {
-    color: white !important; }
-    .interstitial-div-button a:hover {
-      text-decoration: none; }
+
+.interstitial-div-button a {
+  color: white !important; }
+
+.interstitial-div-button a:hover {
+  text-decoration: none; }
+
+.esri-attribution__powered-by a {
+  color: black !important;
+  text-decoration: underline; }
+
+.esri-attribution {
+  background-color: white !important; }

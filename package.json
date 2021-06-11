@@ -29,7 +29,7 @@
     "npm-run-all": "^4.1.3",
     "postcss-normalize-charset": "^1.1.0",
     "tslint": "^5.20.1",
-    "typescript": "^3.7.5",
+    "typescript": "^3.9.9",
     "workbox-build": "^4.3.1"
   },
   "scripts": {

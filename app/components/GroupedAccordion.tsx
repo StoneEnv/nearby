@@ -96,8 +96,10 @@ class GroupedAccordion extends (Accordion) {
         var linksToModel = document.querySelectorAll("a[href^='https://geothermaltool.axillis.nl']");
         if (linksToModel.length > 0) {
             console.log("trying to add event handler");
-            var linkToModel = linksToModel[0] as HTMLButtonElement;
+            var linkToModel = linksToModel[0] as HTMLAnchorElement;
             if (linkToModel) console.log("got Anchor element");
+            linkToModel.href = linkToModel.href.replace("https://geothermaltool.axillis.nl","http://geopossibilities.ny.gov:8000");
+
             linkToModel.addEventListener("click", () => {
                 var modelPanel = document.getElementById("modelPanel") as HTMLElement;
                 modelPanel.classList.add("shown");
@@ -156,7 +158,6 @@ class GroupedAccordion extends (Accordion) {
         return (
             <section
                 bind={this}
-                role="menu"
                 key={`section${key}`}
                 class={this.classes(classes)}
             >
@@ -175,7 +176,7 @@ class GroupedAccordion extends (Accordion) {
                     <div class={this.classes(CSS.titleArea, CSS.titleText)} >{result.title}</div>
                     {resultCount}
                 </h5>
-                <ul role='group' class={this.classes(CSS.templateContent, CSS.content, CSS.groupContent)} >
+                <ul role='group' aria-label="Results List" class={this.classes(CSS.templateContent, CSS.content, CSS.groupContent)} >
                     {result.features &&
                         result.features.map((feature, i) => {
                             return (<li role='menuitem' tabindex="0">

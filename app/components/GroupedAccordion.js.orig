@@ -87,7 +87,6 @@ define(["require", "exports", "esri/core/promiseUtils", "./Accordion", "esri/cor
                 var linkToModel = linksToModel[0];
                 if (linkToModel)
                     console.log("got Anchor element");
-                linkToModel.href = linkToModel.href.replace("https://geothermaltool.axillis.nl", "http://geopossibilities.ny.gov:8000");
                 linkToModel.addEventListener("click", function () {
                     var modelPanel = document.getElementById("modelPanel");
                     modelPanel.classList.add("shown");
@@ -134,14 +133,18 @@ define(["require", "exports", "esri/core/promiseUtils", "./Accordion", "esri/cor
                         widget_1.tsx("span", { class: this.classes(CSS.count, CSS.flexCount) }, count));
                 }
             }
+<<<<<<< HEAD
+            return (widget_1.tsx("section", { bind: this, role: "menu", key: "section" + key, class: this.classes(classes) },
+=======
             return (widget_1.tsx("section", { bind: this, key: "section" + key, class: this.classes(classes) },
+>>>>>>> chris-dev
                 widget_1.tsx("h5", { class: CSS.title },
                     widget_1.tsx("div", { class: this.classes(CSS.accordionIcon, CSS.groupAccordionIcon, CSS.flexArrow) },
                         widget_1.tsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "14", height: "14", viewBox: "0 0 32 32", class: "svg-icon" },
                             widget_1.tsx("path", { d: "M28 9v5L16 26 4 14V9l12 12L28 9z" }))),
                     widget_1.tsx("div", { class: this.classes(CSS.titleArea, CSS.titleText) }, result.title),
                     resultCount),
-                widget_1.tsx("ul", { role: 'group', "aria-label": "Results List", class: this.classes(CSS.templateContent, CSS.content, CSS.groupContent) }, result.features &&
+                widget_1.tsx("ul", { role: 'group', class: this.classes(CSS.templateContent, CSS.content, CSS.groupContent) }, result.features &&
                     result.features.map(function (feature, i) {
                         return (widget_1.tsx("li", { role: 'menuitem', tabindex: "0" },
                             widget_1.tsx("div", { "data-feature": feature, afterCreate: _this._createFeature, afterUpdate: _this._postRender, class: _this.classes(CSS.featureGroup), bind: _this, key: "feature" + i }),

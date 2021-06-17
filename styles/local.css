@@ -341,20 +341,35 @@
   border: none; }
 
 #interstitial-div #interstitial-content {
-  margin-top: 60px; }
+  margin-top: 60px;
+  padding: 30px;
+  background-color: rgba(255, 165, 0, 0.8); }
 
-.interstitial-div-button {
+#interstitial-div #interstitial-content h1 {
+  font-weight: 900;
+  font-size: 40px;
+  color: black; }
+
+#interstitial-div #interstitial-content p, #interstitial-div #interstitial-content ul {
+  text-align: left;
+  font-size: 18px;
+  color: black; }
+
+.interstitial-div-button, .abt-help-div-button {
   background-color: #002D72;
   color: white;
-  border-radius: 4px;
+  border-radius: 10px;
   margin: 10px;
   font-size: 20px;
-  cursor: pointer; }
+  cursor: pointer;
+  height: 60px;
+  width: 250px;
+  font-weight: 600px; }
 
-.interstitial-div-button a {
+.interstitial-div-button a, .abt-help-div-button a {
   color: white !important; }
 
-.interstitial-div-button a:hover {
+.interstitial-div-button a:hover, .abt-help-div-button a:hover {
   text-decoration: none; }
 
 #abt-help-page-container {

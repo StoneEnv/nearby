@@ -277,6 +277,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._helpContainerReset = document.getElementById("reset-abt-help-page");
             this._helpContainerReset.addEventListener("click", function () {
                 _this._helpContainer.classList.add("hidden");
+                _this._inerstitialDiv.classList.add("hidden");
             });
             this._inerstitialDivOpen = document.getElementById("showMultiplePropertiesButton");
             this._inerstitialDivOpen.addEventListener("click", function () {

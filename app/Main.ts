@@ -249,6 +249,7 @@ class LocationApp {
 		this._helpContainerReset = <HTMLElement>document.getElementById("reset-abt-help-page");
 		this._helpContainerReset.addEventListener("click", () => {
 			this._helpContainer.classList.add("hidden");
+			this._inerstitialDiv.classList.add("hidden");
 		})
 
 		this._inerstitialDivOpen = <HTMLElement> document.getElementById("showMultiplePropertiesButton");

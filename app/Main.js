@@ -116,6 +116,9 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._inerstitialDiv = null;
             this._inerstitialDivReset = null;
             this._inerstitialDivOpen = null;
+            this._helpButton = null;
+            this._helpContainer = null;
+            this._helpContainerReset = null;
             //----------------------------------
             //  ApplicationBase
             //----------------------------------
@@ -198,6 +201,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._mapPanel = document.getElementById("mapPanel");
             this._initialSearchPanel = document.getElementById("searchPanelWrapper");
             this._inerstitialDiv = document.getElementById("interstitial-div");
+            this._helpContainer = document.getElementById("abt-help-page-container");
             this._homeButton = document.getElementById("homeButton");
             this._homeButton.addEventListener("click", function () {
                 _this._cleanUpResults();
@@ -217,6 +221,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 document.getElementById("searchPanelWrapper").classList.remove("top");
                 document.getElementById("searchPanel").classList.remove("top");
                 document.getElementById("searchWidget").classList.remove("top");
+                _this._helpContainer.classList.add("hidden");
             });
             var modeLabel = document.getElementById("ModeLabel");
             //modeLabel.innerHTML = "<h3>" + config.mode + "</h3>";
@@ -253,6 +258,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 ///this._modelPanel.classList.add("hidden");
                 //this._initialSearchPanel.classList.add("hidden");
                 _this._inerstitialDiv.classList.remove("hidden");
+                _this._helpContainer.classList.add('hidden');
             });
             this._inerstitialDivReset = document.getElementById("return-to-default");
             this._inerstitialDivReset.addEventListener("click", function () {
@@ -260,6 +266,17 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 _this._mapPanel.classList.remove("hide");
                 _this._modelPanel.classList.remove("hidden");
                 _this._initialSearchPanel.classList.remove("hidden");
+                _this._initialSearchPanel.classList.add("click-to-hide");
+            });
+            //about + FAQ section appearance click event
+            this._helpButton = document.getElementById("abt-faq-button");
+            this._helpButton.addEventListener("click", function () {
+                _this._helpContainer.classList.remove("hidden");
+            });
+            //hide about + FAQ sections again
+            this._helpContainerReset = document.getElementById("reset-abt-help-page");
+            this._helpContainerReset.addEventListener("click", function () {
+                _this._helpContainer.classList.add("hidden");
             });
             this._inerstitialDivOpen = document.getElementById("showMultiplePropertiesButton");
             this._inerstitialDivOpen.addEventListener("click", function () {

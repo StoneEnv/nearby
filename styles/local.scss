@@ -431,4 +431,13 @@
     }
 
 }
+#abt-help-page-container{
+    background-color: white;
+    text-align: center;
+    height: calc(100% - 60px);
+    top: 100px;
+    z-index: 999;
+    width: 100%;
+    position: absolute;
+}
 

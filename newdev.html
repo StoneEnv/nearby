@@ -69,6 +69,16 @@
       </div>
       <iframe id="multiplePropertiesIFrame" name="multiplePropertiesIFrame" src="blank.html" title="multiple_properties"></iframe>
     </div>
+    <div id="abt-help-page-container" class="hidden">
+      <div id="abt-help-page">
+        <h2>About Page</h2><br/>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, minus, necessitatibus sapiente fugit suscipit ab laudantium odio similique delectus maxime architecto. Quia dolores pariatur laudantium debitis minus nihil facere molestias?</p>
+        <h2>Frequently Asked Questions</h2><br/>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, minus, necessitatibus sapiente fugit suscipit ab laudantium odio similique delectus maxime architecto. Quia dolores pariatur laudantium debitis minus nihil facere molestias?</p>
+        <button id="showMultiplePropertiesButton" class="interstitial-div-button">Click here to continue</button>
+        <button id="reset-abt-help-page" class="interstitial-div-button">Click here to return</button>
+      </div>
+    </div>
     <nav aria-labelledby="navigationPanel">
       <div id="navigationPanel" role="tablist" aria-label="Entertainment">
         <div class="logo" role="tab" role="img">
@@ -87,7 +97,10 @@
         </div>
         <div id="explorerButton" class="navButton navButtonRight" role="tab" tabindex="0" aria-label="Multi-Property/Contractor" aria-selected="false" role="button" aria-controls="interstitial-div">
           <!-- interaction code is in Main.ts at end of init() -->
-          <a style="color:white; text-decoration: none;">Multi-Property / Contractor</a>
+          <a style="color:white; text-decoration: none;">Multi-Property Developers & Contractors</a>
+        </div>
+        <div id="abt-faq-button" class="navButton navButtonRight" role="tab" tabindex="0" aria-label="tbd" aria-selected="false" role="button" aria-controls="tbd">
+          <a style="color:white; text-decoration: none;white-space: nowrap;">(Insert Button Title Here)</a>
         </div>
         <!-- <div id="aboutButton" class="navButton navButtonRight"> -->
           <!-- interaction code is in Main.ts at end of init() -->
@@ -110,8 +123,8 @@
   <div id="searchPanelWrapper">
     <div id="searchPanel">
       <div id="searchTabs">
-          <button id="label_1">Convert a Property</button>
-          <button id="label_2" style="background: rgba(255, 165, 0, .8);">Develop New Property</button>
+          <button id="label_1">Existing Buildings</button>
+          <button id="label_2" style="background: rgba(255, 165, 0, .8);">New Construction</button>
       </div>
       <div id="searchContent" class="searchContent">
         <div id="searchIntro" class="searchIntro">

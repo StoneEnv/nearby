@@ -62,6 +62,9 @@ class LocationApp {
 	_inerstitialDiv: HTMLElement = null;
 	_inerstitialDivReset: HTMLElement = null;
 	_inerstitialDivOpen: HTMLElement = null;
+	_helpButton: HTMLElement = null;
+	_helpContainer: HTMLElement = null;
+	_helpContainerReset: HTMLElement = null;
 	// DisplayLookupResults is the component that handles displaying the popup content
 	// using the Feature widget for the features that match the lookup search requirements
 	lookupResults: DisplayLookupResults;
@@ -156,6 +159,7 @@ class LocationApp {
 		this._mapPanel = <HTMLElement> document.getElementById("mapPanel");
 		this._initialSearchPanel = <HTMLElement> document.getElementById("searchPanelWrapper");
 		this._inerstitialDiv = <HTMLElement> document.getElementById("interstitial-div");
+		this._helpContainer = <HTMLElement> document.getElementById("abt-help-page-container");
 		this._homeButton = document.getElementById("homeButton") as HTMLButtonElement;
 
 		this._homeButton.addEventListener("click", () => {
@@ -176,6 +180,7 @@ class LocationApp {
 			(<HTMLElement>document.getElementById("searchPanelWrapper")).classList.remove("top");
 			(<HTMLElement>document.getElementById("searchPanel")).classList.remove("top");
 			(<HTMLElement>document.getElementById("searchWidget")).classList.remove("top");
+			this._helpContainer.classList.add("hidden");
 		});
 
 		let modeLabel = document.getElementById("ModeLabel") as HTMLElement;
@@ -223,6 +228,7 @@ class LocationApp {
 			///this._modelPanel.classList.add("hidden");
 			//this._initialSearchPanel.classList.add("hidden");
 			this._inerstitialDiv.classList.remove("hidden");
+			this._helpContainer.classList.add('hidden');
 		});
 
 		this._inerstitialDivReset = <HTMLElement> document.getElementById("return-to-default");
@@ -231,7 +237,19 @@ class LocationApp {
 			this._mapPanel.classList.remove("hide");
 			this._modelPanel.classList.remove("hidden");
 			this._initialSearchPanel.classList.remove("hidden");
+			this._initialSearchPanel.classList.add("click-to-hide")
 		});
+		//about + FAQ section appearance click event
+		this._helpButton = document.getElementById("abt-faq-button") as HTMLElement;
+		this._helpButton.addEventListener("click", () => {
+			this._helpContainer.classList.remove("hidden");
+		});
+
+		//hide about + FAQ sections again
+		this._helpContainerReset = <HTMLElement>document.getElementById("reset-abt-help-page");
+		this._helpContainerReset.addEventListener("click", () => {
+			this._helpContainer.classList.add("hidden");
+		})
 
 		this._inerstitialDivOpen = <HTMLElement> document.getElementById("showMultiplePropertiesButton");
 		this._inerstitialDivOpen.addEventListener("click", () => {

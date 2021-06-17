@@ -1,12 +1,15 @@
 .invisible {
   opacity: 0%;
-  pointer-events: none; }
+  pointer-events: none;
+}
 
 .hidden {
-  display: none !important; }
+  display: none !important;
+}
 
 .shown {
-  display: block !important; }
+  display: block !important;
+}
 
 .side-panel {
   background: none !important;
@@ -17,8 +20,12 @@
   z-index: 9;
   left: 25%;
   top: 110px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  filter: drop-shadow(0 0 10px black); }
+  -webkit-filter: drop-shadow(0 0 10px black);
+          filter: drop-shadow(0 0 10px black);
+}
 
 #mapPanel {
   width: 100%;
@@ -27,14 +34,18 @@
   opacity: 0%;
   pointer-events: none;
   position: absolute;
-  top: 100px; }
+  top: 100px;
+}
 
 .mapPanelOn {
   opacity: 100% !important;
-  pointer-events: all !important; }
+  pointer-events: all !important;
+}
 
 #navigationPanel {
   height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   position: relative;
   padding-left: 100px;
@@ -42,26 +53,46 @@
   background: #002D72;
   text-align: center;
   padding-top: 20px;
-  align-items: normal;
-  flex-direction: row;
-  justify-content: space-between; }
+  -webkit-box-align: normal;
+      -ms-flex-align: normal;
+          align-items: normal;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
 
 #navigationPanel .logo {
-  flex: 0 0 auto;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  margin-right: 50px; }
+  margin-right: 50px;
+}
 
 #navigationPanel .logo svg {
   width: 253px;
-  height: 60px; }
+  height: 60px;
+}
 
 #navigationPanel .navButton {
   /* flex: 0 0 150px; */
   height: 60px;
   /* border: 1px solid white; */
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   font-size: 14pt;
   font-family: sans-serif;
   font-weight: normal;
@@ -69,33 +100,58 @@
   cursor: pointer;
   border-radius: 5px;
   padding: 0 10px;
-  width: auto; }
+  width: auto;
+}
 
 #navigationPanel .navButton:hover {
-  background-color: #006FC9 !important; }
+  background-color: #006FC9 !important;
+}
 
 #searchPanelWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   height: calc(100% - 80px);
-  justify-content: space-evenly;
-  align-items: center;
-  z-index: 10; }
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 10;
+}
 
 #searchPanelWrapper #searchPanel {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   height: auto;
   width: 900px;
-  z-index: 10; }
+  z-index: 10;
+}
 
 #searchPanelWrapper #searchPanel.top {
-  width: 600px !important; }
+  width: 600px !important;
+}
 
 #searchPanelWrapper #searchPanel #searchTabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  z-index: 10; }
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  z-index: 10;
+}
 
 #searchPanelWrapper #searchPanel #searchTabs .searchTabs-top {
   position: absolute !important;
@@ -103,41 +159,49 @@
   width: 100% !important;
   height: 100px !important;
   z-index: 999 !important;
-  margin-top: 10px !important; }
+  margin-top: 10px !important;
+}
 
 #searchPanelWrapper #searchPanel #searchTabs #label_2 {
   background: rgba(221, 200, 200, 0.8);
-  border: none; }
+  border: none;
+}
 
 #searchPanelWrapper #searchPanel #searchTabs #label_1 {
   background: rgba(221, 200, 200, 0.8);
-  border: none; }
+  border: none;
+}
 
 #searchPanelWrapper #searchPanel #searchTabs #label_1, #searchPanelWrapper #searchPanel #searchTabs #label_2 {
   height: 60px;
   width: 200px;
   color: black;
   font-size: 20px;
-  font-weight: 850; }
+  font-weight: 850;
+}
 
 #searchPanelWrapper #searchPanel #searchContent {
   background-color: rgba(255, 165, 0, 0.8);
   height: auto;
-  z-index: 10; }
+  z-index: 10;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchIntro {
   text-align: center;
   margin-top: 30px;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchIntro h1 {
   font-weight: 900;
   font-size: 40px;
-  color: black; }
+  color: black;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchIntro h2 {
   font-size: 16px;
-  color: black; }
+  color: black;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget {
   -webkit-box-flex: 1;
@@ -153,45 +217,56 @@
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 30px;
-  margin-top: 30px; }
+  margin-top: 30px;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget.top {
-  width: 580px !important; }
+  width: 580px !important;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget header {
-  display: none; }
+  display: none;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel {
-  background: none !important; }
+  background: none !important;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel #distanceOptions {
-  display: none; }
+  display: none;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel {
-  background: none !important; }
+  background: none !important;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search {
   width: 100%;
-  background: none !important; }
+  background: none !important;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__input-container {
   margin-right: 5px;
-  border-radius: 4px; }
+  border-radius: 4px;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__input-container #search-suggest-menu {
   top: unset;
-  bottom: 43px; }
+  bottom: 43px;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__clear-button, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__clear-button {
   height: 42px;
-  width: 42px; }
+  width: 42px;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__submit-button, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__submit-button {
   background-color: #002D72;
   height: 42px;
   width: 260px;
   border-radius: 4px;
-  display: none; }
+  display: none;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__submit-button .esri-icon-search:before, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__submit-button .esri-icon-search:before {
   content: "Check Geothermal Potential" !important;
@@ -199,13 +274,16 @@
   font-family: sans-serif;
   font-size: 16px;
   margin-left: 5px;
-  box-shadow: none !important; }
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__clear-button, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__clear-button {
   background-color: #002D72;
   height: 42px;
   width: 120px;
-  border-radius: 4px; }
+  border-radius: 4px;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__clear-button .esri-icon-close:before, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__clear-button .esri-icon-close:before {
   content: "Clear Search" !important;
@@ -213,30 +291,41 @@
   font-family: sans-serif;
   font-size: 16px;
   margin-left: 5px;
-  box-shadow: none !important; }
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__submit-button:hover, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__submit-button:hover {
-  filter: none;
-  box-shadow: 0 0 10px white; }
+  -webkit-filter: none;
+          filter: none;
+  -webkit-box-shadow: 0 0 10px white;
+          box-shadow: 0 0 10px white;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper {
-  border-top: none; }
+  border-top: none;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper #resultsPanel {
-  height: auto; }
+  height: auto;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper #resultsPanel #resultsList {
-  height: auto; }
+  height: auto;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper #resultsPanel #resultsList .scrollable-content {
   height: auto !important;
-  overflow: auto; }
+  overflow: auto;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper #resultsPanel #resultsList .scrollable-content div > section {
-  border: none !important; }
+  border: none !important;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #resultsPanelWrapper #resultsPanel #resultsList .scrollable-content .group-accordion-content li.accordion-section-selected {
-  border: none !important; }
+  border: none !important;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget .initialSearchPanelTop {
   position: absolute !important;
@@ -246,12 +335,14 @@
   width: 100% !important;
   margin-left: 0px;
   margin-right: 0px;
-  padding: 5px; }
+  padding: 5px;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #initialSearch {
   width: 50% !important;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget .toggle-panel {
   color: #474749;
@@ -263,23 +354,33 @@
   margin-left: auto;
   margin-right: auto;
   white-space: nowrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  width: 95%; }
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 95%;
+}
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget .light .text-fade:after {
-  display: none; }
+  display: none;
+}
 
 #searchPanelWrapper.top {
-  align-items: unset !important;
-  margin-left: 50px; }
+  -webkit-box-align: unset !important;
+      -ms-flex-align: unset !important;
+          align-items: unset !important;
+  margin-left: 50px;
+}
 
 .background_image {
   background-image: url("../images/nearby-background.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  background-size: cover; }
+  background-size: cover;
+}
 
 #modelPanel {
   width: 100%;
@@ -290,23 +391,32 @@
   right: 0;
   bottom: 0;
   z-index: 998;
-  display: none; }
+  display: none;
+}
 
 #modelPanel #modelPanelHeader {
   height: 50px;
   width: 100%;
   background-color: rgba(255, 165, 0, 0.95);
-  display: flex; }
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
 
 #modelPanel #modelPanelHeaderTitle {
-  flex: 2 2 auto;
+  -webkit-box-flex: 2;
+      -ms-flex: 2 2 auto;
+          flex: 2 2 auto;
   text-align: center;
   font-size: 14pt;
   font-weight: bold;
-  padding-top: 10px; }
+  padding-top: 10px;
+}
 
 #modelPanel #modelPanelHeaderCloseBtn {
-  flex: 0 0 auto;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
   background-color: white;
   width: 150px;
   max-width: 150px;
@@ -315,14 +425,17 @@
   padding-top: 10px;
   font-size: 16pt;
   font-weight: bolder;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 #modelPanel #modelPanelHeaderCloseBtn:hover {
-  background-color: silver; }
+  background-color: silver;
+}
 
 #modelPanel #modelResults {
   width: 100%;
-  height: 100%; }
+  height: 100%;
+}
 
 #interstitial-div {
   background-color: white;
@@ -331,17 +444,20 @@
   top: 100px;
   z-index: 999;
   width: 100%;
-  position: absolute; }
+  position: absolute;
+}
 
 #interstitial-div #multiplePropertiesIFrame {
   width: 100%;
   height: 100%;
   background-color: white;
   display: none;
-  border: none; }
+  border: none;
+}
 
 #interstitial-div #interstitial-content {
-  margin-top: 60px; }
+  margin-top: 60px;
+}
 
 .interstitial-div-button {
   background-color: #002D72;
@@ -349,13 +465,16 @@
   border-radius: 4px;
   margin: 10px;
   font-size: 20px;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 .interstitial-div-button a {
-  color: white !important; }
+  color: white !important;
+}
 
 .interstitial-div-button a:hover {
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 #abt-help-page-container {
   background-color: white;
@@ -364,4 +483,6 @@
   top: 100px;
   z-index: 999;
   width: 100%;
-  position: absolute; }
+  position: absolute;
+}
+/*# sourceMappingURL=local.css.map */

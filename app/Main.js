@@ -119,6 +119,9 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._helpButton = null;
             this._helpContainer = null;
             this._helpContainerReset = null;
+            this._searchInstruction = null;
+            this._openSearchInstructions = null;
+            this._closeSearchInstructions = null;
             //----------------------------------
             //  ApplicationBase
             //----------------------------------
@@ -284,6 +287,16 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 document.getElementById("interstitial-content").classList.add("hidden");
                 document.getElementById("multiplePropertiesIFrame").src = "/gshp";
                 document.getElementById("multiplePropertiesIFrame").classList.add("shown");
+            });
+            this._searchInstruction = document.getElementById("search-instructions");
+            this._openSearchInstructions = document.getElementById("open-instructions");
+            this._closeSearchInstructions = document.getElementById("close-instructions");
+            this._openSearchInstructions.addEventListener("click", function () {
+                _this._searchInstruction.classList.remove("hidden");
+            });
+            this._closeSearchInstructions.addEventListener("click", function () {
+                _this._searchInstruction.classList.add("hidden");
+                _this._searchInstruction.classList.remove("how-to-container");
             });
         };
         LocationApp.prototype._createMap = function (item) {

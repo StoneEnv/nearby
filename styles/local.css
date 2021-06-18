@@ -390,3 +390,29 @@
   z-index: 999;
   width: 100%;
   position: absolute; }
+
+#open-instructions, #close-instructions {
+  text-align: center;
+  font-size: 20px;
+  color: black; }
+
+#open-instructions:hover, #close-instructions:hover {
+  color: #002D72;
+  font-weight: 700;
+  font-size: 22px;
+  cursor: pointer; }
+
+#search-instructions {
+  text-align: center;
+  color: black;
+  border: 2px solid #002D72;
+  border-radius: 4px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px; }
+
+#search-instructions h4 {
+  margin: 0px; }
+
+#search-instructions p {
+  margin-bottom: 10px; }

@@ -65,6 +65,9 @@ class LocationApp {
 	_helpButton: HTMLElement = null;
 	_helpContainer: HTMLElement = null;
 	_helpContainerReset: HTMLElement = null;
+	_searchInstruction: HTMLElement = null;
+	_openSearchInstructions: HTMLElement = null;
+	_closeSearchInstructions: HTMLElement = null;
 	// DisplayLookupResults is the component that handles displaying the popup content
 	// using the Feature widget for the features that match the lookup search requirements
 	lookupResults: DisplayLookupResults;
@@ -258,6 +261,17 @@ class LocationApp {
 			(<HTMLIFrameElement>document.getElementById("multiplePropertiesIFrame")).src = "/gshp";
 			(<HTMLElement>document.getElementById("multiplePropertiesIFrame")).classList.add("shown");
 		})
+		this._searchInstruction = document.getElementById("search-instructions") as HTMLElement;
+		this._openSearchInstructions = document.getElementById("open-instructions") as HTMLElement;
+		this._closeSearchInstructions = document.getElementById("close-instructions") as HTMLElement;
+		this._openSearchInstructions.addEventListener("click", () => {
+			this._searchInstruction.classList.remove("hidden");
+		})
+		this._closeSearchInstructions.addEventListener("click", () => {
+			this._searchInstruction.classList.add("hidden");
+			this._searchInstruction.classList.remove("how-to-container");
+		})
+
 	}
 	async _createMap(item) {
 		this.mapPanel = await new MapPanel({

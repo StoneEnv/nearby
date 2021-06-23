@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,8DAA8D,CAAC;EAC7D,UAAU,EAAE,IAAI;CACjB;;AAED,AAAA,oDAAoD,CAAC;EACnD,MAAM,EAAE,MAAM;CACf;;AAED,AAAA,yDAAyD,CAAC;EACxD,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,GAAG;EACR,IAAI,EAAE,GAAG;EACT,SAAS,EAAE,qBAAqB;EAChC,UAAU,EAAE,MAAM;EAClB,KAAK,EAAE,GAAG;CACX",
+    "sources": [
+        "../../app/components/unsupported/styles/UnsupportedBrowser.scss"
+    ],
+    "names": [],
+    "file": "UnsupportedBrowser.css"
+}

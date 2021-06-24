@@ -420,3 +420,35 @@
 
 #search-instructions p {
   margin-bottom: 10px; }
+
+.esri-attribution__powered-by a {
+  color: black !important;
+  text-decoration: underline; }
+
+.esri-attribution {
+  background-color: white !important; }
+
+#about-us-list-item {
+  text-align: left; }
+
+#faq-header, #about-us-header, #side-one-header, #side-two-header, #side-three-header {
+  cursor: pointer; }
+
+#faq-main #side-one, #faq-main #side-two, #faq-main #side-three {
+  padding: 5px; }
+
+#faq-main section {
+  text-align: left; }
+
+#faq-main h4 {
+  font-size: 20px; }
+
+#faq-main p {
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 0px; }
+
+#header-container {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center; }

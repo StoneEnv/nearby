@@ -128,6 +128,18 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this.base = null;
             this._propertyButtonOne = null;
             this._propertyButtonTwo = null;
+            this._aboutUsSection = null;
+            this._faqSection = null;
+            this._aboutUsHeader = null;
+            this._faqHeader = null;
+            this._faqSectionOne = null;
+            this._faqSectionTwo = null;
+            this._faqSectionThree = null;
+            this._faqSectionOne_Header = null;
+            this._faqSectionTwo_Header = null;
+            this._faqSectionThree_Header = null;
+            this._aboutUsSpan = null;
+            this._faqSpan = null;
         }
         //--------------------------------------------------------------------------
         //
@@ -281,6 +293,45 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._helpContainerReset.addEventListener("click", function () {
                 _this._helpContainer.classList.add("hidden");
                 _this._inerstitialDiv.classList.add("hidden");
+            });
+            this._aboutUsSection = document.getElementById("about-us-main");
+            this._faqSection = document.getElementById("faq-main");
+            this._aboutUsHeader = document.getElementById("about-us-header");
+            this._faqHeader = document.getElementById("faq-header");
+            this._faqSpan = document.getElementById("faq_click-to-expand");
+            this._aboutUsSpan = document.getElementById("about_us_click-to-expand");
+            this._aboutUsHeader.addEventListener("click", function () {
+                _this._aboutUsSection.classList.remove("hidden");
+                _this._faqSection.classList.add("hidden");
+                _this._aboutUsSpan.classList.add("hidden");
+                _this._faqSpan.classList.remove("hidden");
+            });
+            this._faqHeader.addEventListener("click", function () {
+                _this._aboutUsSection.classList.add("hidden");
+                _this._faqSection.classList.remove("hidden");
+                _this._faqSpan.classList.add("hidden");
+                _this._aboutUsSpan.classList.remove("hidden");
+            });
+            this._faqSectionOne = document.getElementById("side-one");
+            this._faqSectionTwo = document.getElementById("side-two");
+            this._faqSectionThree = document.getElementById("side-three");
+            this._faqSectionOne_Header = document.getElementById("side-one-header");
+            this._faqSectionTwo_Header = document.getElementById("side-two-header");
+            this._faqSectionThree_Header = document.getElementById("side-three-header");
+            this._faqSectionOne_Header.addEventListener("click", function () {
+                _this._faqSectionOne.classList.remove("hide");
+                _this._faqSectionTwo.classList.add("hide");
+                _this._faqSectionThree.classList.add("hide");
+            });
+            this._faqSectionTwo_Header.addEventListener("click", function () {
+                _this._faqSectionOne.classList.add("hide");
+                _this._faqSectionTwo.classList.remove("hide");
+                _this._faqSectionThree.classList.add("hide");
+            });
+            this._faqSectionThree_Header.addEventListener("click", function () {
+                _this._faqSectionTwo.classList.add("hide");
+                _this._faqSectionTwo.classList.add("hide");
+                _this._faqSectionThree.classList.remove("hide");
             });
             this._inerstitialDivOpen = document.getElementById("showMultiplePropertiesButton");
             this._inerstitialDivOpen.addEventListener("click", function () {

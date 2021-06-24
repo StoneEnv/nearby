@@ -77,6 +77,18 @@ class LocationApp {
 	base: ApplicationBase = null;
 	_propertyButtonOne: HTMLButtonElement = null;
 	_propertyButtonTwo: HTMLButtonElement = null;
+	_aboutUsSection: HTMLElement = null;
+	_faqSection: HTMLElement = null;
+	_aboutUsHeader: HTMLElement = null;
+	_faqHeader: HTMLElement = null;
+	_faqSectionOne: HTMLElement = null;
+	_faqSectionTwo: HTMLElement = null;
+	_faqSectionThree: HTMLElement = null;
+	_faqSectionOne_Header: HTMLElement = null;
+	_faqSectionTwo_Header: HTMLElement = null;
+	_faqSectionThree_Header: HTMLElement = null;
+	_aboutUsSpan: HTMLElement = null;
+	_faqSpan: HTMLElement = null;
 	//--------------------------------------------------------------------------
 	//
 	//  Public Methods
@@ -253,7 +265,47 @@ class LocationApp {
 		this._helpContainerReset.addEventListener("click", () => {
 			this._helpContainer.classList.add("hidden");
 			this._inerstitialDiv.classList.add("hidden");
-		})
+		});
+		this._aboutUsSection = <HTMLElement>document.getElementById("about-us-main");
+		this._faqSection = <HTMLElement>document.getElementById("faq-main");
+		this._aboutUsHeader = <HTMLElement>document.getElementById("about-us-header");
+		this._faqHeader = <HTMLElement>document.getElementById("faq-header");
+		this._faqSpan = <HTMLElement>document.getElementById("faq_click-to-expand");
+		this._aboutUsSpan = <HTMLElement>document.getElementById("about_us_click-to-expand");
+		this._aboutUsHeader.addEventListener("click", () => {
+			this._aboutUsSection.classList.remove("hidden");
+			this._faqSection.classList.add("hidden");
+			this._aboutUsSpan.classList.add("hidden");
+			this._faqSpan.classList.remove("hidden");
+		});
+		this._faqHeader.addEventListener("click", () => {
+			this._aboutUsSection.classList.add("hidden");
+			this._faqSection.classList.remove("hidden");
+			this._faqSpan.classList.add("hidden");
+			this._aboutUsSpan.classList.remove("hidden");
+		});
+
+		this._faqSectionOne = <HTMLElement>document.getElementById("side-one");
+		this._faqSectionTwo = <HTMLElement>document.getElementById("side-two");
+		this._faqSectionThree = <HTMLElement>document.getElementById("side-three");
+		this._faqSectionOne_Header = <HTMLElement>document.getElementById("side-one-header");
+		this._faqSectionTwo_Header = <HTMLElement>document.getElementById("side-two-header");
+		this._faqSectionThree_Header = <HTMLElement>document.getElementById("side-three-header");
+		this._faqSectionOne_Header.addEventListener("click", () => {
+			this._faqSectionOne.classList.remove("hide");
+			this._faqSectionTwo.classList.add("hide");
+			this._faqSectionThree.classList.add("hide");
+		});
+		this._faqSectionTwo_Header.addEventListener("click", () => {
+			this._faqSectionOne.classList.add("hide");
+			this._faqSectionTwo.classList.remove("hide");
+			this._faqSectionThree.classList.add("hide");
+		});
+		this._faqSectionThree_Header.addEventListener("click", () => {
+			this._faqSectionTwo.classList.add("hide");
+			this._faqSectionTwo.classList.add("hide");
+			this._faqSectionThree.classList.remove("hide");
+		});
 
 		this._inerstitialDivOpen = <HTMLElement> document.getElementById("showMultiplePropertiesButton");
 		this._inerstitialDivOpen.addEventListener("click", () => {

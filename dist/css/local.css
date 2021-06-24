@@ -263,16 +263,21 @@
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__submit-button, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__submit-button {
   background-color: #002D72;
   height: 42px;
-  width: 260px;
+  width: 150px;
   border-radius: 4px;
-  display: none;
+  display: block;
+  padding: 3px;
+}
+
+#searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__submit-button span, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__submit-button span {
+  line-height: 12px;
 }
 
 #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search--show-suggestions .esri-search__submit-button .esri-icon-search:before, #searchPanelWrapper #searchPanel #searchContent #searchWidget #filterPanel .search-panel #search .esri-search__container .esri-search__submit-button .esri-icon-search:before {
   content: "Check Geothermal Potential" !important;
   color: white;
   font-family: sans-serif;
-  font-size: 16px;
+  font-size: 12px;
   margin-left: 5px;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
@@ -457,22 +462,51 @@
 
 #interstitial-div #interstitial-content {
   margin-top: 60px;
+  padding: 30px;
+  background-color: rgba(255, 165, 0, 0.8);
 }
 
-.interstitial-div-button {
+#interstitial-div #interstitial-content h1 {
+  font-weight: 900;
+  font-size: 40px;
+  color: black;
+}
+
+#interstitial-div #interstitial-content p, #interstitial-div #interstitial-content ul {
+  text-align: left;
+  font-size: 18px;
+  color: black;
+}
+
+#abt-help-page {
+  margin-top: 60px;
+  padding: 30px;
+  background-color: rgba(255, 165, 0, 0.8);
+}
+
+#abt-help-page p {
+  text-align: left;
+  font-size: 18px;
+  color: black;
+}
+
+.interstitial-div-button, .abt-help-div-button {
   background-color: #002D72;
   color: white;
-  border-radius: 4px;
+  border-radius: 10px;
   margin: 10px;
   font-size: 20px;
   cursor: pointer;
+  height: 60px;
+  width: 250px;
+  font-weight: 600px;
 }
 
-.interstitial-div-button a {
+.interstitial-div-button a, .abt-help-div-button a {
   color: white !important;
 }
 
-.interstitial-div-button a:hover {
+.interstitial-div-button a:hover, .abt-help-div-button a:hover {
   text-decoration: none;
 }
 
@@ -484,5 +518,88 @@
   z-index: 999;
   width: 100%;
   position: absolute;
+  overflow-y: auto;
+}
+
+#open-instructions, #close-instructions {
+  text-align: center;
+  font-size: 20px;
+  color: black;
+  font-weight: 700;
+}
+
+#open-instructions {
+  border: 1px solid #002D72;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+#open-instructions:hover {
+  background-color: rgba(255, 165, 0, 0.8);
+}
+
+#close-instructions {
+  width: 100%;
+  border-bottom: 1px solid #002D72;
+  background-color: rgba(255, 165, 0, 0.8);
+}
+
+#open-instructions:hover, #close-instructions:hover {
+  color: #002D72;
+  cursor: pointer;
+}
+
+#search-instructions {
+  text-align: center;
+  color: black;
+  border: 2px solid #002D72;
+  border-radius: 4px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+#search-instructions h4 {
+  margin: 0px;
+}
+
+#search-instructions p {
+  margin-bottom: 10px;
+}
+
+.esri-attribution__powered-by a {
+  color: black !important;
+  text-decoration: underline;
+}
+
+.esri-attribution {
+  background-color: white !important;
+}
+
+#about-us-list-item {
+  text-align: left;
+}
+
+#faq-main, #about-us-main {
+  text-align: left;
+}
+
+#about-expand:hover, #about-collapse:hover, #faq-collapse:hover, #faq-expand:hover {
+  cursor: pointer;
+}
+
+#about-us-header, #faq-header {
+  border: 2px solid #002D72;
+  border-radius: 4px;
+}
+
+#about-us-header:hover, #faq-header:hover {
+  background-color: rgba(255, 165, 0, 0.8);
+  font-size: 50px;
+}
+
+hr {
+  background-color: #002D72;
 }
 /*# sourceMappingURL=local.css.map */

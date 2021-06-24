@@ -469,6 +469,7 @@
     z-index: 999;
     width: 100%;
     position: absolute;
+    overflow-y: auto;
 }
 #open-instructions, #close-instructions{
     text-align: center;
@@ -532,29 +533,30 @@
 #about-us-list-item{
     text-align: left;
 }
-#faq-header, #about-us-header, #side-one-header, #side-two-header, #side-three-header{
-    cursor: pointer;
-}
-#faq-main{
-    // display: flex;
-    #side-one, #side-two, #side-three{
-        padding: 5px;
-    }
-    section{
-        text-align: left;
-    }
-    h4{
-        font-size: 20px;
-    }
-    p{
-        font-size: 14px;
-        line-height: 16px;
-        margin-bottom: 0px;
-    }
-}
-#header-container{
-    display: flex;
-    justify-content: space-evenly;
-    text-align: center;
-}
-    
+// #faq-header, #about-us-header, #side-one-header, #side-two-header, #side-three-header{
+//     cursor: pointer;
+// }
+// #faq-main{
+//     // display: flex;
+//     #side-one, #side-two, #side-three{
+//         padding: 5px;
+//     }
+//     section{
+//         text-align: left;
+//     }
+//     h4{
+//         font-size: 20px;
+//     }
+//     p{
+//         font-size: 14px;
+//         line-height: 16px;
+//         margin-bottom: 0px;
+//     }
+// }
+// #header-container{
+//     display: flex;
+//     justify-content: space-evenly;
+//     text-align: center;
+// }
+
+

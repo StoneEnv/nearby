@@ -68,6 +68,11 @@ class LocationApp {
 	_searchInstruction: HTMLElement = null;
 	_openSearchInstructions: HTMLElement = null;
 	_closeSearchInstructions: HTMLElement = null;
+	_aboutExpand: HTMLElement = null;
+	_aboutCollapse: HTMLElement = null;
+	_faqExpand: HTMLElement = null;
+	_faqCollapse: HTMLElement = null;
+	
 	// DisplayLookupResults is the component that handles displaying the popup content
 	// using the Feature widget for the features that match the lookup search requirements
 	lookupResults: DisplayLookupResults;
@@ -266,46 +271,74 @@ class LocationApp {
 			this._helpContainer.classList.add("hidden");
 			this._inerstitialDiv.classList.add("hidden");
 		});
+		// this._aboutUsSection = <HTMLElement>document.getElementById("about-us-main");
+		// this._faqSection = <HTMLElement>document.getElementById("faq-main");
+		// this._aboutUsHeader = <HTMLElement>document.getElementById("about-us-header");
+		// this._faqHeader = <HTMLElement>document.getElementById("faq-header");
+		// this._faqSpan = <HTMLElement>document.getElementById("faq_click-to-expand");
+		// this._aboutUsSpan = <HTMLElement>document.getElementById("about_us_click-to-expand");
+		// this._aboutUsHeader.addEventListener("click", () => {
+		// 	this._aboutUsSection.classList.remove("hidden");
+		// 	this._faqSection.classList.add("hidden");
+		// 	this._aboutUsSpan.classList.add("hidden");
+		// 	this._faqSpan.classList.remove("hidden");
+		// });
+		// this._faqHeader.addEventListener("click", () => {
+		// 	this._aboutUsSection.classList.add("hidden");
+		// 	this._faqSection.classList.remove("hidden");
+		// 	this._faqSpan.classList.add("hidden");
+		// 	this._aboutUsSpan.classList.remove("hidden");
+		// });
+
+		// this._faqSectionOne = <HTMLElement>document.getElementById("side-one");
+		// this._faqSectionTwo = <HTMLElement>document.getElementById("side-two");
+		// this._faqSectionThree = <HTMLElement>document.getElementById("side-three");
+		// this._faqSectionOne_Header = <HTMLElement>document.getElementById("side-one-header");
+		// this._faqSectionTwo_Header = <HTMLElement>document.getElementById("side-two-header");
+		// this._faqSectionThree_Header = <HTMLElement>document.getElementById("side-three-header");
+		// this._faqSectionOne_Header.addEventListener("click", () => {
+		// 	this._faqSectionOne.classList.remove("hide");
+		// 	this._faqSectionTwo.classList.add("hide");
+		// 	this._faqSectionThree.classList.add("hide");
+		// });
+		// this._faqSectionTwo_Header.addEventListener("click", () => {
+		// 	this._faqSectionOne.classList.add("hide");
+		// 	this._faqSectionTwo.classList.remove("hide");
+		// 	this._faqSectionThree.classList.add("hide");
+		// });
+		// this._faqSectionThree_Header.addEventListener("click", () => {
+		// 	this._faqSectionTwo.classList.add("hide");
+		// 	this._faqSectionTwo.classList.add("hide");
+		// 	this._faqSectionThree.classList.remove("hide");
+		// });
+
+		this._aboutExpand = <HTMLElement>document.getElementById("about-expand");
 		this._aboutUsSection = <HTMLElement>document.getElementById("about-us-main");
-		this._faqSection = <HTMLElement>document.getElementById("faq-main");
-		this._aboutUsHeader = <HTMLElement>document.getElementById("about-us-header");
-		this._faqHeader = <HTMLElement>document.getElementById("faq-header");
-		this._faqSpan = <HTMLElement>document.getElementById("faq_click-to-expand");
-		this._aboutUsSpan = <HTMLElement>document.getElementById("about_us_click-to-expand");
-		this._aboutUsHeader.addEventListener("click", () => {
-			this._aboutUsSection.classList.remove("hidden");
-			this._faqSection.classList.add("hidden");
-			this._aboutUsSpan.classList.add("hidden");
-			this._faqSpan.classList.remove("hidden");
+		this._aboutCollapse = <HTMLElement>document.getElementById("about-collapse");
+		this._faqExpand = <HTMLElement>document.getElementById("faq-expand");
+		this._faqCollapse = <HTMLElement>document.getElementById("faq-collapse");
+		this._faqSection = <HTMLElement>document.getElementById("faq-main")
+		this._aboutExpand.addEventListener("click", () => {
+			this._aboutUsSection.classList.remove("hide")
+			this._aboutCollapse.classList.remove("hide");
+			this._aboutExpand.classList.add("hide");
 		});
-		this._faqHeader.addEventListener("click", () => {
-			this._aboutUsSection.classList.add("hidden");
-			this._faqSection.classList.remove("hidden");
-			this._faqSpan.classList.add("hidden");
-			this._aboutUsSpan.classList.remove("hidden");
+		this._aboutCollapse.addEventListener("click", () => {
+			this._aboutCollapse.classList.add("hide");
+			this._aboutUsSection.classList.add("hide");
+			this._aboutExpand.classList.remove("hide");
+		});
+		this._faqExpand.addEventListener("click", () => {
+			this._faqSection.classList.remove("hide")
+			this._faqCollapse.classList.remove("hide");
+			this._faqExpand.classList.add("hide");
+		});
+		this._faqCollapse.addEventListener("click", () => {
+			this._faqCollapse.classList.add("hide");
+			this._faqSection.classList.add("hide");
+			this._faqExpand.classList.remove("hide");
 		});
 
-		this._faqSectionOne = <HTMLElement>document.getElementById("side-one");
-		this._faqSectionTwo = <HTMLElement>document.getElementById("side-two");
-		this._faqSectionThree = <HTMLElement>document.getElementById("side-three");
-		this._faqSectionOne_Header = <HTMLElement>document.getElementById("side-one-header");
-		this._faqSectionTwo_Header = <HTMLElement>document.getElementById("side-two-header");
-		this._faqSectionThree_Header = <HTMLElement>document.getElementById("side-three-header");
-		this._faqSectionOne_Header.addEventListener("click", () => {
-			this._faqSectionOne.classList.remove("hide");
-			this._faqSectionTwo.classList.add("hide");
-			this._faqSectionThree.classList.add("hide");
-		});
-		this._faqSectionTwo_Header.addEventListener("click", () => {
-			this._faqSectionOne.classList.add("hide");
-			this._faqSectionTwo.classList.remove("hide");
-			this._faqSectionThree.classList.add("hide");
-		});
-		this._faqSectionThree_Header.addEventListener("click", () => {
-			this._faqSectionTwo.classList.add("hide");
-			this._faqSectionTwo.classList.add("hide");
-			this._faqSectionThree.classList.remove("hide");
-		});
 
 		this._inerstitialDivOpen = <HTMLElement> document.getElementById("showMultiplePropertiesButton");
 		this._inerstitialDivOpen.addEventListener("click", () => {

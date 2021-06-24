@@ -398,12 +398,24 @@
 #open-instructions, #close-instructions {
   text-align: center;
   font-size: 20px;
-  color: black; }
+  color: black;
+  font-weight: 700; }
+
+#open-instructions {
+  border: 1px solid #002D72;
+  margin-left: 30px;
+  margin-right: 30px; }
+
+#open-instructions:hover {
+  background-color: rgba(255, 165, 0, 0.8); }
+
+#close-instructions {
+  width: 100%;
+  border-bottom: 1px solid #002D72;
+  background-color: rgba(255, 165, 0, 0.8); }
 
 #open-instructions:hover, #close-instructions:hover {
   color: #002D72;
-  font-weight: 700;
-  font-size: 22px;
   cursor: pointer; }
 
 #search-instructions {
@@ -413,7 +425,8 @@
   border-radius: 4px;
   margin-right: 20px;
   margin-left: 20px;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.75); }
 
 #search-instructions h4 {
   margin: 0px; }

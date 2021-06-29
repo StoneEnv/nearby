@@ -456,8 +456,7 @@
   border-radius: 4px; }
 
 #about-us-header:hover, #faq-header:hover {
-  background-color: rgba(255, 165, 0, 0.8);
-  font-size: 50px; }
+  background-color: rgba(255, 165, 0, 0.8); }
 
 hr {
   background-color: #002D72; }

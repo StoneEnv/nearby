@@ -260,6 +260,7 @@ class LocationApp {
 			this._initialSearchPanel.classList.add("click-to-hide")
 		});
 		//about + FAQ section appearance click event
+
 		this._helpButton = document.getElementById("abt-faq-button") as HTMLElement;
 		this._helpButton.addEventListener("click", () => {
 			this._helpContainer.classList.remove("hidden");
@@ -305,15 +306,20 @@ class LocationApp {
 			(<HTMLIFrameElement>document.getElementById("multiplePropertiesIFrame")).src = "/gshp";
 			(<HTMLElement>document.getElementById("multiplePropertiesIFrame")).classList.add("shown");
 		})
+		var isSearchInstructionOpen = false;
 		this._searchInstruction = document.getElementById("search-instructions") as HTMLElement;
 		this._openSearchInstructions = document.getElementById("open-instructions") as HTMLElement;
-		this._closeSearchInstructions = document.getElementById("close-instructions") as HTMLElement;
+		//this._closeSearchInstructions = document.getElementById("close-instructions") as HTMLElement;
 		this._openSearchInstructions.addEventListener("click", () => {
-			this._searchInstruction.classList.remove("hidden");
-		})
-		this._closeSearchInstructions.addEventListener("click", () => {
-			this._searchInstruction.classList.add("hidden");
-			this._searchInstruction.classList.remove("how-to-container");
+			if (!isSearchInstructionOpen) {
+				this._searchInstruction.classList.remove("hidden");
+				isSearchInstructionOpen = true;
+			}
+			else {
+				this._searchInstruction.classList.add("hidden");
+				this._searchInstruction.classList.remove("how-to-container");
+				isSearchInstructionOpen = false;
+			}
 		})
 
 	}

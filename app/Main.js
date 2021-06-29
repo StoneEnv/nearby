@@ -330,15 +330,20 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 document.getElementById("multiplePropertiesIFrame").src = "/gshp";
                 document.getElementById("multiplePropertiesIFrame").classList.add("shown");
             });
+            var isSearchInstructionOpen = false;
             this._searchInstruction = document.getElementById("search-instructions");
             this._openSearchInstructions = document.getElementById("open-instructions");
-            this._closeSearchInstructions = document.getElementById("close-instructions");
+            //this._closeSearchInstructions = document.getElementById("close-instructions") as HTMLElement;
             this._openSearchInstructions.addEventListener("click", function () {
-                _this._searchInstruction.classList.remove("hidden");
-            });
-            this._closeSearchInstructions.addEventListener("click", function () {
-                _this._searchInstruction.classList.add("hidden");
-                _this._searchInstruction.classList.remove("how-to-container");
+                if (!isSearchInstructionOpen) {
+                    _this._searchInstruction.classList.remove("hidden");
+                    isSearchInstructionOpen = true;
+                }
+                else {
+                    _this._searchInstruction.classList.add("hidden");
+                    _this._searchInstruction.classList.remove("how-to-container");
+                    isSearchInstructionOpen = false;
+                }
             });
         };
         LocationApp.prototype._createMap = function (item) {

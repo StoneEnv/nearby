@@ -163,7 +163,7 @@
       "resultsText": {
         "noResultsMessage": {
           "express": true,
-          "default": "No features found that meet the search criteria"
+          "default": "No features found that meet the search criteria. If the point is not located on your building, clear your search and click on the outline of your building, or click on the white circle to automatically adjust the point to your building location."
         },
         "resultsPanelPreText": {
           "express": false

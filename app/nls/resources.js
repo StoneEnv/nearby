@@ -13,7 +13,7 @@ define({
       "miniMapDescription": "Map showing the location of the selected feature"
     },
     "count": "Total",
-    "noFeatures": "No features found that meet the search criteria",
+    "noFeatures": "No features found that meet the search criteria. If the point is not located on your building, clear your search and click on the outline of your building, or click on the white circle to automatically adjust the point to your building location.",
     "error": "Error",
     "licenseError": {
       "message": "Your account is not licensed to use Configurable Apps that are not public. Please ask your organization administrator to assign you a user type that includes Essential Apps or an add-on Essential Apps license",

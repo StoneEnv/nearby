@@ -62,6 +62,17 @@ class LocationApp {
 	_inerstitialDiv: HTMLElement = null;
 	_inerstitialDivReset: HTMLElement = null;
 	_inerstitialDivOpen: HTMLElement = null;
+	_helpButton: HTMLElement = null;
+	_helpContainer: HTMLElement = null;
+	_helpContainerReset: HTMLElement = null;
+	_searchInstruction: HTMLElement = null;
+	_openSearchInstructions: HTMLElement = null;
+	_closeSearchInstructions: HTMLElement = null;
+	_aboutExpand: HTMLElement = null;
+	_aboutCollapse: HTMLElement = null;
+	_faqExpand: HTMLElement = null;
+	_faqCollapse: HTMLElement = null;
+	
 	// DisplayLookupResults is the component that handles displaying the popup content
 	// using the Feature widget for the features that match the lookup search requirements
 	lookupResults: DisplayLookupResults;
@@ -71,6 +82,18 @@ class LocationApp {
 	base: ApplicationBase = null;
 	_propertyButtonOne: HTMLButtonElement = null;
 	_propertyButtonTwo: HTMLButtonElement = null;
+	_aboutUsSection: HTMLElement = null;
+	_faqSection: HTMLElement = null;
+	_aboutUsHeader: HTMLElement = null;
+	_faqHeader: HTMLElement = null;
+	_faqSectionOne: HTMLElement = null;
+	_faqSectionTwo: HTMLElement = null;
+	_faqSectionThree: HTMLElement = null;
+	_faqSectionOne_Header: HTMLElement = null;
+	_faqSectionTwo_Header: HTMLElement = null;
+	_faqSectionThree_Header: HTMLElement = null;
+	_aboutUsSpan: HTMLElement = null;
+	_faqSpan: HTMLElement = null;
 	//--------------------------------------------------------------------------
 	//
 	//  Public Methods
@@ -156,6 +179,7 @@ class LocationApp {
 		this._mapPanel = <HTMLElement> document.getElementById("mapPanel");
 		this._initialSearchPanel = <HTMLElement> document.getElementById("searchPanelWrapper");
 		this._inerstitialDiv = <HTMLElement> document.getElementById("interstitial-div");
+		this._helpContainer = <HTMLElement> document.getElementById("abt-help-page-container");
 		this._homeButton = document.getElementById("homeButton") as HTMLButtonElement;
 
 		this._homeButton.addEventListener("click", () => {
@@ -176,6 +200,7 @@ class LocationApp {
 			(<HTMLElement>document.getElementById("searchPanelWrapper")).classList.remove("top");
 			(<HTMLElement>document.getElementById("searchPanel")).classList.remove("top");
 			(<HTMLElement>document.getElementById("searchWidget")).classList.remove("top");
+			this._helpContainer.classList.add("hidden");
 		});
 
 		let modeLabel = document.getElementById("ModeLabel") as HTMLElement;
@@ -223,6 +248,7 @@ class LocationApp {
 			///this._modelPanel.classList.add("hidden");
 			//this._initialSearchPanel.classList.add("hidden");
 			this._inerstitialDiv.classList.remove("hidden");
+			this._helpContainer.classList.add('hidden');
 		});
 
 		this._inerstitialDivReset = <HTMLElement> document.getElementById("return-to-default");
@@ -231,7 +257,48 @@ class LocationApp {
 			this._mapPanel.classList.remove("hide");
 			this._modelPanel.classList.remove("hidden");
 			this._initialSearchPanel.classList.remove("hidden");
+			this._initialSearchPanel.classList.add("click-to-hide")
 		});
+		//about + FAQ section appearance click event
+
+		this._helpButton = document.getElementById("abt-faq-button") as HTMLElement;
+		this._helpButton.addEventListener("click", () => {
+			this._helpContainer.classList.remove("hidden");
+		});
+
+		//hide about + FAQ sections again
+		this._helpContainerReset = <HTMLElement>document.getElementById("reset-abt-help-page");
+		this._helpContainerReset.addEventListener("click", () => {
+			this._helpContainer.classList.add("hidden");
+			this._inerstitialDiv.classList.add("hidden");
+		});
+		this._aboutExpand = <HTMLElement>document.getElementById("about-expand");
+		this._aboutUsSection = <HTMLElement>document.getElementById("about-us-main");
+		this._aboutCollapse = <HTMLElement>document.getElementById("about-collapse");
+		this._faqExpand = <HTMLElement>document.getElementById("faq-expand");
+		this._faqCollapse = <HTMLElement>document.getElementById("faq-collapse");
+		this._faqSection = <HTMLElement>document.getElementById("faq-main")
+		this._aboutExpand.addEventListener("click", () => {
+			this._aboutUsSection.classList.remove("hide")
+			this._aboutCollapse.classList.remove("hide");
+			this._aboutExpand.classList.add("hide");
+		});
+		this._aboutCollapse.addEventListener("click", () => {
+			this._aboutCollapse.classList.add("hide");
+			this._aboutUsSection.classList.add("hide");
+			this._aboutExpand.classList.remove("hide");
+		});
+		this._faqExpand.addEventListener("click", () => {
+			this._faqSection.classList.remove("hide")
+			this._faqCollapse.classList.remove("hide");
+			this._faqExpand.classList.add("hide");
+		});
+		this._faqCollapse.addEventListener("click", () => {
+			this._faqCollapse.classList.add("hide");
+			this._faqSection.classList.add("hide");
+			this._faqExpand.classList.remove("hide");
+		});
+
 
 		this._inerstitialDivOpen = <HTMLElement> document.getElementById("showMultiplePropertiesButton");
 		this._inerstitialDivOpen.addEventListener("click", () => {
@@ -239,6 +306,22 @@ class LocationApp {
 			(<HTMLIFrameElement>document.getElementById("multiplePropertiesIFrame")).src = "/gshp";
 			(<HTMLElement>document.getElementById("multiplePropertiesIFrame")).classList.add("shown");
 		})
+		var isSearchInstructionOpen = false;
+		this._searchInstruction = document.getElementById("search-instructions") as HTMLElement;
+		this._openSearchInstructions = document.getElementById("open-instructions") as HTMLElement;
+		//this._closeSearchInstructions = document.getElementById("close-instructions") as HTMLElement;
+		this._openSearchInstructions.addEventListener("click", () => {
+			if (!isSearchInstructionOpen) {
+				this._searchInstruction.classList.remove("hidden");
+				isSearchInstructionOpen = true;
+			}
+			else {
+				this._searchInstruction.classList.add("hidden");
+				this._searchInstruction.classList.remove("how-to-container");
+				isSearchInstructionOpen = false;
+			}
+		})
+
 	}
 	async _createMap(item) {
 		this.mapPanel = await new MapPanel({

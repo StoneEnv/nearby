@@ -98,7 +98,7 @@ class GroupedAccordion extends (Accordion) {
             console.log("trying to add event handler");
             var linkToModel = linksToModel[0] as HTMLAnchorElement;
             if (linkToModel) console.log("got Anchor element");
-            linkToModel.href = linkToModel.href.replace("https://geothermaltool.axillis.nl","http://gshpapi.stone-env.net");
+            linkToModel.href = linkToModel.href.replace("https://geothermaltool.axillis.nl","https://gshpapi.stone-env.net");
 
             linkToModel.addEventListener("click", () => {
                 var modelPanel = document.getElementById("modelPanel") as HTMLElement;

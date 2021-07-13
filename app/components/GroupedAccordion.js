@@ -87,7 +87,7 @@ define(["require", "exports", "esri/core/promiseUtils", "./Accordion", "esri/cor
                 var linkToModel = linksToModel[0];
                 if (linkToModel)
                     console.log("got Anchor element");
-                linkToModel.href = linkToModel.href.replace("https://geothermaltool.axillis.nl", "https://geopossibilities.ny.gov:8000");
+                linkToModel.href = linkToModel.href.replace("https://geothermaltool.axillis.nl", "https://gshpapi.stone-env.net");
                 linkToModel.addEventListener("click", function () {
                     var modelPanel = document.getElementById("modelPanel");
                     modelPanel.classList.add("shown");

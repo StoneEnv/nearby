@@ -545,17 +545,17 @@
 #about-us-list-item{
     text-align: left;
 }
-#faq-main, #about-us-main{
+#faq-main, #about-us-main, #methodology-main{
     text-align: left;
 }
-#about-expand:hover, #about-collapse:hover, #faq-collapse:hover, #faq-expand:hover{
+#about-expand:hover, #about-collapse:hover, #faq-collapse:hover, #faq-expand:hover, #methodology-expand:hover, #methodology-collapse:hover{
     cursor: pointer;
 }
-#about-us-header, #faq-header{
+#about-us-header, #faq-header, #methodology-header{
     border: 2px solid #002D72;
     border-radius: 4px;
 }
-#about-us-header:hover, #faq-header:hover{
+#about-us-header:hover, #faq-header:hover, #methodology-header:hover{
     background-color: rgba(255, 165, 0, 0.8);
 }
 hr{

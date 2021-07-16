@@ -291,7 +291,8 @@
   top: 100px;
   z-index: 999;
   width: 100%;
-  position: absolute; }
+  position: absolute;
+  overflow-y: auto; }
   #interstitial-div #multiplePropertiesIFrame {
     width: 100%;
     height: 100%;
@@ -299,9 +300,11 @@
     display: none;
     border: none; }
   #interstitial-div #interstitial-content {
-    margin-top: 60px;
+    /* margin-top: 60px; */
     padding: 30px;
-    background-color: rgba(255, 165, 0, 0.8); }
+    background-color: rgba(255, 165, 0, 0.8);
+    /* overflow-y: auto; */
+    min-height: 600px; }
     #interstitial-div #interstitial-content h1 {
       font-weight: 900;
       font-size: 40px;
@@ -398,17 +401,17 @@
 #about-us-list-item {
   text-align: left; }
 
-#faq-main, #about-us-main {
+#faq-main, #about-us-main, #methodology-main {
   text-align: left; }
 
-#about-expand:hover, #about-collapse:hover, #faq-collapse:hover, #faq-expand:hover {
+#about-expand:hover, #about-collapse:hover, #faq-collapse:hover, #faq-expand:hover, #methodology-expand:hover, #methodology-collapse:hover {
   cursor: pointer; }
 
-#about-us-header, #faq-header {
+#about-us-header, #faq-header, #methodology-header {
   border: 2px solid #002D72;
   border-radius: 4px; }
 
-#about-us-header:hover, #faq-header:hover {
+#about-us-header:hover, #faq-header:hover, #methodology-header:hover {
   background-color: rgba(255, 165, 0, 0.8); }
 
 hr {

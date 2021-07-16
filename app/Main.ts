@@ -72,6 +72,8 @@ class LocationApp {
 	_aboutCollapse: HTMLElement = null;
 	_faqExpand: HTMLElement = null;
 	_faqCollapse: HTMLElement = null;
+	_methodologyExpand: HTMLElement = null;
+	_methodologyCollapse: HTMLElement = null;
 	
 	// DisplayLookupResults is the component that handles displaying the popup content
 	// using the Feature widget for the features that match the lookup search requirements
@@ -84,6 +86,7 @@ class LocationApp {
 	_propertyButtonTwo: HTMLButtonElement = null;
 	_aboutUsSection: HTMLElement = null;
 	_faqSection: HTMLElement = null;
+	_methodologySection: HTMLElement = null;
 	_aboutUsHeader: HTMLElement = null;
 	_faqHeader: HTMLElement = null;
 	_faqSectionOne: HTMLElement = null;
@@ -277,7 +280,10 @@ class LocationApp {
 		this._aboutCollapse = <HTMLElement>document.getElementById("about-collapse");
 		this._faqExpand = <HTMLElement>document.getElementById("faq-expand");
 		this._faqCollapse = <HTMLElement>document.getElementById("faq-collapse");
-		this._faqSection = <HTMLElement>document.getElementById("faq-main")
+		this._faqSection = <HTMLElement>document.getElementById("faq-main");
+		this._methodologySection = <HTMLElement>document.getElementById("methodology-main");
+		this._methodologyExpand = <HTMLElement>document.getElementById("methodology-expand");
+		this._methodologyCollapse = <HTMLElement>document.getElementById("methodology-collapse");
 		this._aboutExpand.addEventListener("click", () => {
 			this._aboutUsSection.classList.remove("hide")
 			this._aboutCollapse.classList.remove("hide");
@@ -297,6 +303,16 @@ class LocationApp {
 			this._faqCollapse.classList.add("hide");
 			this._faqSection.classList.add("hide");
 			this._faqExpand.classList.remove("hide");
+		});
+		this._methodologyExpand.addEventListener("click", () => {
+			this._methodologySection.classList.remove("hide");
+			this._methodologyCollapse.classList.remove("hide");
+			this._methodologyExpand.classList.add("hide");
+		});
+		this._methodologyCollapse.addEventListener("click", () => {
+			this._methodologySection.classList.add("hide");
+			this._methodologyCollapse.classList.add("hide");
+			this._methodologyExpand.classList.remove("hide");
 		});
 
 

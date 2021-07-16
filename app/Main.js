@@ -126,6 +126,8 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._aboutCollapse = null;
             this._faqExpand = null;
             this._faqCollapse = null;
+            this._methodologyExpand = null;
+            this._methodologyCollapse = null;
             //----------------------------------
             //  ApplicationBase
             //----------------------------------
@@ -134,6 +136,7 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._propertyButtonTwo = null;
             this._aboutUsSection = null;
             this._faqSection = null;
+            this._methodologySection = null;
             this._aboutUsHeader = null;
             this._faqHeader = null;
             this._faqSectionOne = null;
@@ -304,6 +307,9 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
             this._faqExpand = document.getElementById("faq-expand");
             this._faqCollapse = document.getElementById("faq-collapse");
             this._faqSection = document.getElementById("faq-main");
+            this._methodologySection = document.getElementById("methodology-main");
+            this._methodologyExpand = document.getElementById("methodology-expand");
+            this._methodologyCollapse = document.getElementById("methodology-collapse");
             this._aboutExpand.addEventListener("click", function () {
                 _this._aboutUsSection.classList.remove("hide");
                 _this._aboutCollapse.classList.remove("hide");
@@ -323,6 +329,16 @@ define(["require", "exports", "telemetry/telemetry.dojo", "esri/widgets/Search",
                 _this._faqCollapse.classList.add("hide");
                 _this._faqSection.classList.add("hide");
                 _this._faqExpand.classList.remove("hide");
+            });
+            this._methodologyExpand.addEventListener("click", function () {
+                _this._methodologySection.classList.remove("hide");
+                _this._methodologyCollapse.classList.remove("hide");
+                _this._methodologyExpand.classList.add("hide");
+            });
+            this._methodologyCollapse.addEventListener("click", function () {
+                _this._methodologySection.classList.add("hide");
+                _this._methodologyCollapse.classList.add("hide");
+                _this._methodologyExpand.classList.remove("hide");
             });
             this._inerstitialDivOpen = document.getElementById("showMultiplePropertiesButton");
             this._inerstitialDivOpen.addEventListener("click", function () {
